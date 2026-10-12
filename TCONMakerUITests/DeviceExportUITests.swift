@@ -24,17 +24,17 @@ final class DeviceExportUITests: XCTestCase {
     launch(app, sample: false)
     openCamera(app)
     respondToPermission(allow: true)
-    let cancel = app.buttons.matching(NSPredicate(format: "label IN %@", ["Cancel", "취소"])).firstMatch
-    let importedPhoto = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "촬영_")).firstMatch
-    expectation(for: NSPredicate { _, _ in cancel.exists || importedPhoto.exists }, evaluatedWith: app)
-    waitForExpectations(timeout: 20)
-    if importedPhoto.exists {
-      // A user may finish a capture while permission automation is running.
-      XCTAssertTrue(app.images["editorCanvas"].exists)
+    let close = app.buttons.matching(NSPredicate(format: "label IN %@", ["Cancel", "취소", "Close", "닫기"])).firstMatch
+    XCTAssertFalse(app.buttons["capturePhoto"].isHittable)
+    if close.exists {
+      close.tap()
     } else {
-      cancel.tap()
-      XCTAssertTrue(app.buttons["capturePhoto"].waitForExistence(timeout: 10))
+      // iOS 26.6 camera's bottom-left X is visible but not exposed as a named
+      // button to XCTest. Position verified on the authorized portrait iPhone.
+      app.coordinate(withNormalizedOffset: CGVector(dx: 0.145, dy: 0.935)).tap()
     }
+    waitHittable(app.buttons["capturePhoto"])
+
   }
 
   func testPhotoPermissionDeniedThenSaveDemoPhotos() {
