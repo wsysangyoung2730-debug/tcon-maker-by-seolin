@@ -63,9 +63,6 @@ struct StartView: View {
             }
           }.frame(maxWidth: .infinity)
         }
-      }.padding(22).frame(maxWidth: 560)
-    }.background(Color.panel).toolbar(.hidden, for: .navigationBar)
-      .safeAreaInset(edge: .bottom, spacing: 0) {
         VStack(spacing: 10) {
           ImportActions()
           HStack(alignment: .center) {
@@ -74,10 +71,10 @@ struct StartView: View {
               .frame(maxWidth: .infinity, alignment: .leading)
             SeolinSignature().frame(width: 70)
           }
-        }.padding(.horizontal, 22).padding(.top, 12).padding(.bottom, 6)
-          .frame(maxWidth: 560).frame(maxWidth: .infinity)
-          .background(Color.panel)
-      }
+        }
+      }.padding(22).frame(maxWidth: 560).frame(maxWidth: .infinity)
+    }.accessibilityIdentifier("homeContent")
+      .background(Color.panel).toolbar(.hidden, for: .navigationBar)
       .sheet(isPresented: $settings) { SettingsView(draft: store.settings) }
   }
 }
