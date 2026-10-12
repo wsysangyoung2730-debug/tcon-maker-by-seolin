@@ -55,7 +55,7 @@ try {
     if(previous&&previous.sha256!==sha256(buffer))throw Error('Approved cover changed');
    }
    await fs.writeFile(path.join(dir,file),buffer);
-   manifest.push({file,width,height,alpha:false,sha256:sha256(buffer),title:spec.slide.title,description:spec.slide.description,source:spec.source,sourceSHA256:spec.source?sha256(await fs.readFile(path.join(dir,spec.source))):null,sourceCrop:spec.crop,statusMask:spec.statusMask||null});
+   manifest.push({file,appVersion:"1.0.1",build:"2",width,height,alpha:false,sha256:sha256(buffer),title:spec.slide.title,description:spec.slide.description,source:spec.source,sourceSHA256:spec.source?sha256(await fs.readFile(path.join(dir,spec.source))):null,sourceCrop:spec.crop,statusMask:spec.statusMask||null});
    console.log(`Rendered ${file}`);
   }
  }

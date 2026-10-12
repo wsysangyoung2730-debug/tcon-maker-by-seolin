@@ -88,12 +88,12 @@ const frame=document.querySelector('.frame'),screen=document.querySelector('.scr
 Object.assign(frame.style,{left:(baseWidth-frameWidth)/2+'px',top:490+'px'});
 Object.assign(screen.style,{width:screenWidth+'px',height:screenHeight+'px'});
 const statusCover=document.querySelector('.status-cover');
-const statusBackground=slide.source==='07-settings.png'?'#cccccc':(['01-home.png','03-editor.png'].includes(slide.source)?'#ffffff':'#f2f2f7');
+const statusBackground=slide.source==='07-settings.png'?'#cccccc':(slide.source==='01-home.png'?'#ffffff':'#f2f2f7');
 const statusMask=device.ipad?null:{x:0,y:0,width:1320,height:180,background:statusBackground};
 if(statusMask){Object.assign(statusCover.style,{height:(statusMask.height*scale)+'px',background:statusBackground});}
 else{statusCover.remove();}
-capture.src=`../Captures/ko-KR/${sourceDevice}/${slide.source}`;
+capture.src=`../Captures/v1.0.1/ko-KR/${sourceDevice}/${slide.source}`;
 Object.assign(capture.style,{left:-crop.x*scale+'px',top:-crop.y*scale+'px',width:sourceWidth*scale+'px'});
-window.renderSpec={device:key,width:device.width,height:device.height,slide,source:`Captures/ko-KR/${sourceDevice}/${slide.source}`,crop,statusMask,baseWidth,baseHeight,slideCount:slides.length};
+window.renderSpec={device:key,width:device.width,height:device.height,slide,source:`Captures/v1.0.1/ko-KR/${sourceDevice}/${slide.source}`,crop,statusMask,baseWidth,baseHeight,slideCount:slides.length};
 }
 </script></html>

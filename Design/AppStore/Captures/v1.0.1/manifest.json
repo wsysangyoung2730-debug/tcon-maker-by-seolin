@@ -1,0 +1,200 @@
+[
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPad-13-2064x2752/07-settings.png",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "6888f6fa236833a8aab7cfe628eb033fdedde160b73397127fed5c206ec186b4",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPad 13",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPad-13-2064x2752/08-home-actions.png",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "81b2ee5ea8f8ffebeb5d08d8ac0e15254def554269e98a9cf67010000465c72c",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPad 13",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPad-13-2064x2752/01-home.png",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "81b2ee5ea8f8ffebeb5d08d8ac0e15254def554269e98a9cf67010000465c72c",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPad 13",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPad-13-2064x2752/10-home-landscape.png",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "98b9eadb815079353d1a45796b779dc181eec39c4216d51e199f70628a079626",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPad 13",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPad-13-2064x2752/02-folders.png",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "70e95498f648becc940b6fda9ab4495ae65f35ed4b2ce315b988cd7985f50371",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPad 13",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPad-13-2064x2752/06-export.png",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "468da8aee943c6ad9fec8a853b347b10dae1b6dfc7332a64eebe4ca45835b7bf",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPad 13",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPad-13-2064x2752/05-selection.png",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "5a019f54a38c5e994f6b0d16009633fd7278c6060e9a51d6bbb23f0fd7ee96d2",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPad 13",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPad-13-2064x2752/04-background.png",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "e24d7f2e58852ae34ad5303789b004387864a4fe43c2234e799355039a557a27",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPad 13",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPad-13-2064x2752/03-editor.png",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "1e638aa16e245494bffc8a877bae39c837be3ae0b8147a0cb8b91b1393cbfcdf",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPad 13",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPad-13-2064x2752/09-editor-landscape.png",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "8d22b69a32079130b15509e5a9ecaf079aca2187479480a1733f2c957794fb84",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPad 13",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPhone-Large-1320x2868/07-settings.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "2ff2275444a9e25a3951539023781a9a87d6fd4a3e0541ee4131f43a5790edf8",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPhone Max",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPhone-Large-1320x2868/08-home-actions.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "97f76f8f7c96e56d0277e74098a237743e525aa3c3720b7056c7e32f6c3fd449",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPhone Max",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPhone-Large-1320x2868/01-home.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "5919eb6001cdf018826a99f4f5040fff366c6d8bd5bfcd0de907fa8c4d771fe0",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPhone Max",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPhone-Large-1320x2868/02-folders.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "f687e6c6d68cb8a65315eedff628c92272be6368b7a06d8ce7b89a80274ebef2",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPhone Max",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPhone-Large-1320x2868/06-export.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "4204e14fec7ed3f268411d68e97296657de109a53638f24d98b554649cd349a9",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPhone Max",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPhone-Large-1320x2868/05-selection.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "d16d07cd0b21590e97db21f4837b2ce8f64254c169edad540b0ede9c5ed4a549",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPhone Max",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPhone-Large-1320x2868/04-background.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "8eb05c3442a37cdaf9e1f3dba44f9eb80cbc2940bfee37abc645fc316274ed18",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPhone Max",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  },
+  {
+    "file": "Captures/v1.0.1/ko-KR/iPhone-Large-1320x2868/03-editor.png",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "b346bbd99719bd9809bce039ef41a55bf88d9d1b558db1859d281d3e8acc8f58",
+    "appVersion": "1.0.1",
+    "build": "2",
+    "device": "TCON Store iPhone Max",
+    "source": "XCTest actual application screen",
+    "test": "AppStoreCaptureTests/testCaptureStoreScreenshots()"
+  }
+]

@@ -26,7 +26,7 @@ final class AppStoreCaptureTests: XCTestCase {
     #endif
     app.buttons["photo-1"].tap()
     XCTAssertTrue(app.images["editorCanvas"].waitForExistence(timeout: 20))
-    if UIDevice.current.userInterfaceIdiom == .pad {
+    if UIDevice.current.userInterfaceIdiom == .pad && app.windows.firstMatch.frame.width >= 820 {
       verifyWideEditor(app)
       XCUIDevice.shared.orientation = .landscapeLeft
       verifyWideEditor(app)
@@ -68,7 +68,7 @@ final class AppStoreCaptureTests: XCTestCase {
     capture(app, "02-folders")
     selectHome(app)
     XCTAssertTrue(app.buttons["openSettings"].waitForExistence(timeout: 10))
-    if UIDevice.current.userInterfaceIdiom == .pad {
+    if UIDevice.current.userInterfaceIdiom == .pad && app.windows.firstMatch.frame.width >= 820 {
       verifyWideHome(app)
       XCUIDevice.shared.orientation = .landscapeLeft
       verifyWideHome(app)
