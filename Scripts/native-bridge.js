@@ -3,6 +3,20 @@ document.body.style.display='none';
 document.documentElement.setAttribute('aria-hidden','true');
 const nativeBlob = b => new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(new Error('사진 데이터를 읽을 수 없어요'));r.readAsDataURL(b);});
 const nativeDefaults = JSON.parse(JSON.stringify(S));
+// Aggregate timings only; no image or face data is recorded.
+let nativeMetrics={};
+function nativeMeasure(name, fn){return async function(...args){
+  const start=performance.now();
+  try{return await fn(...args);}finally{
+    const metric=nativeMetrics[name]||(nativeMetrics[name]={count:0,ms:0});
+    metric.count++;metric.ms+=performance.now()-start;
+  }
+};}
+fileToCanvas=nativeMeasure('decode',fileToCanvas);
+detectFaces=nativeMeasure('face',detectFaces);
+personAlpha=nativeMeasure('background',personAlpha);
+reencode=nativeMeasure('preview',reencode);
+
 const nativeRanges={wmm:[10,200],hmm:[10,200],maxkb:[20,20000],bright:[-50,50],head:[55,85],top:[3,16],below:[0.6,1.8]};
 function nativeSettings(input){
   const out={};
@@ -33,6 +47,8 @@ let nativeQueue=Promise.resolve();
 window.TCONNative={execute(command,payload={}){
   const operation=nativeQueue.then(async()=>{
     await readyPromise;
+    if(command==='metrics')return nativeMetrics;
+    if(command==='resetMetrics'){nativeMetrics={};return true;}
     if(command==='ready')return {faceAvailable:modelOK,backgroundAvailable:!!segModel};
     if(command==='import'){
       const raw=atob(payload.base64);const bytes=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);
