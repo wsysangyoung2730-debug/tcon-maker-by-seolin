@@ -25,7 +25,7 @@ struct FolderLibraryView: View {
         }
         Text("홈에서 추가한 사진은 미분류에 보관돼요.\n폴더 안에서 추가하면 해당 폴더에 바로 보관됩니다.")
           .font(.caption).foregroundStyle(.secondary)
-      }.padding(20).frame(maxWidth: 850).frame(maxWidth: .infinity)
+      }.padding(20).frame(maxWidth: WorkspaceLayout.maximumWidth).frame(maxWidth: .infinity)
     }.background(Color.appBackground)
       .navigationTitle("파일").navigationBarTitleDisplayMode(.large)
       .toolbar {
@@ -68,7 +68,7 @@ struct FolderLibraryView: View {
             }
             .accessibilityIdentifier("deleteFolders")
             Text("폴더 안의 사진은 미분류로 옮겨집니다").font(.caption).foregroundStyle(.secondary)
-          }.padding(20).background(.regularMaterial)
+          }.padding(20).frame(maxWidth: 850).frame(maxWidth: .infinity).background(.regularMaterial)
         }
       }
       .sheet(isPresented: $naming) { FolderNameSheet(folder: renameTarget) }
