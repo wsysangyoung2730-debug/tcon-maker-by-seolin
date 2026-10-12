@@ -9,23 +9,31 @@
     "description": "사진 선택부터 규격 맞춤, 저장까지",
     "source": null,
     "sourceSHA256": null,
-    "sourceCrop": null
+    "sourceCrop": null,
+    "statusMask": null
   },
   {
     "file": "ko-KR/iPhone-Large-1320x2868/02-start.png",
     "width": 1320,
     "height": 2868,
     "alpha": false,
-    "sha256": "d72419ebc2dc90c0244134c2dac5ea52fa753e58798ab4312542ed420207e539",
+    "sha256": "69dae4ed8cd19773953f06597a6bada8494eaa082bbba2339b7b3a6378c4b514",
     "title": "심사 사진 준비,\n이제 간편하게",
     "description": "사진을 고르고, 맞추고, 저장하세요.\n한 장부터 여러 장까지 한곳에서.",
     "source": "Captures/ko-KR/iPhone-Large-1320x2868/01-home.png",
     "sourceSHA256": "5919eb6001cdf018826a99f4f5040fff366c6d8bd5bfcd0de907fa8c4d771fe0",
     "sourceCrop": {
       "x": 0,
-      "y": 180,
+      "y": 0,
       "width": 1320,
-      "height": 2672
+      "height": 2868
+    },
+    "statusMask": {
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 180,
+      "background": "#ffffff"
     }
   },
   {
@@ -33,16 +41,23 @@
     "width": 1320,
     "height": 2868,
     "alpha": false,
-    "sha256": "a3a2c2e5ce4bd044750521d74536c8551a0c8d4d9c84b9544962eebb101f02dd",
+    "sha256": "059f3ef0f6d8a56472a7179e09bbefa045628833b9c79b7c543da13a2f9d46f2",
     "title": "원하는 규격으로\n한 번에 맞춰요",
     "description": "TCON · 증명사진 · 여권사진 프리셋.\n크기와 저장 용량도 함께 설정해요.",
     "source": "Captures/ko-KR/iPhone-Large-1320x2868/07-settings.png",
     "sourceSHA256": "2ff2275444a9e25a3951539023781a9a87d6fd4a3e0541ee4131f43a5790edf8",
     "sourceCrop": {
       "x": 0,
-      "y": 180,
+      "y": 0,
       "width": 1320,
-      "height": 2672
+      "height": 2868
+    },
+    "statusMask": {
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 180,
+      "background": "#cccccc"
     }
   },
   {
@@ -50,16 +65,23 @@
     "width": 1320,
     "height": 2868,
     "alpha": false,
-    "sha256": "2e061fde31db3670f101dc2b72cb7660cca7683a047da6e9e3a7cc53c880b527",
+    "sha256": "45465bc908c49e5631771b88fc2a8d95071adaa00a3130ba0bc4a576f8933018",
     "title": "얼굴 위치부터\n구도까지 섬세하게",
     "description": "안내선을 보며 여백과 얼굴 크기를 조절해요.\n배경과 밝기도 사진에 맞게 다듬어요.",
     "source": "Captures/ko-KR/iPhone-Large-1320x2868/03-editor.png",
     "sourceSHA256": "e60122894ad3be3ccfba190f693a309261a91d9310121d885e4215bcca18adac",
     "sourceCrop": {
       "x": 0,
-      "y": 180,
+      "y": 0,
       "width": 1320,
-      "height": 2672
+      "height": 2868
+    },
+    "statusMask": {
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 180,
+      "background": "#ffffff"
     }
   },
   {
@@ -67,16 +89,23 @@
     "width": 1320,
     "height": 2868,
     "alpha": false,
-    "sha256": "2a20d5cc5660cd44eb9ff5982c60dc395db8adefaca6a2871816ec5c52823f85",
+    "sha256": "e180a66ab41b0ce5cbdab63fe1da2cdd6b8a19d288811102b335ac379400ddf9",
     "title": "심사일·수련반별로\n차곡차곡 정리해요",
     "description": "폴더를 만들고 작업 사진을 모아보세요.\n다음 작업도 쉽게 이어갈 수 있어요.",
     "source": "Captures/ko-KR/iPhone-Large-1320x2868/02-folders.png",
     "sourceSHA256": "f687e6c6d68cb8a65315eedff628c92272be6368b7a06d8ce7b89a80274ebef2",
     "sourceCrop": {
       "x": 0,
-      "y": 180,
+      "y": 0,
       "width": 1320,
-      "height": 2672
+      "height": 2868
+    },
+    "statusMask": {
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 180,
+      "background": "#f2f2f7"
     }
   },
   {
@@ -84,16 +113,23 @@
     "width": 1320,
     "height": 2868,
     "alpha": false,
-    "sha256": "a1ae92197a3283ba0537bf86b6296be771c3a463e236ef9213e4dedfd8d060c8",
+    "sha256": "7f5cf199ca62ec5275c04ddd1fae622b7a68b3175d3f2d9c99fe351e88a20835",
     "title": "필요한 사진만\n골라서 한 번에",
     "description": "사진을 길게 눌러 여러 장을 선택하세요.\n선택한 사진만 이동하거나 저장해요.",
     "source": "Captures/ko-KR/iPhone-Large-1320x2868/05-selection.png",
     "sourceSHA256": "d16d07cd0b21590e97db21f4837b2ce8f64254c169edad540b0ede9c5ed4a549",
     "sourceCrop": {
       "x": 0,
-      "y": 180,
+      "y": 0,
       "width": 1320,
-      "height": 2672
+      "height": 2868
+    },
+    "statusMask": {
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 180,
+      "background": "#f2f2f7"
     }
   },
   {
@@ -101,16 +137,23 @@
     "width": 1320,
     "height": 2868,
     "alpha": false,
-    "sha256": "7020d0f2805b8cfaaa523c125af2edf76b6f261542414a36e31b5c2000b101b3",
+    "sha256": "8a340eed2b629ccac14521188bb050c2683d4d9d9c964eb18c3390a5c06c1e26",
     "title": "사진·파일·ZIP으로\n편하게 저장해요",
     "description": "용도에 맞는 저장 방식을 고르세요.\n원본 사진은 그대로 보관해요.",
     "source": "Captures/ko-KR/iPhone-Large-1320x2868/06-export.png",
     "sourceSHA256": "2b44a996fded3c49e485afada534dc006fe30279217aa6365a4454f7e4691575",
     "sourceCrop": {
       "x": 0,
-      "y": 180,
+      "y": 0,
       "width": 1320,
-      "height": 2672
+      "height": 2868
+    },
+    "statusMask": {
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 180,
+      "background": "#f2f2f7"
     }
   },
   {
@@ -123,23 +166,31 @@
     "description": "사진 선택부터 규격 맞춤, 저장까지",
     "source": null,
     "sourceSHA256": null,
-    "sourceCrop": null
+    "sourceCrop": null,
+    "statusMask": null
   },
   {
     "file": "ko-KR/iPhone-Medium-1179x2556/02-start.png",
     "width": 1179,
     "height": 2556,
     "alpha": false,
-    "sha256": "9b7b98595b8a7a638e5bd29e11678650cfa86566d291a5a9fb971fba25587f57",
+    "sha256": "4fd73eefc849e77c711444d3fe7b5a6ff77ebac6c539602a58786712fab84ce5",
     "title": "심사 사진 준비,\n이제 간편하게",
     "description": "사진을 고르고, 맞추고, 저장하세요.\n한 장부터 여러 장까지 한곳에서.",
     "source": "Captures/ko-KR/iPhone-Large-1320x2868/01-home.png",
     "sourceSHA256": "5919eb6001cdf018826a99f4f5040fff366c6d8bd5bfcd0de907fa8c4d771fe0",
     "sourceCrop": {
       "x": 0,
-      "y": 180,
+      "y": 0,
       "width": 1320,
-      "height": 2672
+      "height": 2868
+    },
+    "statusMask": {
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 180,
+      "background": "#ffffff"
     }
   },
   {
@@ -147,16 +198,23 @@
     "width": 1179,
     "height": 2556,
     "alpha": false,
-    "sha256": "0997cba17779f09cf35b15cc4dceaa7798b391e25ab5eceea64d8f09c4cd9963",
+    "sha256": "1d0148ed12004776aa3ed0dafe0000b4f429595041f68184a6199152212e0cab",
     "title": "원하는 규격으로\n한 번에 맞춰요",
     "description": "TCON · 증명사진 · 여권사진 프리셋.\n크기와 저장 용량도 함께 설정해요.",
     "source": "Captures/ko-KR/iPhone-Large-1320x2868/07-settings.png",
     "sourceSHA256": "2ff2275444a9e25a3951539023781a9a87d6fd4a3e0541ee4131f43a5790edf8",
     "sourceCrop": {
       "x": 0,
-      "y": 180,
+      "y": 0,
       "width": 1320,
-      "height": 2672
+      "height": 2868
+    },
+    "statusMask": {
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 180,
+      "background": "#cccccc"
     }
   },
   {
@@ -164,16 +222,23 @@
     "width": 1179,
     "height": 2556,
     "alpha": false,
-    "sha256": "30b5de2d2ae0712686f50e8dbdfb3f311d42d56b17923ba9c2870c1bc600e949",
+    "sha256": "f713756860b5788d2effcd124818ef921ede25874d54d527be4bf5f2367ae0fc",
     "title": "얼굴 위치부터\n구도까지 섬세하게",
     "description": "안내선을 보며 여백과 얼굴 크기를 조절해요.\n배경과 밝기도 사진에 맞게 다듬어요.",
     "source": "Captures/ko-KR/iPhone-Large-1320x2868/03-editor.png",
     "sourceSHA256": "e60122894ad3be3ccfba190f693a309261a91d9310121d885e4215bcca18adac",
     "sourceCrop": {
       "x": 0,
-      "y": 180,
+      "y": 0,
       "width": 1320,
-      "height": 2672
+      "height": 2868
+    },
+    "statusMask": {
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 180,
+      "background": "#ffffff"
     }
   },
   {
@@ -181,16 +246,23 @@
     "width": 1179,
     "height": 2556,
     "alpha": false,
-    "sha256": "67e852d56a5f62b51edb9efd1e7a502d824a9aa13226dd96fa181203ce848132",
+    "sha256": "2d16dc06e7eed434cf3b43705aa593c4362728a84d0f91daa0b8d93dd03a68fe",
     "title": "심사일·수련반별로\n차곡차곡 정리해요",
     "description": "폴더를 만들고 작업 사진을 모아보세요.\n다음 작업도 쉽게 이어갈 수 있어요.",
     "source": "Captures/ko-KR/iPhone-Large-1320x2868/02-folders.png",
     "sourceSHA256": "f687e6c6d68cb8a65315eedff628c92272be6368b7a06d8ce7b89a80274ebef2",
     "sourceCrop": {
       "x": 0,
-      "y": 180,
+      "y": 0,
       "width": 1320,
-      "height": 2672
+      "height": 2868
+    },
+    "statusMask": {
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 180,
+      "background": "#f2f2f7"
     }
   },
   {
@@ -198,16 +270,23 @@
     "width": 1179,
     "height": 2556,
     "alpha": false,
-    "sha256": "41ac748ef7447ab7c65753f91ebcd47177d16acd5adcddabf5440e78626a325c",
+    "sha256": "723d5a810fb2b9b2e08b351f29e3e51618ed763b208c6a23bb5290bf2562b079",
     "title": "필요한 사진만\n골라서 한 번에",
     "description": "사진을 길게 눌러 여러 장을 선택하세요.\n선택한 사진만 이동하거나 저장해요.",
     "source": "Captures/ko-KR/iPhone-Large-1320x2868/05-selection.png",
     "sourceSHA256": "d16d07cd0b21590e97db21f4837b2ce8f64254c169edad540b0ede9c5ed4a549",
     "sourceCrop": {
       "x": 0,
-      "y": 180,
+      "y": 0,
       "width": 1320,
-      "height": 2672
+      "height": 2868
+    },
+    "statusMask": {
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 180,
+      "background": "#f2f2f7"
     }
   },
   {
@@ -215,16 +294,23 @@
     "width": 1179,
     "height": 2556,
     "alpha": false,
-    "sha256": "26cb1176d060dbe9ddd7139032b20c6ae70aa7aa4638b0d2a3d6f08ddab00309",
+    "sha256": "98210a034f51cbc291fbbded737819a39506ce61533f4ad3dbe1446304bc11cb",
     "title": "사진·파일·ZIP으로\n편하게 저장해요",
     "description": "용도에 맞는 저장 방식을 고르세요.\n원본 사진은 그대로 보관해요.",
     "source": "Captures/ko-KR/iPhone-Large-1320x2868/06-export.png",
     "sourceSHA256": "2b44a996fded3c49e485afada534dc006fe30279217aa6365a4454f7e4691575",
     "sourceCrop": {
       "x": 0,
-      "y": 180,
+      "y": 0,
       "width": 1320,
-      "height": 2672
+      "height": 2868
+    },
+    "statusMask": {
+      "x": 0,
+      "y": 0,
+      "width": 1320,
+      "height": 180,
+      "background": "#f2f2f7"
     }
   },
   {
@@ -237,7 +323,8 @@
     "description": "사진 선택부터 규격 맞춤, 저장까지",
     "source": null,
     "sourceSHA256": null,
-    "sourceCrop": null
+    "sourceCrop": null,
+    "statusMask": null
   },
   {
     "file": "ko-KR/iPad-13-2064x2752/02-start.png",
@@ -254,7 +341,8 @@
       "y": 58,
       "width": 2064,
       "height": 2666
-    }
+    },
+    "statusMask": null
   },
   {
     "file": "ko-KR/iPad-13-2064x2752/03-size.png",
@@ -271,7 +359,8 @@
       "y": 58,
       "width": 2064,
       "height": 2666
-    }
+    },
+    "statusMask": null
   },
   {
     "file": "ko-KR/iPad-13-2064x2752/04-editor.png",
@@ -288,7 +377,8 @@
       "y": 58,
       "width": 2064,
       "height": 2666
-    }
+    },
+    "statusMask": null
   },
   {
     "file": "ko-KR/iPad-13-2064x2752/05-folders.png",
@@ -305,7 +395,8 @@
       "y": 58,
       "width": 2064,
       "height": 2666
-    }
+    },
+    "statusMask": null
   },
   {
     "file": "ko-KR/iPad-13-2064x2752/06-selection.png",
@@ -322,7 +413,8 @@
       "y": 58,
       "width": 2064,
       "height": 2666
-    }
+    },
+    "statusMask": null
   },
   {
     "file": "ko-KR/iPad-13-2064x2752/07-export.png",
@@ -339,6 +431,7 @@
       "y": 58,
       "width": 2064,
       "height": 2666
-    }
+    },
+    "statusMask": null
   }
 ]

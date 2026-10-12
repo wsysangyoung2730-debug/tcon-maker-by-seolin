@@ -16,10 +16,11 @@ h1{position:absolute;top:124px;left:72px;margin:0;font-size:82px;line-height:1.1
 .frame{position:absolute;padding:12px;border-radius:81px;background:#17191e;box-shadow:0 36px 75px #1426532d,0 0 0 2px #9498a1,0 0 0 5px #575b64,inset 0 0 0 2px #050609}
 .dark .frame{box-shadow:0 40px 90px #070c3048,0 0 0 2px #7b8295,0 0 0 5px #454d62,inset 0 0 0 2px #050609}
 .screen{position:relative;overflow:hidden;border-radius:69px;background:#fff}
-.capture-viewport{position:absolute;left:0;overflow:hidden;width:100%}
+.capture-viewport{position:absolute;inset:0;overflow:hidden;width:100%;height:100%}
+.status-cover{position:absolute;top:0;left:0;right:0;z-index:2;pointer-events:none}
 .screen img{position:absolute;display:block;max-width:none}
 .screen:before{content:'';position:absolute;z-index:3;top:20px;left:50%;transform:translateX(-50%);width:224px;height:62px;border-radius:40px;background:#050506;box-shadow:inset 0 0 0 1px #111217}
-.screen:after{content:'';position:absolute;z-index:3;bottom:8px;left:50%;transform:translateX(-50%);width:235px;height:7px;border-radius:8px;background:#181a20}
+.screen:after{display:none}
 .side-key{position:absolute;right:-8px;top:335px;width:5px;height:118px;background:#6b707c;border-radius:0 3px 3px 0}
 .side-key.left{left:-8px;right:auto;top:218px;height:70px;border-radius:3px 0 0 3px;box-shadow:0 101px #6b707c}
 .ipad h1{left:85px;top:114px;font-size:88px;line-height:1.12}.ipad .description{left:92px;top:344px;font-size:30px;line-height:1.45}
@@ -44,7 +45,7 @@ h1{position:absolute;top:124px;left:72px;margin:0;font-size:82px;line-height:1.1
 <main class="artboard" id="artboard">
  <div class="wash"></div><div class="crop-mark"></div>
  <h1></h1><p class="description"></p>
- <div class="frame"><i class="side-key"></i><i class="side-key left"></i><div class="screen"><div class="capture-viewport"><img id="capture" alt="실제 앱 화면"></div></div></div>
+ <div class="frame"><i class="side-key"></i><i class="side-key left"></i><div class="screen"><div class="status-cover"></div><div class="capture-viewport"><img id="capture" alt="실제 앱 화면"></div></div></div>
 </main>
 <script>
 const slides = [
@@ -77,18 +78,22 @@ if(slide.cover){
 }else{
 document.querySelector('h1').textContent=slide.title;document.querySelector('.description').textContent=slide.description;
 const sourceDevice=device.ipad?'iPad-13-2064x2752':'iPhone-Large-1320x2868';
-// Clip the OS status strip, not the app UI. Preserve the entire visible app beneath it.
+// Fill iPhone displays with the full native capture at its original aspect ratio.
+// Hide only status indicators using the sampled background of that screen.
 const sourceWidth=device.ipad?2064:1320;
-const crop=device.ipad?{x:0,y:58,width:2064,height:2666}:{x:0,y:180,width:1320,height:2672};
+const crop=device.ipad?{x:0,y:58,width:2064,height:2666}:{x:0,y:0,width:1320,height:2868};
 const screenWidth=device.ipad?1060:800,scale=screenWidth/crop.width,screenHeight=crop.height*scale;
 const padding=device.ipad?24:12,frameWidth=screenWidth+padding*2;
 const frame=document.querySelector('.frame'),screen=document.querySelector('.screen'),capture=document.querySelector('#capture');
 Object.assign(frame.style,{left:(baseWidth-frameWidth)/2+'px',top:490+'px'});
-const safeTop=device.ipad?0:114,safeBottom=device.ipad?0:24;
-Object.assign(screen.style,{width:screenWidth+'px',height:(screenHeight+safeTop+safeBottom)+'px'});
-Object.assign(document.querySelector('.capture-viewport').style,{top:safeTop+'px',height:screenHeight+'px'});
+Object.assign(screen.style,{width:screenWidth+'px',height:screenHeight+'px'});
+const statusCover=document.querySelector('.status-cover');
+const statusBackground=slide.source==='07-settings.png'?'#cccccc':(['01-home.png','03-editor.png'].includes(slide.source)?'#ffffff':'#f2f2f7');
+const statusMask=device.ipad?null:{x:0,y:0,width:1320,height:180,background:statusBackground};
+if(statusMask){Object.assign(statusCover.style,{height:(statusMask.height*scale)+'px',background:statusBackground});}
+else{statusCover.remove();}
 capture.src=`../Captures/ko-KR/${sourceDevice}/${slide.source}`;
 Object.assign(capture.style,{left:-crop.x*scale+'px',top:-crop.y*scale+'px',width:sourceWidth*scale+'px'});
-window.renderSpec={device:key,width:device.width,height:device.height,slide,source:`Captures/ko-KR/${sourceDevice}/${slide.source}`,crop,baseWidth,baseHeight,slideCount:slides.length};
+window.renderSpec={device:key,width:device.width,height:device.height,slide,source:`Captures/ko-KR/${sourceDevice}/${slide.source}`,crop,statusMask,baseWidth,baseHeight,slideCount:slides.length};
 }
 </script></html>

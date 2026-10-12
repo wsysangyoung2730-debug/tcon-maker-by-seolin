@@ -36,9 +36,12 @@ try {
     for(let i=0;i<boxes.length-1;i++)if(boxes[i].bottom>boxes[i+1].top)throw Error('Overlapping layout');
     if(boxes.some(b=>b.left<0||b.right>innerWidth||b.bottom>innerHeight))throw Error('Layout outside canvas');
     if(!window.renderSpec.slide.cover&&!window.renderSpec.device.startsWith('iPad')){
-     const crop=document.querySelector('.capture-viewport'),screen=document.querySelector('.screen');
+     const viewport=document.querySelector('.capture-viewport'),screen=document.querySelector('.screen');
+     const mask=document.querySelector('.status-cover'),capture=document.querySelector('#capture');
      const island=getComputedStyle(screen,'::before');
-     if(parseFloat(crop.style.top)<parseFloat(island.top)+parseFloat(island.height))throw Error('Island overlaps app content');
+     if(parseFloat(mask.style.height)<parseFloat(island.top)+parseFloat(island.height))throw Error('Island overlaps app content');
+     const screenBox=screen.getBoundingClientRect(),viewBox=viewport.getBoundingClientRect(),imageBox=capture.getBoundingClientRect();
+     for(const box of [viewBox,imageBox])for(const key of ['left','top','width','height'])if(Math.abs(box[key]-screenBox[key])>1)throw Error('Capture does not fill the display');
     }
     if(document.querySelector('.eyebrow'))throw Error('Feature caption still present');
     return window.renderSpec;
@@ -47,8 +50,12 @@ try {
    const metadata=await sharp(buffer).metadata();
    if(metadata.width!==width||metadata.height!==height||metadata.hasAlpha||metadata.channels!==3)throw Error('Invalid PNG');
    const file=`ko-KR/${device}/${spec.slide.id}.png`;
+   if(spec.slide.cover){
+    const previous=previousManifest.find(m=>m.file===file);
+    if(previous&&previous.sha256!==sha256(buffer))throw Error('Approved cover changed');
+   }
    await fs.writeFile(path.join(dir,file),buffer);
-   manifest.push({file,width,height,alpha:false,sha256:sha256(buffer),title:spec.slide.title,description:spec.slide.description,source:spec.source,sourceSHA256:spec.source?sha256(await fs.readFile(path.join(dir,spec.source))):null,sourceCrop:spec.crop});
+   manifest.push({file,width,height,alpha:false,sha256:sha256(buffer),title:spec.slide.title,description:spec.slide.description,source:spec.source,sourceSHA256:spec.source?sha256(await fs.readFile(path.join(dir,spec.source))):null,sourceCrop:spec.crop,statusMask:spec.statusMask||null});
    console.log(`Rendered ${file}`);
   }
  }
