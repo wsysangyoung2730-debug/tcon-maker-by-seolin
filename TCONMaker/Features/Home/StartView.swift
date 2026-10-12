@@ -7,7 +7,7 @@ struct StartView: View {
     ScrollView {
       VStack(alignment: .leading, spacing: 20) {
         HStack(spacing: 12) {
-          Image("SeolinBox").resizable().scaledToFit().frame(width: 46, height: 46)
+          TCONLogo()
             .accessibilityHidden(true)
           VStack(alignment: .leading, spacing: 2) {
             Text("TCON Maker").font(.title2.bold())
@@ -53,7 +53,6 @@ struct StartView: View {
             "\(store.settings.background == "white" ? "흰색" : store.settings.background == "clear" ? "투명" : "원본") 배경 · \(store.settings.orig || store.settings.clear ? "용량 제한 없음" : "최대 \(Int(store.settings.maxkb)) KB")"
           ).font(.caption).foregroundStyle(.secondary)
         }
-        ImportActions()
         if !store.ready {
           HStack {
             if store.progress != "준비 실패" { ProgressView() }
@@ -61,12 +60,21 @@ struct StartView: View {
             if store.progress == "준비 실패" { Button("다시 시도") { Task { await store.prepare() } } }
           }.frame(maxWidth: .infinity)
         }
-        Text("여러 장을 한 번에 선택할 수 있어요").font(.caption).foregroundStyle(.secondary).frame(
-          maxWidth: .infinity)
-        Image("SeolinLogo").resizable().scaledToFit().frame(height: 42).frame(maxWidth: .infinity)
-          .accessibilityLabel("서린태권도")
       }.padding(22).frame(maxWidth: 560)
     }.background(Color.panel).toolbar(.hidden, for: .navigationBar)
+      .safeAreaInset(edge: .bottom, spacing: 0) {
+        VStack(spacing: 10) {
+          ImportActions()
+          HStack(alignment: .center) {
+            Text("여러 장을 한 번에 선택할 수 있어요")
+              .font(.caption).foregroundStyle(.secondary)
+              .frame(maxWidth: .infinity, alignment: .leading)
+            SeolinSignature().frame(width: 70)
+          }
+        }.padding(.horizontal, 22).padding(.top, 12).padding(.bottom, 6)
+          .frame(maxWidth: 560).frame(maxWidth: .infinity)
+          .background(Color.panel)
+      }
       .sheet(isPresented: $settings) { SettingsView(draft: store.settings) }
   }
 }

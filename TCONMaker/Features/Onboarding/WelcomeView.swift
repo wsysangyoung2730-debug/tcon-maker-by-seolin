@@ -8,7 +8,7 @@ struct WelcomeView: View {
     ScrollView {
       VStack(alignment: .leading, spacing: 28) {
         HStack(spacing: 12) {
-          Image("SeolinBox").resizable().scaledToFit().frame(width: 44, height: 44)
+          TCONLogo(size: 44)
             .accessibilityHidden(true)
           VStack(alignment: .leading, spacing: 3) {
             Text("TCON Maker").font(.headline)
@@ -51,7 +51,9 @@ struct WelcomeView: View {
         Button("바로 시작하기", action: onStart)
           .font(.subheadline.weight(.semibold)).frame(minHeight: 44)
           .accessibilityIdentifier("finishOnboarding")
-      }.padding(20).frame(maxWidth: 560).frame(maxWidth: .infinity)
+        SeolinSignature()
+      }.padding(.horizontal, 20).padding(.top, 16).padding(.bottom, 6)
+        .frame(maxWidth: 560).frame(maxWidth: .infinity)
         .background(.regularMaterial)
     }
   }
