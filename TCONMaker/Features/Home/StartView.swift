@@ -79,7 +79,8 @@ struct StartView: View {
           }
         }
       }.padding(22).frame(maxWidth: 560).frame(maxWidth: .infinity)
-    }.accessibilityIdentifier("homeContent")
+    }.safeAreaPadding(.bottom, 80)
+      .accessibilityIdentifier("homeContent")
       .background(Color.panel).toolbar(.hidden, for: .navigationBar)
       .sheet(isPresented: $settings) { SettingsView(draft: store.settings) }
   }
