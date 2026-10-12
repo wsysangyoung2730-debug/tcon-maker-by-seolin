@@ -1,512 +1,126 @@
 // !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 56;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		083029484B4A1E4D3BD5A728 /* TCONMakerTests/PhotoModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992EA54B2D80EB835FBAF82F /* TCONMakerTests/PhotoModelTests.swift */; };
-		154FDEAB80EE1EA829FAD80B /* TCONMaker/Engine/PhotoEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032D18B8DBDA3C4A269A7983 /* TCONMaker/Engine/PhotoEngine.swift */; };
-		19F0B94DE5D808D4931D3A19 /* TCONMaker/Models/PhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD6EA4BC72DCC6D5286259 /* TCONMaker/Models/PhotoStore.swift */; };
-		1EFB5189E27CB95AE17F6BB8 /* TCONMaker/Views/EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5497AB67AE6A895C81AC792 /* TCONMaker/Views/EditorView.swift */; };
-		2D1584DA2021FAA45E8621AF /* TCONMakerTests/PhotoEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237F2CFE9046D607FEA2B956 /* TCONMakerTests/PhotoEngineTests.swift */; };
-		2ECB0A6361FCCE52059A95B2 /* TCONMaker/Views/SystemPickers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CF043D457DC4C3844547D /* TCONMaker/Views/SystemPickers.swift */; };
-		3E68F146C527E637553122DC /* TCONMaker/Views/ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C364F512403395FC041F1D7C /* TCONMaker/Views/ExportView.swift */; };
-		671F22B2BC31684C173EF0AB /* TCONMaker/Models/PhotoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A752ED6A8A3930EFFFD27 /* TCONMaker/Models/PhotoModels.swift */; };
-		788FE52E3CEBF720E41EACF8 /* TCONMaker/Resources/PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 559A950C8F04A63F47D012E1 /* TCONMaker/Resources/PrivacyInfo.xcprivacy */; };
-		8CD43CF2782D8871DD0B4169 /* TCONMaker/Resources/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C82F257E005A8E4C9568C75B /* TCONMaker/Resources/Assets.xcassets */; };
-		8DF13D493AF1C1537B8287E9 /* TCONMaker/Views/SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF814F6434B8FA65AECE191 /* TCONMaker/Views/SettingsView.swift */; };
-		9E1C9BB9510BEBB80E77C60B /* TCONMaker/Views/BatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7760E096A398D418C1F65B /* TCONMaker/Views/BatchView.swift */; };
-		A08E2376ABC2EA4A34464CE9 /* TCONMaker/Resources/Engine in Resources */ = {isa = PBXBuildFile; fileRef = 3E8DBE2F8B8790F195E281B4 /* TCONMaker/Resources/Engine */; };
-		B807052A4EDA36C4809F038F /* TCONMaker/App/TCONMakerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C80A1AD3CC77E22ABAC83 /* TCONMaker/App/TCONMakerApp.swift */; };
-		C4C930DCB1FCE7AE0E273B5F /* TCONMakerUITests/TCONMakerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6765E2909E5EBDB179EEA69 /* TCONMakerUITests/TCONMakerUITests.swift */; };
-		CC36E0B1813E14E5EB2B1BF2 /* TCONMaker/Views/RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5659C820513C118FACEE3EB4 /* TCONMaker/Views/RootView.swift */; };
-		CC45FC03CF635936D72DC8CB /* TCONMaker/Services/ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413CF2F2892ADED2A0D5CEE7 /* TCONMaker/Services/ExportService.swift */; };
-		D1ED16070F99AFFC728D2258 /* TCONMaker/Services/PhotoImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FBB388EAA5D91104E68B80 /* TCONMaker/Services/PhotoImport.swift */; };
-		E56DF3ABB780DCB15679A4BB /* TCONMaker/Views/Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8303BAA0473EF8B04DD7F03D /* TCONMaker/Views/Components.swift */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		DE949CF46DD2682C6D17A097 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 98F54143AB4E86B28C3AFEE0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7EC77F57986CB698A6CEDD7D;
-			remoteInfo = TCONMaker;
-		};
-		E804DAD1586595E06F23A6B5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 98F54143AB4E86B28C3AFEE0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7EC77F57986CB698A6CEDD7D;
-			remoteInfo = TCONMaker;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		032D18B8DBDA3C4A269A7983 /* TCONMaker/Engine/PhotoEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMaker/Engine/PhotoEngine.swift; sourceTree = "<group>"; };
-		0973D91C052DFE014F4D5BB1 /* TCONMakerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = TCONMakerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		237F2CFE9046D607FEA2B956 /* TCONMakerTests/PhotoEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMakerTests/PhotoEngineTests.swift; sourceTree = "<group>"; };
-		3E8DBE2F8B8790F195E281B4 /* TCONMaker/Resources/Engine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TCONMaker/Resources/Engine; sourceTree = "<group>"; };
-		413CF2F2892ADED2A0D5CEE7 /* TCONMaker/Services/ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMaker/Services/ExportService.swift; sourceTree = "<group>"; };
-		4A0C80A1AD3CC77E22ABAC83 /* TCONMaker/App/TCONMakerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMaker/App/TCONMakerApp.swift; sourceTree = "<group>"; };
-		4DB29F4FFD9AA2F29CACB319 /* TCONMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = TCONMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E7760E096A398D418C1F65B /* TCONMaker/Views/BatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMaker/Views/BatchView.swift; sourceTree = "<group>"; };
-		52FBB388EAA5D91104E68B80 /* TCONMaker/Services/PhotoImport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMaker/Services/PhotoImport.swift; sourceTree = "<group>"; };
-		559A950C8F04A63F47D012E1 /* TCONMaker/Resources/PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TCONMaker/Resources/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		5659C820513C118FACEE3EB4 /* TCONMaker/Views/RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMaker/Views/RootView.swift; sourceTree = "<group>"; };
-		7EFD6EA4BC72DCC6D5286259 /* TCONMaker/Models/PhotoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMaker/Models/PhotoStore.swift; sourceTree = "<group>"; };
-		8303BAA0473EF8B04DD7F03D /* TCONMaker/Views/Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMaker/Views/Components.swift; sourceTree = "<group>"; };
-		831FD7172760CBFEA8C0F17F /* TCONMakerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = TCONMakerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		992EA54B2D80EB835FBAF82F /* TCONMakerTests/PhotoModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMakerTests/PhotoModelTests.swift; sourceTree = "<group>"; };
-		AD6A752ED6A8A3930EFFFD27 /* TCONMaker/Models/PhotoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMaker/Models/PhotoModels.swift; sourceTree = "<group>"; };
-		AFF814F6434B8FA65AECE191 /* TCONMaker/Views/SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMaker/Views/SettingsView.swift; sourceTree = "<group>"; };
-		B5497AB67AE6A895C81AC792 /* TCONMaker/Views/EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMaker/Views/EditorView.swift; sourceTree = "<group>"; };
-		B6765E2909E5EBDB179EEA69 /* TCONMakerUITests/TCONMakerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMakerUITests/TCONMakerUITests.swift; sourceTree = "<group>"; };
-		C364F512403395FC041F1D7C /* TCONMaker/Views/ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMaker/Views/ExportView.swift; sourceTree = "<group>"; };
-		C50CF043D457DC4C3844547D /* TCONMaker/Views/SystemPickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCONMaker/Views/SystemPickers.swift; sourceTree = "<group>"; };
-		C82F257E005A8E4C9568C75B /* TCONMaker/Resources/Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TCONMaker/Resources/Assets.xcassets; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		8DEA36FD5E454ECC3E190F20 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C66017CBCF94713B535AD292 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E9FD8676F8743B82959F5022 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		4162685C72B752F118924C21 /* TCONMaker */ = {
-			isa = PBXGroup;
-			children = (
-				4A0C80A1AD3CC77E22ABAC83 /* TCONMaker/App/TCONMakerApp.swift */,
-				032D18B8DBDA3C4A269A7983 /* TCONMaker/Engine/PhotoEngine.swift */,
-				AD6A752ED6A8A3930EFFFD27 /* TCONMaker/Models/PhotoModels.swift */,
-				7EFD6EA4BC72DCC6D5286259 /* TCONMaker/Models/PhotoStore.swift */,
-				413CF2F2892ADED2A0D5CEE7 /* TCONMaker/Services/ExportService.swift */,
-				52FBB388EAA5D91104E68B80 /* TCONMaker/Services/PhotoImport.swift */,
-				4E7760E096A398D418C1F65B /* TCONMaker/Views/BatchView.swift */,
-				8303BAA0473EF8B04DD7F03D /* TCONMaker/Views/Components.swift */,
-				B5497AB67AE6A895C81AC792 /* TCONMaker/Views/EditorView.swift */,
-				C364F512403395FC041F1D7C /* TCONMaker/Views/ExportView.swift */,
-				5659C820513C118FACEE3EB4 /* TCONMaker/Views/RootView.swift */,
-				AFF814F6434B8FA65AECE191 /* TCONMaker/Views/SettingsView.swift */,
-				C50CF043D457DC4C3844547D /* TCONMaker/Views/SystemPickers.swift */,
-				C82F257E005A8E4C9568C75B /* TCONMaker/Resources/Assets.xcassets */,
-				3E8DBE2F8B8790F195E281B4 /* TCONMaker/Resources/Engine */,
-				559A950C8F04A63F47D012E1 /* TCONMaker/Resources/PrivacyInfo.xcprivacy */,
-			);
-			name = TCONMaker;
-			sourceTree = "<group>";
-		};
-		42A87E82BB709CE6E5D012C6 /* TCONMakerTests */ = {
-			isa = PBXGroup;
-			children = (
-				237F2CFE9046D607FEA2B956 /* TCONMakerTests/PhotoEngineTests.swift */,
-				992EA54B2D80EB835FBAF82F /* TCONMakerTests/PhotoModelTests.swift */,
-			);
-			name = TCONMakerTests;
-			sourceTree = "<group>";
-		};
-		9CE9D1C2FCF0A4CAC6CA98BF /* TCONMakerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B6765E2909E5EBDB179EEA69 /* TCONMakerUITests/TCONMakerUITests.swift */,
-			);
-			name = TCONMakerUITests;
-			sourceTree = "<group>";
-		};
-		B28B7AF69320201D1CF206EB = {
-			isa = PBXGroup;
-			children = (
-				4162685C72B752F118924C21 /* TCONMaker */,
-				42A87E82BB709CE6E5D012C6 /* TCONMakerTests */,
-				9CE9D1C2FCF0A4CAC6CA98BF /* TCONMakerUITests */,
-				FBDC4F23F93125BBEEAE800C /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		FBDC4F23F93125BBEEAE800C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4DB29F4FFD9AA2F29CACB319 /* TCONMaker.app */,
-				831FD7172760CBFEA8C0F17F /* TCONMakerTests.xctest */,
-				0973D91C052DFE014F4D5BB1 /* TCONMakerUITests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		7EC77F57986CB698A6CEDD7D /* TCONMaker */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9F446EC5DC3BBF41F130D77D /* Build configuration list for PBXNativeTarget "TCONMaker" */;
-			buildPhases = (
-				6783E16EACFBB35E9088208E /* Sources */,
-				E9FD8676F8743B82959F5022 /* Frameworks */,
-				118F6473199B244F0154B29D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TCONMaker;
-			productName = TCONMaker;
-			productReference = 4DB29F4FFD9AA2F29CACB319 /* TCONMaker.app */;
-			productType = "com.apple.product-type.application";
-		};
-		A0C42F2F95C388FB8184D9AD /* TCONMakerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BE3CEB6A25D4DD2D114DA430 /* Build configuration list for PBXNativeTarget "TCONMakerUITests" */;
-			buildPhases = (
-				1B2E96C063845B9407279F47 /* Sources */,
-				C66017CBCF94713B535AD292 /* Frameworks */,
-				CA5E62AD5EFA0E89979B6B87 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				58301D92A4EA759B1D99C325 /* PBXTargetDependency */,
-			);
-			name = TCONMakerUITests;
-			productName = TCONMakerUITests;
-			productReference = 0973D91C052DFE014F4D5BB1 /* TCONMakerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		E3808D794D0A3BA747493459 /* TCONMakerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 098722EB46E3F5E81EDF1EE7 /* Build configuration list for PBXNativeTarget "TCONMakerTests" */;
-			buildPhases = (
-				9EF2E9020EEE479FC8FAFEF4 /* Sources */,
-				8DEA36FD5E454ECC3E190F20 /* Frameworks */,
-				4473153167D55A4BD26CD3C3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7DB5C793DAEB3F8533BF8DBA /* PBXTargetDependency */,
-			);
-			name = TCONMakerTests;
-			productName = TCONMakerTests;
-			productReference = 831FD7172760CBFEA8C0F17F /* TCONMakerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		98F54143AB4E86B28C3AFEE0 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 1600;
-			};
-			buildConfigurationList = 862894B703A6DEDF96A9DD6C /* Build configuration list for PBXProject "TCONMaker" */;
-			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = ko;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				ko,
-				en,
-				Base,
-			);
-			mainGroup = B28B7AF69320201D1CF206EB;
-			productRefGroup = FBDC4F23F93125BBEEAE800C /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				7EC77F57986CB698A6CEDD7D /* TCONMaker */,
-				E3808D794D0A3BA747493459 /* TCONMakerTests */,
-				A0C42F2F95C388FB8184D9AD /* TCONMakerUITests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		118F6473199B244F0154B29D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8CD43CF2782D8871DD0B4169 /* TCONMaker/Resources/Assets.xcassets in Resources */,
-				A08E2376ABC2EA4A34464CE9 /* TCONMaker/Resources/Engine in Resources */,
-				788FE52E3CEBF720E41EACF8 /* TCONMaker/Resources/PrivacyInfo.xcprivacy in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4473153167D55A4BD26CD3C3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CA5E62AD5EFA0E89979B6B87 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		1B2E96C063845B9407279F47 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C4C930DCB1FCE7AE0E273B5F /* TCONMakerUITests/TCONMakerUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6783E16EACFBB35E9088208E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B807052A4EDA36C4809F038F /* TCONMaker/App/TCONMakerApp.swift in Sources */,
-				154FDEAB80EE1EA829FAD80B /* TCONMaker/Engine/PhotoEngine.swift in Sources */,
-				671F22B2BC31684C173EF0AB /* TCONMaker/Models/PhotoModels.swift in Sources */,
-				19F0B94DE5D808D4931D3A19 /* TCONMaker/Models/PhotoStore.swift in Sources */,
-				CC45FC03CF635936D72DC8CB /* TCONMaker/Services/ExportService.swift in Sources */,
-				D1ED16070F99AFFC728D2258 /* TCONMaker/Services/PhotoImport.swift in Sources */,
-				9E1C9BB9510BEBB80E77C60B /* TCONMaker/Views/BatchView.swift in Sources */,
-				E56DF3ABB780DCB15679A4BB /* TCONMaker/Views/Components.swift in Sources */,
-				1EFB5189E27CB95AE17F6BB8 /* TCONMaker/Views/EditorView.swift in Sources */,
-				3E68F146C527E637553122DC /* TCONMaker/Views/ExportView.swift in Sources */,
-				CC36E0B1813E14E5EB2B1BF2 /* TCONMaker/Views/RootView.swift in Sources */,
-				8DF13D493AF1C1537B8287E9 /* TCONMaker/Views/SettingsView.swift in Sources */,
-				2ECB0A6361FCCE52059A95B2 /* TCONMaker/Views/SystemPickers.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9EF2E9020EEE479FC8FAFEF4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2D1584DA2021FAA45E8621AF /* TCONMakerTests/PhotoEngineTests.swift in Sources */,
-				083029484B4A1E4D3BD5A728 /* TCONMakerTests/PhotoModelTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		58301D92A4EA759B1D99C325 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7EC77F57986CB698A6CEDD7D /* TCONMaker */;
-			targetProxy = DE949CF46DD2682C6D17A097 /* PBXContainerItemProxy */;
-		};
-		7DB5C793DAEB3F8533BF8DBA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7EC77F57986CB698A6CEDD7D /* TCONMaker */;
-			targetProxy = E804DAD1586595E06F23A6B5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin XCBuildConfiguration section */
-		04112D76F70CA04FC171E71C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.seolin.tconmaker.tconmakertests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCONMaker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TCONMaker";
-			};
-			name = Release;
-		};
-		417DAF372D2F175C2E999DE3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.seolin.tconmaker.tconmakertests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCONMaker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TCONMaker";
-			};
-			name = Debug;
-		};
-		4252DD9E37735AB9AA44C378 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 36545XSWN8;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TCONMaker/Info.plist;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.seolin.tconmaker;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		7F8B9ED018710E7F0E08F6AF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.seolin.tconmaker.tconmakeruitests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TCONMaker;
-			};
-			name = Debug;
-		};
-		89E1FD6268CC0F221A2BE178 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		BAE170F379AC074583819D1A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 36545XSWN8;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TCONMaker/Info.plist;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0.0;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.seolin.tconmaker;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D8BE7D97E73DC281514FA1B9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.seolin.tconmaker.tconmakeruitests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TCONMaker;
-			};
-			name = Release;
-		};
-		E6DE6C99132752C914FEF632 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				SDKROOT = iphoneos;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		098722EB46E3F5E81EDF1EE7 /* Build configuration list for PBXNativeTarget "TCONMakerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				417DAF372D2F175C2E999DE3 /* Debug */,
-				04112D76F70CA04FC171E71C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		862894B703A6DEDF96A9DD6C /* Build configuration list for PBXProject "TCONMaker" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				89E1FD6268CC0F221A2BE178 /* Debug */,
-				E6DE6C99132752C914FEF632 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9F446EC5DC3BBF41F130D77D /* Build configuration list for PBXNativeTarget "TCONMaker" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BAE170F379AC074583819D1A /* Debug */,
-				4252DD9E37735AB9AA44C378 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BE3CEB6A25D4DD2D114DA430 /* Build configuration list for PBXNativeTarget "TCONMakerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7F8B9ED018710E7F0E08F6AF /* Debug */,
-				D8BE7D97E73DC281514FA1B9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = 98F54143AB4E86B28C3AFEE0 /* Project object */;
-}
+{archiveVersion=1;classes={};objectVersion=56;objects={
+CBF38B440AF1838F1EAF2785 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="PhotoStore.swift";sourceTree="<group>";};
+F127A398D29DAED580A911D7 = {isa=PBXBuildFile;fileRef=CBF38B440AF1838F1EAF2785;};
+26774ABF77EEC8AF7C245002 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="RootView.swift";sourceTree="<group>";};
+B7F2553160D65C4961BAFAA0 = {isa=PBXBuildFile;fileRef=26774ABF77EEC8AF7C245002;};
+4A0C80A1AD3CC77E22ABAC83 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="TCONMakerApp.swift";sourceTree="<group>";};
+B807052A4EDA36C4809F038F = {isa=PBXBuildFile;fileRef=4A0C80A1AD3CC77E22ABAC83;};
+BDAACEA49FD838E4C6B7D9B6 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="PhotoModels.swift";sourceTree="<group>";};
+78BCD68B8B3F5804EC8BEF9B = {isa=PBXBuildFile;fileRef=BDAACEA49FD838E4C6B7D9B6;};
+EC8C952B3E3FCE7EFE401611 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="PhotoEngine.swift";sourceTree="<group>";};
+916A5F121D9C61F4966E3234 = {isa=PBXBuildFile;fileRef=EC8C952B3E3FCE7EFE401611;};
+6B0FCFDCAFDA739F53BC907A = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="ExportService.swift";sourceTree="<group>";};
+927EA2189F674B655C95DE71 = {isa=PBXBuildFile;fileRef=6B0FCFDCAFDA739F53BC907A;};
+F1AEECCC8BB0ED2288CB7C02 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="PhotoImport.swift";sourceTree="<group>";};
+449D504E03874801450079FC = {isa=PBXBuildFile;fileRef=F1AEECCC8BB0ED2288CB7C02;};
+CCACF77718FCAE7CBE4EA245 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="BatchView.swift";sourceTree="<group>";};
+A333AFB131AE5A6E57B2EA40 = {isa=PBXBuildFile;fileRef=CCACF77718FCAE7CBE4EA245;};
+D94CA1EF7BFB5A58CB7E7158 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="EditorView.swift";sourceTree="<group>";};
+8B35DE9AF8629F9731C45F37 = {isa=PBXBuildFile;fileRef=D94CA1EF7BFB5A58CB7E7158;};
+3D89B9CF66EBEE933D883C6B = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="ExportView.swift";sourceTree="<group>";};
+34B2DF67459F1F126E959CDD = {isa=PBXBuildFile;fileRef=3D89B9CF66EBEE933D883C6B;};
+114A76DEB5646D5C6769B527 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="StartView.swift";sourceTree="<group>";};
+B7302DBC8710CD9673FC0B7E = {isa=PBXBuildFile;fileRef=114A76DEB5646D5C6769B527;};
+E5BDB3F8D022C322C7DE3760 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="SettingsView.swift";sourceTree="<group>";};
+4549ECFBF708F02317790ECC = {isa=PBXBuildFile;fileRef=E5BDB3F8D022C322C7DE3760;};
+12064FDF3F9B7BCB43F6D95B = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="Components.swift";sourceTree="<group>";};
+512D1E3A97A1471071B6F65E = {isa=PBXBuildFile;fileRef=12064FDF3F9B7BCB43F6D95B;};
+9C752C832C8CD76FFD052DF6 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="ImportActions.swift";sourceTree="<group>";};
+0552EC3EDE4B45E272DE0BF0 = {isa=PBXBuildFile;fileRef=9C752C832C8CD76FFD052DF6;};
+82A1943232731DEBA91F0F16 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="SystemPickers.swift";sourceTree="<group>";};
+6A2910B97A004512143C0542 = {isa=PBXBuildFile;fileRef=82A1943232731DEBA91F0F16;};
+C82F257E005A8E4C9568C75B = {isa=PBXFileReference;lastKnownFileType=folder.assetcatalog;path="Assets.xcassets";sourceTree="<group>";};
+8CD43CF2782D8871DD0B4169 = {isa=PBXBuildFile;fileRef=C82F257E005A8E4C9568C75B;};
+3E8DBE2F8B8790F195E281B4 = {isa=PBXFileReference;lastKnownFileType=folder;path="Engine";sourceTree="<group>";};
+A08E2376ABC2EA4A34464CE9 = {isa=PBXBuildFile;fileRef=3E8DBE2F8B8790F195E281B4;};
+559A950C8F04A63F47D012E1 = {isa=PBXFileReference;lastKnownFileType=file;path="PrivacyInfo.xcprivacy";sourceTree="<group>";};
+788FE52E3CEBF720E41EACF8 = {isa=PBXBuildFile;fileRef=559A950C8F04A63F47D012E1;};
+2E003F56937F68BDF8AA272A = {isa=PBXFileReference;lastKnownFileType=text.plist.xml;path="Info.plist";sourceTree="<group>";};
+205A9E7EFD4A9003D7492795 = {isa=PBXGroup;path="App";children=(CBF38B440AF1838F1EAF2785,26774ABF77EEC8AF7C245002,4A0C80A1AD3CC77E22ABAC83,);sourceTree="<group>";};
+4D5247EAF4364AF33C1561CA = {isa=PBXGroup;path="Models";children=(BDAACEA49FD838E4C6B7D9B6,);sourceTree="<group>";};
+3BBB4E9127CEE8061E21A7FB = {isa=PBXGroup;path="Processing";children=(EC8C952B3E3FCE7EFE401611,);sourceTree="<group>";};
+D1A43A166E8B0884E9DFF87E = {isa=PBXGroup;path="Services";children=(6B0FCFDCAFDA739F53BC907A,F1AEECCC8BB0ED2288CB7C02,);sourceTree="<group>";};
+C56DFDA90E9821BD462FE8AA = {isa=PBXGroup;path="Core";children=(4D5247EAF4364AF33C1561CA,3BBB4E9127CEE8061E21A7FB,D1A43A166E8B0884E9DFF87E,);sourceTree="<group>";};
+01AB855B2D66BE161F808B93 = {isa=PBXGroup;path="Batch";children=(CCACF77718FCAE7CBE4EA245,);sourceTree="<group>";};
+7971382BD4175786569A3867 = {isa=PBXGroup;path="Editor";children=(D94CA1EF7BFB5A58CB7E7158,);sourceTree="<group>";};
+56ABC3067EC425E730845347 = {isa=PBXGroup;path="Export";children=(3D89B9CF66EBEE933D883C6B,);sourceTree="<group>";};
+591D5B4AC75D0D9AAA1A3E49 = {isa=PBXGroup;path="Home";children=(114A76DEB5646D5C6769B527,);sourceTree="<group>";};
+22A35C9CD5B386F84EC1540D = {isa=PBXGroup;path="Settings";children=(E5BDB3F8D022C322C7DE3760,);sourceTree="<group>";};
+7A221D5146B32A332A4CDFB8 = {isa=PBXGroup;path="Features";children=(01AB855B2D66BE161F808B93,7971382BD4175786569A3867,56ABC3067EC425E730845347,591D5B4AC75D0D9AAA1A3E49,22A35C9CD5B386F84EC1540D,);sourceTree="<group>";};
+927576D1FCA1BA36D6C51019 = {isa=PBXGroup;path="Components";children=(12064FDF3F9B7BCB43F6D95B,);sourceTree="<group>";};
+9C7437C742D4B60D69295DD7 = {isa=PBXGroup;path="System";children=(9C752C832C8CD76FFD052DF6,82A1943232731DEBA91F0F16,);sourceTree="<group>";};
+DC1158702E3CC722F2C1104D = {isa=PBXGroup;path="Shared";children=(927576D1FCA1BA36D6C51019,9C7437C742D4B60D69295DD7,);sourceTree="<group>";};
+E625F7C0D14227DADEC56DF6 = {isa=PBXGroup;path="Resources";children=(C82F257E005A8E4C9568C75B,3E8DBE2F8B8790F195E281B4,559A950C8F04A63F47D012E1,);sourceTree="<group>";};
+4162685C72B752F118924C21 = {isa=PBXGroup;path="TCONMaker";children=(205A9E7EFD4A9003D7492795,C56DFDA90E9821BD462FE8AA,7A221D5146B32A332A4CDFB8,DC1158702E3CC722F2C1104D,E625F7C0D14227DADEC56DF6,2E003F56937F68BDF8AA272A,);sourceTree="<group>";};
+4DB29F4FFD9AA2F29CACB319 = {isa=PBXFileReference;explicitFileType=wrapper.application;path=TCONMaker.app;sourceTree=BUILT_PRODUCTS_DIR;};
+6783E16EACFBB35E9088208E = {isa=PBXSourcesBuildPhase;buildActionMask=2147483647;files=(F127A398D29DAED580A911D7,B7F2553160D65C4961BAFAA0,B807052A4EDA36C4809F038F,78BCD68B8B3F5804EC8BEF9B,916A5F121D9C61F4966E3234,927EA2189F674B655C95DE71,449D504E03874801450079FC,A333AFB131AE5A6E57B2EA40,8B35DE9AF8629F9731C45F37,34B2DF67459F1F126E959CDD,B7302DBC8710CD9673FC0B7E,4549ECFBF708F02317790ECC,512D1E3A97A1471071B6F65E,0552EC3EDE4B45E272DE0BF0,6A2910B97A004512143C0542,);runOnlyForDeploymentPostprocessing=0;};
+118F6473199B244F0154B29D = {isa=PBXResourcesBuildPhase;buildActionMask=2147483647;files=(8CD43CF2782D8871DD0B4169,A08E2376ABC2EA4A34464CE9,788FE52E3CEBF720E41EACF8,);runOnlyForDeploymentPostprocessing=0;};
+E9FD8676F8743B82959F5022 = {isa=PBXFrameworksBuildPhase;buildActionMask=2147483647;files=();runOnlyForDeploymentPostprocessing=0;};
+BAE170F379AC074583819D1A = {isa=XCBuildConfiguration;name=Debug;buildSettings={"PRODUCT_BUNDLE_IDENTIFIER"="com.seolin.tconmaker";"PRODUCT_NAME"="$(TARGET_NAME)";"SWIFT_VERSION"="5.0";"IPHONEOS_DEPLOYMENT_TARGET"="17.0";"TARGETED_DEVICE_FAMILY"="1,2";"CODE_SIGN_STYLE"="Automatic";"SWIFT_EMIT_LOC_STRINGS"="YES";"GENERATE_INFOPLIST_FILE"="YES";"SWIFT_OPTIMIZATION_LEVEL"="-Onone";"SWIFT_ACTIVE_COMPILATION_CONDITIONS"="DEBUG";"ENABLE_USER_SCRIPT_SANDBOXING"="YES";"ENABLE_TESTABILITY"="YES";"ONLY_ACTIVE_ARCH"="YES";"INFOPLIST_FILE"="TCONMaker/Info.plist";"CURRENT_PROJECT_VERSION"="1";"MARKETING_VERSION"="1.0.0";"ASSETCATALOG_COMPILER_APPICON_NAME"="AppIcon";"INFOPLIST_KEY_UILaunchScreen_Generation"="YES";"DEVELOPMENT_TEAM"="36545XSWN8";};};
+4252DD9E37735AB9AA44C378 = {isa=XCBuildConfiguration;name=Release;buildSettings={"PRODUCT_BUNDLE_IDENTIFIER"="com.seolin.tconmaker";"PRODUCT_NAME"="$(TARGET_NAME)";"SWIFT_VERSION"="5.0";"IPHONEOS_DEPLOYMENT_TARGET"="17.0";"TARGETED_DEVICE_FAMILY"="1,2";"CODE_SIGN_STYLE"="Automatic";"SWIFT_EMIT_LOC_STRINGS"="YES";"GENERATE_INFOPLIST_FILE"="YES";"SWIFT_OPTIMIZATION_LEVEL"="-O";"SWIFT_ACTIVE_COMPILATION_CONDITIONS"="";"ENABLE_USER_SCRIPT_SANDBOXING"="YES";"INFOPLIST_FILE"="TCONMaker/Info.plist";"CURRENT_PROJECT_VERSION"="1";"MARKETING_VERSION"="1.0.0";"ASSETCATALOG_COMPILER_APPICON_NAME"="AppIcon";"INFOPLIST_KEY_UILaunchScreen_Generation"="YES";"DEVELOPMENT_TEAM"="36545XSWN8";};};
+9F446EC5DC3BBF41F130D77D = {isa=XCConfigurationList;buildConfigurations=(BAE170F379AC074583819D1A,4252DD9E37735AB9AA44C378,);defaultConfigurationIsVisible=0;defaultConfigurationName=Release;};
+7EC77F57986CB698A6CEDD7D = {isa=PBXNativeTarget;name=TCONMaker;productName=TCONMaker;productType="com.apple.product-type.application";productReference=4DB29F4FFD9AA2F29CACB319;buildConfigurationList=9F446EC5DC3BBF41F130D77D;buildPhases=(6783E16EACFBB35E9088208E,E9FD8676F8743B82959F5022,118F6473199B244F0154B29D,);buildRules=();dependencies=();};
+9400EE3F14C6965A1F27BE1B = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="PhotoEngineTests.swift";sourceTree="<group>";};
+2341D600934F389FC9606746 = {isa=PBXBuildFile;fileRef=9400EE3F14C6965A1F27BE1B;};
+63AE543BEA392CCCC4489523 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="PhotoModelTests.swift";sourceTree="<group>";};
+907CE8F89B9487C8EFA15308 = {isa=PBXBuildFile;fileRef=63AE543BEA392CCCC4489523;};
+F7DED4CD879B8BB46F85ABBD = {isa=PBXGroup;path="Integration";children=(9400EE3F14C6965A1F27BE1B,);sourceTree="<group>";};
+026F74F7A0C02ED2BF77ADB2 = {isa=PBXGroup;path="Unit";children=(63AE543BEA392CCCC4489523,);sourceTree="<group>";};
+42A87E82BB709CE6E5D012C6 = {isa=PBXGroup;path="TCONMakerTests";children=(F7DED4CD879B8BB46F85ABBD,026F74F7A0C02ED2BF77ADB2,);sourceTree="<group>";};
+831FD7172760CBFEA8C0F17F = {isa=PBXFileReference;explicitFileType=wrapper.cfbundle;path=TCONMakerTests.xctest;sourceTree=BUILT_PRODUCTS_DIR;};
+9EF2E9020EEE479FC8FAFEF4 = {isa=PBXSourcesBuildPhase;buildActionMask=2147483647;files=(2341D600934F389FC9606746,907CE8F89B9487C8EFA15308,);runOnlyForDeploymentPostprocessing=0;};
+4473153167D55A4BD26CD3C3 = {isa=PBXResourcesBuildPhase;buildActionMask=2147483647;files=();runOnlyForDeploymentPostprocessing=0;};
+8DEA36FD5E454ECC3E190F20 = {isa=PBXFrameworksBuildPhase;buildActionMask=2147483647;files=();runOnlyForDeploymentPostprocessing=0;};
+417DAF372D2F175C2E999DE3 = {isa=XCBuildConfiguration;name=Debug;buildSettings={"PRODUCT_BUNDLE_IDENTIFIER"="com.seolin.tconmaker.tconmakertests";"PRODUCT_NAME"="$(TARGET_NAME)";"SWIFT_VERSION"="5.0";"IPHONEOS_DEPLOYMENT_TARGET"="17.0";"TARGETED_DEVICE_FAMILY"="1,2";"CODE_SIGN_STYLE"="Automatic";"SWIFT_EMIT_LOC_STRINGS"="YES";"GENERATE_INFOPLIST_FILE"="YES";"SWIFT_OPTIMIZATION_LEVEL"="-Onone";"SWIFT_ACTIVE_COMPILATION_CONDITIONS"="DEBUG";"ENABLE_USER_SCRIPT_SANDBOXING"="YES";"ENABLE_TESTABILITY"="YES";"ONLY_ACTIVE_ARCH"="YES";"TEST_HOST"="$(BUILT_PRODUCTS_DIR)/TCONMaker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TCONMaker";"BUNDLE_LOADER"="$(TEST_HOST)";};};
+04112D76F70CA04FC171E71C = {isa=XCBuildConfiguration;name=Release;buildSettings={"PRODUCT_BUNDLE_IDENTIFIER"="com.seolin.tconmaker.tconmakertests";"PRODUCT_NAME"="$(TARGET_NAME)";"SWIFT_VERSION"="5.0";"IPHONEOS_DEPLOYMENT_TARGET"="17.0";"TARGETED_DEVICE_FAMILY"="1,2";"CODE_SIGN_STYLE"="Automatic";"SWIFT_EMIT_LOC_STRINGS"="YES";"GENERATE_INFOPLIST_FILE"="YES";"SWIFT_OPTIMIZATION_LEVEL"="-O";"SWIFT_ACTIVE_COMPILATION_CONDITIONS"="";"ENABLE_USER_SCRIPT_SANDBOXING"="YES";"TEST_HOST"="$(BUILT_PRODUCTS_DIR)/TCONMaker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TCONMaker";"BUNDLE_LOADER"="$(TEST_HOST)";};};
+098722EB46E3F5E81EDF1EE7 = {isa=XCConfigurationList;buildConfigurations=(417DAF372D2F175C2E999DE3,04112D76F70CA04FC171E71C,);defaultConfigurationIsVisible=0;defaultConfigurationName=Release;};
+E804DAD1586595E06F23A6B5 = {isa=PBXContainerItemProxy;containerPortal=98F54143AB4E86B28C3AFEE0;proxyType=1;remoteGlobalIDString=7EC77F57986CB698A6CEDD7D;remoteInfo=TCONMaker;};
+7DB5C793DAEB3F8533BF8DBA = {isa=PBXTargetDependency;target=7EC77F57986CB698A6CEDD7D;targetProxy=E804DAD1586595E06F23A6B5;};
+E3808D794D0A3BA747493459 = {isa=PBXNativeTarget;name=TCONMakerTests;productName=TCONMakerTests;productType="com.apple.product-type.bundle.unit-test";productReference=831FD7172760CBFEA8C0F17F;buildConfigurationList=098722EB46E3F5E81EDF1EE7;buildPhases=(9EF2E9020EEE479FC8FAFEF4,8DEA36FD5E454ECC3E190F20,4473153167D55A4BD26CD3C3,);buildRules=();dependencies=(7DB5C793DAEB3F8533BF8DBA,);};
+B6765E2909E5EBDB179EEA69 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="TCONMakerUITests.swift";sourceTree="<group>";};
+C4C930DCB1FCE7AE0E273B5F = {isa=PBXBuildFile;fileRef=B6765E2909E5EBDB179EEA69;};
+9CE9D1C2FCF0A4CAC6CA98BF = {isa=PBXGroup;path="TCONMakerUITests";children=(B6765E2909E5EBDB179EEA69,);sourceTree="<group>";};
+0973D91C052DFE014F4D5BB1 = {isa=PBXFileReference;explicitFileType=wrapper.cfbundle;path=TCONMakerUITests.xctest;sourceTree=BUILT_PRODUCTS_DIR;};
+1B2E96C063845B9407279F47 = {isa=PBXSourcesBuildPhase;buildActionMask=2147483647;files=(C4C930DCB1FCE7AE0E273B5F,);runOnlyForDeploymentPostprocessing=0;};
+CA5E62AD5EFA0E89979B6B87 = {isa=PBXResourcesBuildPhase;buildActionMask=2147483647;files=();runOnlyForDeploymentPostprocessing=0;};
+C66017CBCF94713B535AD292 = {isa=PBXFrameworksBuildPhase;buildActionMask=2147483647;files=();runOnlyForDeploymentPostprocessing=0;};
+7F8B9ED018710E7F0E08F6AF = {isa=XCBuildConfiguration;name=Debug;buildSettings={"PRODUCT_BUNDLE_IDENTIFIER"="com.seolin.tconmaker.tconmakeruitests";"PRODUCT_NAME"="$(TARGET_NAME)";"SWIFT_VERSION"="5.0";"IPHONEOS_DEPLOYMENT_TARGET"="17.0";"TARGETED_DEVICE_FAMILY"="1,2";"CODE_SIGN_STYLE"="Automatic";"SWIFT_EMIT_LOC_STRINGS"="YES";"GENERATE_INFOPLIST_FILE"="YES";"SWIFT_OPTIMIZATION_LEVEL"="-Onone";"SWIFT_ACTIVE_COMPILATION_CONDITIONS"="DEBUG";"ENABLE_USER_SCRIPT_SANDBOXING"="YES";"ENABLE_TESTABILITY"="YES";"ONLY_ACTIVE_ARCH"="YES";"TEST_TARGET_NAME"="TCONMaker";};};
+D8BE7D97E73DC281514FA1B9 = {isa=XCBuildConfiguration;name=Release;buildSettings={"PRODUCT_BUNDLE_IDENTIFIER"="com.seolin.tconmaker.tconmakeruitests";"PRODUCT_NAME"="$(TARGET_NAME)";"SWIFT_VERSION"="5.0";"IPHONEOS_DEPLOYMENT_TARGET"="17.0";"TARGETED_DEVICE_FAMILY"="1,2";"CODE_SIGN_STYLE"="Automatic";"SWIFT_EMIT_LOC_STRINGS"="YES";"GENERATE_INFOPLIST_FILE"="YES";"SWIFT_OPTIMIZATION_LEVEL"="-O";"SWIFT_ACTIVE_COMPILATION_CONDITIONS"="";"ENABLE_USER_SCRIPT_SANDBOXING"="YES";"TEST_TARGET_NAME"="TCONMaker";};};
+BE3CEB6A25D4DD2D114DA430 = {isa=XCConfigurationList;buildConfigurations=(7F8B9ED018710E7F0E08F6AF,D8BE7D97E73DC281514FA1B9,);defaultConfigurationIsVisible=0;defaultConfigurationName=Release;};
+DE949CF46DD2682C6D17A097 = {isa=PBXContainerItemProxy;containerPortal=98F54143AB4E86B28C3AFEE0;proxyType=1;remoteGlobalIDString=7EC77F57986CB698A6CEDD7D;remoteInfo=TCONMaker;};
+58301D92A4EA759B1D99C325 = {isa=PBXTargetDependency;target=7EC77F57986CB698A6CEDD7D;targetProxy=DE949CF46DD2682C6D17A097;};
+A0C42F2F95C388FB8184D9AD = {isa=PBXNativeTarget;name=TCONMakerUITests;productName=TCONMakerUITests;productType="com.apple.product-type.bundle.ui-testing";productReference=0973D91C052DFE014F4D5BB1;buildConfigurationList=BE3CEB6A25D4DD2D114DA430;buildPhases=(1B2E96C063845B9407279F47,C66017CBCF94713B535AD292,CA5E62AD5EFA0E89979B6B87,);buildRules=();dependencies=(58301D92A4EA759B1D99C325,);};
+6C6F9081F77D7E620411F5B9 = {isa=PBXFileReference;lastKnownFileType=text;path="DEMO_ASSET.txt";sourceTree="<group>";};
+82E2607ECB1218B269D0AD16 = {isa=PBXFileReference;lastKnownFileType=net.daringfireball.markdown;path="FEATURE_PARITY.md";sourceTree="<group>";};
+2976D0E6395A23BAA683D32D = {isa=PBXFileReference;lastKnownFileType=net.daringfireball.markdown;path="RELEASE.md";sourceTree="<group>";};
+AA14DA538B059DC0761903BE = {isa=PBXFileReference;lastKnownFileType=net.daringfireball.markdown;path="THIRD_PARTY.md";sourceTree="<group>";};
+9915952DF1B09C312834368D = {isa=PBXFileReference;lastKnownFileType=net.daringfireball.markdown;path="VALIDATION.md";sourceTree="<group>";};
+FB55C49AAB59E2990A67CBFD = {isa=PBXGroup;path="Docs";children=(6C6F9081F77D7E620411F5B9,82E2607ECB1218B269D0AD16,2976D0E6395A23BAA683D32D,AA14DA538B059DC0761903BE,9915952DF1B09C312834368D,);sourceTree="<group>";};
+20FD16735ABC5D53E557CBFE = {isa=PBXFileReference;lastKnownFileType=text.script.python;path="generate_project.py";sourceTree="<group>";};
+1198391C4C02C546641E7B04 = {isa=PBXFileReference;lastKnownFileType=sourcecode.javascript;path="native-bridge.js";sourceTree="<group>";};
+B4A09623BD33D186CC6DBC15 = {isa=PBXFileReference;lastKnownFileType=text.script.python;path="sync_engine_bridge.py";sourceTree="<group>";};
+FEEC73EABA9D755B6737F317 = {isa=PBXGroup;path="Scripts";children=(20FD16735ABC5D53E557CBFE,1198391C4C02C546641E7B04,B4A09623BD33D186CC6DBC15,);sourceTree="<group>";};
+8D215D1F95C431F8159CBA3B = {isa=PBXFileReference;lastKnownFileType=image.png;path="01-start.png";sourceTree="<group>";};
+B564204F44FDF0066C6C6C93 = {isa=PBXFileReference;lastKnownFileType=image.png;path="02-batch.png";sourceTree="<group>";};
+61E6C52A0FF755540D04C6B2 = {isa=PBXFileReference;lastKnownFileType=image.png;path="03-editor.png";sourceTree="<group>";};
+22667FB53B02974FAA23DE46 = {isa=PBXFileReference;lastKnownFileType=image.png;path="04-export.png";sourceTree="<group>";};
+4CD8889ED582A42A1DAA4399 = {isa=PBXFileReference;lastKnownFileType=text;path="generation-prompts.txt";sourceTree="<group>";};
+523E87C953084A5F25DF6A75 = {isa=PBXFileReference;lastKnownFileType=image.png;path="01-start.png";sourceTree="<group>";};
+FD0844EB7B9014FA541D24E9 = {isa=PBXFileReference;lastKnownFileType=image.png;path="02-batch.png";sourceTree="<group>";};
+9D7D8419B01642D754B5334C = {isa=PBXFileReference;lastKnownFileType=image.png;path="03-editor.png";sourceTree="<group>";};
+314FC9B90767317590DEAB0D = {isa=PBXFileReference;lastKnownFileType=image.png;path="04-export.png";sourceTree="<group>";};
+E2B93389AAAA1A22D490BDDB = {isa=PBXFileReference;lastKnownFileType=image.png;path="05-settings.png";sourceTree="<group>";};
+CFFCDFB1694C78E875BC84EF = {isa=PBXFileReference;lastKnownFileType=image.png;path="06-files-export.png";sourceTree="<group>";};
+5BD3EE238DA38112EEF3A6B1 = {isa=PBXGroup;path="Approved";children=(8D215D1F95C431F8159CBA3B,B564204F44FDF0066C6C6C93,61E6C52A0FF755540D04C6B2,22667FB53B02974FAA23DE46,4CD8889ED582A42A1DAA4399,);sourceTree="<group>";};
+E8BDC34F6078BA3C68FF3388 = {isa=PBXGroup;path="Implemented";children=(523E87C953084A5F25DF6A75,FD0844EB7B9014FA541D24E9,9D7D8419B01642D754B5334C,314FC9B90767317590DEAB0D,E2B93389AAAA1A22D490BDDB,CFFCDFB1694C78E875BC84EF,);sourceTree="<group>";};
+546FD39E07D6580EAEB29808 = {isa=PBXGroup;path="Design";children=(5BD3EE238DA38112EEF3A6B1,E8BDC34F6078BA3C68FF3388,);sourceTree="<group>";};
+8EC9A00BFD09B3190AC6B222 = {isa=PBXFileReference;lastKnownFileType=net.daringfireball.markdown;path="README.md";sourceTree="<group>";};
+37DD68363FC1D45D64469B99 = {isa=PBXFileReference;lastKnownFileType=net.daringfireball.markdown;path="AGENTS.md";sourceTree="<group>";};
+FBDC4F23F93125BBEEAE800C = {isa=PBXGroup;name=Products;children=(4DB29F4FFD9AA2F29CACB319,831FD7172760CBFEA8C0F17F,0973D91C052DFE014F4D5BB1,);sourceTree="<group>";};
+B28B7AF69320201D1CF206EB = {isa=PBXGroup;children=(4162685C72B752F118924C21,42A87E82BB709CE6E5D012C6,9CE9D1C2FCF0A4CAC6CA98BF,FB55C49AAB59E2990A67CBFD,FEEC73EABA9D755B6737F317,546FD39E07D6580EAEB29808,8EC9A00BFD09B3190AC6B222,37DD68363FC1D45D64469B99,FBDC4F23F93125BBEEAE800C,);sourceTree="<group>";};
+89E1FD6268CC0F221A2BE178 = {isa=XCBuildConfiguration;name=Debug;buildSettings={SDKROOT=iphoneos;CLANG_ENABLE_MODULES=YES;CLANG_ENABLE_OBJC_ARC=YES;DEBUG_INFORMATION_FORMAT=dwarf;};};
+E6DE6C99132752C914FEF632 = {isa=XCBuildConfiguration;name=Release;buildSettings={SDKROOT=iphoneos;CLANG_ENABLE_MODULES=YES;CLANG_ENABLE_OBJC_ARC=YES;DEBUG_INFORMATION_FORMAT="dwarf-with-dsym";};};
+862894B703A6DEDF96A9DD6C = {isa=XCConfigurationList;buildConfigurations=(89E1FD6268CC0F221A2BE178,E6DE6C99132752C914FEF632,);defaultConfigurationIsVisible=0;defaultConfigurationName=Release;};
+98F54143AB4E86B28C3AFEE0 = {isa=PBXProject;attributes={LastUpgradeCheck=1600;};buildConfigurationList=862894B703A6DEDF96A9DD6C;compatibilityVersion="Xcode 14.0";developmentRegion=ko;hasScannedForEncodings=0;knownRegions=(ko,en,Base);mainGroup=B28B7AF69320201D1CF206EB;productRefGroup=FBDC4F23F93125BBEEAE800C;projectDirPath="";projectRoot="";targets=(7EC77F57986CB698A6CEDD7D,E3808D794D0A3BA747493459,A0C42F2F95C388FB8184D9AD,);};
+};rootObject=98F54143AB4E86B28C3AFEE0;}
