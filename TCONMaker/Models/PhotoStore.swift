@@ -19,6 +19,9 @@ final class PhotoStore:ObservableObject {
     init() {
         settings=(UserDefaults.standard.data(forKey:"photoSettings").flatMap{try? JSONDecoder().decode(PhotoSettings.self,from:$0)}) ?? PhotoSettings()
         settings.validate();ExportService.cleanOldExports()
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--ui-testing") { settings=PhotoSettings() }
+        #endif
     }
     func prepare() async {
         guard !started else{return};started=true;progress="사진 도구 준비 중…"
@@ -28,6 +31,11 @@ final class PhotoStore:ObservableObject {
             let _:EngineSnapshot=try await engine.call("settings",["settings":try settings.dictionary(),"preserve":true])
             ready=true;progress=""
             if !state.faceAvailable || !state.backgroundAvailable { notice="자동 인식 일부를 준비하지 못했어요. 원본 배경과 수동 편집을 사용할 수 있습니다." }
+            #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("--ui-sample"),let sample=UIImage(named:"DemoPortrait")?.pngData() {
+                await importing(total:2){_ in(sample,"예시.png")}
+            }
+            #endif
         } catch { self.error=error.localizedDescription;progress="준비 실패";started=false }
     }
     private func accept(_ snapshot:EngineSnapshot) { photos=snapshot.photos;faceAvailable=snapshot.faceAvailable;backgroundAvailable=snapshot.backgroundAvailable }

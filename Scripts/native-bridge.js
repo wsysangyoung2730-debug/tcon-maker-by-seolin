@@ -1,4 +1,6 @@
 // Native adapter. Original rendering/model functions above are preserved.
+document.body.style.display='none';
+document.documentElement.setAttribute('aria-hidden','true');
 const nativeBlob = b => new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(new Error('사진 데이터를 읽을 수 없어요'));r.readAsDataURL(b);});
 const nativeDefaults = JSON.parse(JSON.stringify(S));
 const nativeRanges={wmm:[10,200],hmm:[10,200],maxkb:[20,20000],bright:[-50,50],head:[55,85],top:[3,16],below:[0.6,1.8]};
@@ -72,7 +74,7 @@ window.TCONNative={execute(command,payload={}){
     const it=items.find(x=>x.id===payload.id);if(!it)throw new Error('사진을 찾을 수 없어요');
     return nativeContext(it,async()=>{
       if(command==='update'){
-        const ranges={zoom:[0.4,3],tilt:[-15,15],dx:[-0.5,0.5],dy:[-0.5,0.5],bright:[-50,50]};
+        const ranges={zoom:[0.4,3],tilt:[-45,45],dx:[-0.5,0.5],dy:[-0.5,0.5],bright:[-50,50]};
         for(const [k,v]of Object.entries(payload.adjustment||{}))if(ranges[k]&&Number.isFinite(v))it.adj[k]=Math.max(ranges[k][0],Math.min(ranges[k][1],v));
         if(['white','clear','orig'].includes(payload.background))it.bg=payload.background;
         if(typeof payload.snap==='boolean')it.snap=payload.snap;
