@@ -95,6 +95,35 @@ final class PhotoEngineTests: XCTestCase {
     XCTAssertEqual(deleted.photos.count, 1)
     let empty: EngineSnapshot = try await engine.call("clear")
     XCTAssertTrue(empty.photos.isEmpty)
+    // Persisted edits must be independent of transient engine IDs and survive re-import.
+    let imported: EngineSnapshot = try await engine.call("import", args)
+    let savedID = try XCTUnwrap(imported.photos.first?.id)
+    let _: PhotoItem = try await engine.call("rotate", ["id": savedID, "direction": 1])
+    let edited: PhotoItem = try await engine.call(
+      "update",
+      [
+        "id": savedID,
+        "adjustment": ["bright": 17, "zoom": 1.2, "dx": 0.04, "dy": -0.03, "tilt": 3],
+        "composition": ["top": 12, "center": "body"], "background": "orig", "snap": false,
+      ])
+    let archive: [ArchivedPhotoEdit] = try await engine.call("archive", ["ids": [savedID]])
+    let saved = try XCTUnwrap(archive.first?.state)
+    let _: EngineSnapshot = try await engine.call("clear")
+    let reimported: EngineSnapshot = try await engine.call("import", args)
+    let newID = try XCTUnwrap(reimported.photos.first?.id)
+    XCTAssertNotEqual(savedID, newID)
+    let recovered: PhotoItem = try await engine.call("restore", ["id": newID, "state": saved])
+    XCTAssertEqual(recovered.adjustment, edited.adjustment)
+    XCTAssertEqual(recovered.composition, edited.composition)
+    XCTAssertEqual(recovered.rotation, edited.rotation)
+    XCTAssertEqual(recovered.background, "orig")
+    XCTAssertFalse(recovered.snap)
+    XCTAssertEqual(recovered.preview, edited.preview)
+    let updated = PhotoSettings()
+    let inherited: EngineSnapshot = try await engine.call(
+      "settings", ["settings": try updated.dictionary(), "preserve": true])
+    XCTAssertEqual(inherited.photos[0].composition.top, 12)
+    XCTAssertEqual(inherited.photos[0].background, "orig")
   }
   private func attach(_ data: Data, type: String, name: String) {
     let a = XCTAttachment(data: data, uniformTypeIdentifier: type)
