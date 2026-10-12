@@ -3,6 +3,26 @@ import XCTest
 @testable import TCONMaker
 
 final class PhotoLibraryTests: XCTestCase {
+  func testAnalysisCacheIsOptionalAndRemovedWithOriginal() async throws {
+    let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: root) }
+    let disk = PhotoLibraryDisk(root: root)
+    let id = UUID()
+    let absent = await disk.readAnalysis(id)
+    XCTAssertNil(absent)
+    let original = Data([1, 2, 3])
+    try await disk.writeOriginal(original, id: id)
+    try await disk.writeAnalysis("cached mask", id: id)
+    let reopened = PhotoLibraryDisk(root: root)
+    let cached = await reopened.readAnalysis(id)
+    XCTAssertEqual(cached, "cached mask")
+    let bytes = try await reopened.readOriginal(id)
+    XCTAssertEqual(bytes, original)
+    await reopened.removeOriginals([id])
+    let removed = await reopened.readAnalysis(id)
+    XCTAssertNil(removed)
+  }
+
   func testFolderNamesMovesAndDeletingFoldersKeepPhotos() throws {
     var library = PhotoLibrary()
     let spring = try library.createFolder("  봄 심사  ")

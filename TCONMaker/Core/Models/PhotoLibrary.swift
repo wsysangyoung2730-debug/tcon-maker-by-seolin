@@ -75,4 +75,5 @@ struct PhotoLibrary: Codable {
 struct ArchivedPhotoEdit: Decodable {
   let id: Int
   let state: String
+  let analysis: String?
 }

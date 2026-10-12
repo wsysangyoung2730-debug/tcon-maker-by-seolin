@@ -198,7 +198,7 @@ final class PhotoStore: ObservableObject {
     do {
       let photo: PhotoItem = try await engine.call(command, payload)
       if let i = photos.firstIndex(where: { $0.id == photo.id }) { photos[i] = photo }
-      try await checkpoint()
+      try await checkpoint(ids: [photo.id])
     } catch { self.error = error.localizedDescription }
   }
   func remove(_ ids: [Int]) async {

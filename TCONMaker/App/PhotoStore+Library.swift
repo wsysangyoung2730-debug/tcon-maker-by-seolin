@@ -21,14 +21,16 @@ extension PhotoStore {
     var importedID: Int?
     do {
       try await disk.writeOriginal(normalized.0, id: stableID)
-      let state: EngineSnapshot = try await engine.call(
+      let photo: PhotoItem = try await engine.call(
         "import",
         [
           "name": normalized.1, "mime": normalized.2, "base64": normalized.0.base64EncodedString(),
+          "single": true,
         ])
-      guard let photo = state.photos.last else { throw AppFailure("사진을 가져오지 못했어요.") }
       importedID = photo.id
-      let edits: [ArchivedPhotoEdit] = try await engine.call("archive", ["ids": [photo.id]])
+      let edits: [ArchivedPhotoEdit] = try await engine.call(
+        "archive", ["ids": [photo.id], "includeAnalysis": true])
+      try? await disk.writeAnalysis(edits.first?.analysis, id: stableID)
       var candidate = library
       candidate.settings = settings
       candidate.photos.append(
@@ -48,9 +50,11 @@ extension PhotoStore {
     }
   }
 
-  func checkpoint() async throws {
+  func checkpoint(ids: [Int]? = nil) async throws {
     do {
-      let edits: [ArchivedPhotoEdit] = try await engine.call("archive")
+      var payload: [String: Any] = ["includeAnalysis": true]
+      if let ids { payload["ids"] = ids }
+      let edits: [ArchivedPhotoEdit] = try await engine.call("archive", payload)
       var candidate = library
       candidate.settings = settings
       for edit in edits {
@@ -58,6 +62,7 @@ extension PhotoStore {
           let i = candidate.photos.firstIndex(where: { $0.id == stableID })
         else { continue }
         candidate.photos[i].editState = edit.state
+        try? await disk.writeAnalysis(edit.analysis, id: stableID)
       }
       try await disk.save(candidate)
       library = candidate
@@ -84,16 +89,17 @@ extension PhotoStore {
       var importedID: Int?
       do {
         let data = try await disk.readOriginal(saved.id)
-        let snapshot: EngineSnapshot = try await engine.call(
-          "import",
-          [
-            "name": saved.name, "mime": saved.mime, "base64": data.base64EncodedString(),
-          ])
-        guard var photo = snapshot.photos.last else { throw AppFailure("사진을 읽지 못했어요.") }
+        var payload: [String: Any] = [
+          "name": saved.name, "mime": saved.mime, "base64": data.base64EncodedString(),
+          "single": true,
+        ]
+        if let state = saved.editState { payload["state"] = state }
+        if let analysis = await disk.readAnalysis(saved.id) { payload["analysis"] = analysis }
+        let photo: PhotoItem = try await engine.call("import", payload)
         importedID = photo.id
-        if let state = saved.editState, photo.status == "done" {
-          photo = try await engine.call("restore", ["id": photo.id, "state": state])
-        }
+        let edits: [ArchivedPhotoEdit] = try await engine.call(
+          "archive", ["ids": [photo.id], "includeAnalysis": true])
+        try? await disk.writeAnalysis(edits.first?.analysis, id: saved.id)
         storedIDs[photo.id] = saved.id
         photos.append(photo)
       } catch {
