@@ -61,10 +61,6 @@ struct StartView: View {
             if store.progress == "준비 실패" { Button("다시 시도") { Task { await store.prepare() } } }
           }.frame(maxWidth: .infinity)
         }
-        if !store.photos.isEmpty {
-          Button("작업 중인 사진 \(store.photos.count)장 보기") { store.path = [.batch] }.frame(
-            maxWidth: .infinity)
-        }
         Text("여러 장을 한 번에 선택할 수 있어요").font(.caption).foregroundStyle(.secondary).frame(
           maxWidth: .infinity)
         Image("SeolinLogo").resizable().scaledToFit().frame(height: 42).frame(maxWidth: .infinity)

@@ -19,9 +19,14 @@ struct SettingsView: View {
                 Text(label).font(.subheadline.weight(.semibold)).frame(maxWidth: .infinity).padding(
                   .vertical, 12
                 ).background(
-                  draft.presetName == label ? Color.seolin.opacity(0.12) : Color.appBackground,
-                  in: RoundedRectangle(cornerRadius: 10))
+                  draft.presetName == label ? Color.brandNavy : Color.appBackground,
+                  in: RoundedRectangle(cornerRadius: 10)
+                )
+                .foregroundStyle(draft.presetName == label ? Color.white : Color.primary)
+                .contentShape(RoundedRectangle(cornerRadius: 10))
               }.buttonStyle(.plain)
+                .accessibilityValue(draft.presetName == label ? "선택됨" : "선택 안 됨")
+                .accessibilityAddTraits(draft.presetName == label ? [.isSelected] : [])
             }
           }
           numberRow("가로", value: $draft.wmm, unit: "mm")
@@ -112,7 +117,9 @@ struct AboutView: View {
         }
         Section("사진과 개인정보") {
           Text("사진은 이 기기 안에서만 처리하며 외부 서버로 전송하지 않습니다. 원본 사진을 덮어쓰지 않습니다.")
-          Text("작업 중인 사진은 앱을 종료하면 사라집니다. 완료한 사진은 사진 앱이나 파일 앱에 저장해 주세요.")
+          Text(
+            "작업 사진·편집 상태·폴더는 이 기기에 보관되며 앱을 다시 열면 복구됩니다. 앱을 삭제하면 함께 삭제됩니다. 완성본은 사진 앱이나 파일 앱에 저장해 주세요."
+          )
           Text("설정값은 기기에 저장됩니다. 분석·광고·추적 기능은 없습니다.")
         }
         Section("사용 안내") {

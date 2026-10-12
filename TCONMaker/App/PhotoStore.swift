@@ -2,15 +2,18 @@ import PhotosUI
 import SwiftUI
 
 enum AppRoute: Hashable {
-  case batch
+  case folder(UUID?)
   case editor(Int)
   case export([Int])
 }
+enum AppTab: Hashable { case home, files }
+
 @MainActor
 final class PhotoStore: ObservableObject {
   let engine = PhotoEngine()
   @Published var settings: PhotoSettings
   @Published var photos: [PhotoItem] = []
+  @Published var selectedTab: AppTab = .home
   @Published var path: [AppRoute] = []
   @Published var busy = false
   @Published var progress = ""
@@ -141,9 +144,11 @@ final class PhotoStore: ObservableObject {
     }
     let added = photos.filter { !oldIDs.contains($0.id) }
     if added.count == 1, let item = added.first, item.status == "done" {
-      path = [.batch, .editor(item.id)]
+      selectedTab = .files
+      path = [.folder(folderID), .editor(item.id)]
     } else if !added.isEmpty {
-      path = [.batch]
+      selectedTab = .files
+      path = [.folder(folderID)]
     }
     if !failures.isEmpty { error = failures.joined(separator: "\n") }
   }

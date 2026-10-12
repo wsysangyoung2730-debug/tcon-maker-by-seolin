@@ -1,6 +1,10 @@
 import Foundation
 
 extension PhotoStore {
+  func folderID(for id: Int) -> UUID? {
+    library.photos.first { $0.id == storedIDs[id] }?.folderID
+  }
+
   func photos(in folderID: UUID?) -> [PhotoItem] {
     let ids = Set(library.photos.filter { $0.folderID == folderID }.map(\.id))
     return photos.filter { storedIDs[$0.id].map(ids.contains) == true }
