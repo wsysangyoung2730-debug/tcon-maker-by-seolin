@@ -1,0 +1,194 @@
+[
+  {
+    "file": "ko-KR/iPad-13-2064x2752/01-home.png",
+    "width": 2064,
+    "height": 2752,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "8e9ca658772b5ba7c527d78cb9a787c495a1350a43362f06ef83d63c5019c4ba"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/02-folders.png",
+    "width": 2064,
+    "height": 2752,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "1bdcd29d709de0dfe8d47a83d9bcd096d51135622af753b94b832d8ff1c38b6c"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/03-editor.png",
+    "width": 2064,
+    "height": 2752,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "611038b792908fb5f61931bb02cd20c64200a1343150c18b837fc59ecf91a821"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/04-background.png",
+    "width": 2064,
+    "height": 2752,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "534e9ace50faa86f2736067aca5a55e9f4fd7fc02062ca54c9b726dc16704352"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/05-selection.png",
+    "width": 2064,
+    "height": 2752,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "916122659bcd73ee41e100d6f19d45d9f7d4bafddc58e890efb231721538f393"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/06-export.png",
+    "width": 2064,
+    "height": 2752,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "b69dcc6c17ef89b5fa80f723b2a7a4810c44dfc0bd09b17c5f600a1e5ee3e129"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/07-settings.png",
+    "width": 2064,
+    "height": 2752,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "0ad6e7794d6882c17c98fb1c057d95b24cb6f8c712230e32c99353a09c10bea9"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/08-home-actions.png",
+    "width": 2064,
+    "height": 2752,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "8e9ca658772b5ba7c527d78cb9a787c495a1350a43362f06ef83d63c5019c4ba"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/01-home.png",
+    "width": 1320,
+    "height": 2868,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "5919eb6001cdf018826a99f4f5040fff366c6d8bd5bfcd0de907fa8c4d771fe0"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/02-folders.png",
+    "width": 1320,
+    "height": 2868,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "f687e6c6d68cb8a65315eedff628c92272be6368b7a06d8ce7b89a80274ebef2"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/03-editor.png",
+    "width": 1320,
+    "height": 2868,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "e60122894ad3be3ccfba190f693a309261a91d9310121d885e4215bcca18adac"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/04-background.png",
+    "width": 1320,
+    "height": 2868,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "424d33fb0054737627c868a3d0af280684560a2764e373a2564255756631cc8b"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/05-selection.png",
+    "width": 1320,
+    "height": 2868,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "d16d07cd0b21590e97db21f4837b2ce8f64254c169edad540b0ede9c5ed4a549"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/06-export.png",
+    "width": 1320,
+    "height": 2868,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "2b44a996fded3c49e485afada534dc006fe30279217aa6365a4454f7e4691575"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/07-settings.png",
+    "width": 1320,
+    "height": 2868,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "2ff2275444a9e25a3951539023781a9a87d6fd4a3e0541ee4131f43a5790edf8"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/08-home-actions.png",
+    "width": 1320,
+    "height": 2868,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": false,
+    "sha256": "882530cb79155832d28b22113d6bd566b62d74d94cd9b7916db07cc64b29f62d"
+  },
+  {
+    "file": "ko-KR/iPhone-Medium-1179x2556/01-home.png",
+    "width": 1179,
+    "height": 2556,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": true,
+    "sha256": "e22bfa12b60b18896a6f2a79983984c1c2b1489e2fe7b9397877294dd01a8033"
+  },
+  {
+    "file": "ko-KR/iPhone-Medium-1179x2556/02-folders.png",
+    "width": 1179,
+    "height": 2556,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": true,
+    "sha256": "be339152f555bd1e078a27fe8df308386d536c967b1906e126067fa83e3e6d09"
+  },
+  {
+    "file": "ko-KR/iPhone-Medium-1179x2556/03-editor.png",
+    "width": 1179,
+    "height": 2556,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": true,
+    "sha256": "e7621492d9c74abdf625221b0c5a97e7d108171295b45e5a07ccbc11baef68e5"
+  },
+  {
+    "file": "ko-KR/iPhone-Medium-1179x2556/04-background.png",
+    "width": 1179,
+    "height": 2556,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": true,
+    "sha256": "5ca0875a0f53651d942fe9b9b2401493a287b2c89529301baea69bd7ac34e884"
+  },
+  {
+    "file": "ko-KR/iPhone-Medium-1179x2556/05-selection.png",
+    "width": 1179,
+    "height": 2556,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": true,
+    "sha256": "7f30b8f06a9ede7a4720677688c976c7dd027dd0a8ba20f1df65356a85f8f570"
+  },
+  {
+    "file": "ko-KR/iPhone-Medium-1179x2556/06-export.png",
+    "width": 1179,
+    "height": 2556,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": true,
+    "sha256": "c4b5304b6fc1b9202bc3818cd484fd750c922e1d45830602068148d809dbbf7c"
+  },
+  {
+    "file": "ko-KR/iPhone-Medium-1179x2556/07-settings.png",
+    "width": 1179,
+    "height": 2556,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": true,
+    "sha256": "a786058e635f6215cae65ed535ae2c4208c8def43f4023eb186ffedbff60ec8e"
+  },
+  {
+    "file": "ko-KR/iPhone-Medium-1179x2556/08-home-actions.png",
+    "width": 1179,
+    "height": 2556,
+    "alpha": false,
+    "captureWidthNormalizedByOnePixel": true,
+    "sha256": "9e24bed6a79b6f3ce5581b3f318599d6e744aa4d179e1857028489abaadd1e07"
+  }
+]
