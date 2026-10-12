@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+  @Environment(\.dynamicTypeSize) private var typeSize
   @EnvironmentObject private var store: PhotoStore
   @Environment(\.dismiss) private var dismiss
   @State var draft: PhotoSettings
@@ -11,7 +12,8 @@ struct SettingsView: View {
     NavigationStack {
       Form {
         Section("사진 규격") {
-          HStack {
+          let layout = typeSize.isAccessibilitySize ? AnyLayout(VStackLayout()) : AnyLayout(HStackLayout())
+          layout {
             ForEach([("tcon", "TCON"), ("id", "증명사진"), ("passport", "여권사진")], id: \.0) {
               key, label in
               Button {
@@ -123,6 +125,8 @@ struct AboutView: View {
           TCONLogo(size: 90).frame(maxWidth: .infinity)
           Text("TCON Maker by SEOLIN").font(.headline)
           Text("서린태권도에서 만든 심사 사진 편집 도구")
+          Text("버전 \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0.0")")
+            .font(.caption).foregroundStyle(.secondary)
         }
         Section("사진과 개인정보") {
           Text("사진은 이 기기 안에서만 처리하며 외부 서버로 전송하지 않습니다. 원본 사진을 덮어쓰지 않습니다.")
@@ -134,11 +138,15 @@ struct AboutView: View {
         Section("사용 안내") {
           Text("자동 맞춤은 편집 보조 기능입니다. 얼굴·머리·도복 경계와 제출 규격을 직접 확인해 주세요.")
           Text("TCON 및 여권 사진의 공식 승인 여부를 판정하지 않습니다.")
+          Link("문의 및 오류 신고", destination: URL(string: "https://github.com/wsysangyoung2730-debug/tcon-maker-by-seolin/issues")!)
+            .accessibilityIdentifier("supportLink")
+          Text("문의 시 사진 원본이나 개인정보를 첨부하지 마세요.").font(.caption).foregroundStyle(.secondary)
           Link("서린태권도", destination: URL(string: "https://naver.me/FGhs3b3C")!)
         }
         Section("오픈소스") {
           Text("face-api · TensorFlow.js · JSZip · pako")
-          Text("원본 사진 처리 엔진의 라이선스 고지를 앱 번들에 포함합니다.").font(.footnote).foregroundStyle(.secondary)
+          NavigationLink("라이선스 고지 보기") { LicenseNoticesView() }
+            .accessibilityIdentifier("openLicenses")
         }
       }.safeAreaInset(edge: .bottom) {
         SeolinSignature().padding(.horizontal, 20).padding(.vertical, 6)
@@ -147,5 +155,21 @@ struct AboutView: View {
         Button("닫기") { dismiss() }
       }
     }
+  }
+}
+
+
+struct LicenseNoticesView: View {
+  private var notices: String {
+    guard let url = Bundle.main.url(forResource: "OpenSourceNotices", withExtension: "txt"),
+      let text = try? String(contentsOf: url, encoding: .utf8)
+    else { return "라이선스 고지를 불러오지 못했습니다." }
+    return text
+  }
+  var body: some View {
+    ScrollView {
+      Text(notices).font(.footnote).textSelection(.enabled)
+        .frame(maxWidth: .infinity, alignment: .leading).padding(20)
+    }.navigationTitle("오픈소스 고지").navigationBarTitleDisplayMode(.inline)
   }
 }

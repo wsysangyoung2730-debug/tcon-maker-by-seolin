@@ -138,7 +138,7 @@ struct ExportView: View {
       do {
         try await ExportService.saveToPhotos(urls)
         store.notice = "사진 \(urls.count)장을 사진 앱에 저장했습니다."
-      } catch { store.error = error.localizedDescription }
+      } catch { store.report(error) }
     } else {
       presentation = ExportPresentation(urls: urls, share: false)
     }

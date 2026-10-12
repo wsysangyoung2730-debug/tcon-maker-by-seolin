@@ -17,7 +17,14 @@ final class PhotoStore: ObservableObject {
   @Published var path: [AppRoute] = []
   @Published var busy = false
   @Published var progress = ""
-  @Published var error: String?
+  @Published var error: String? {
+    didSet { if error == nil { permissionHelp = false } }
+  }
+  @Published var permissionHelp = false
+  func report(_ failure: Error) {
+    error = failure.localizedDescription
+    permissionHelp = (failure as? AppFailure)?.canOpenSettings == true
+  }
   @Published var notice: String?
   @Published var ready = false
   @Published var faceAvailable = false
@@ -44,12 +51,26 @@ final class PhotoStore: ObservableObject {
       }) ?? PhotoSettings()
     settings.validate()
     ExportService.cleanOldExports()
+    engine.onFailure = { [weak self] in
+      guard let self else { return }
+      self.ready = false
+      self.started = false
+      self.progress = "준비 실패"
+      self.selectedTab = .home
+      self.path = []
+    }
     #if DEBUG
       if ProcessInfo.processInfo.arguments.contains("--ui-testing") { settings = PhotoSettings() }
     #endif
   }
   func prepare() async {
-    guard !started else { return }
+    guard !started, !busy else { return }
+    if engine.needsReload {
+      // Runtime IDs belong to the old web process. Restore from the atomic library.
+      photos = []
+      storedIDs = [:]
+      engine.restart()
+    }
     started = true
     progress = "사진 도구 준비 중…"
     busy = true
@@ -68,6 +89,7 @@ final class PhotoStore: ObservableObject {
       let _: EngineSnapshot = try await engine.call(
         "settings", ["settings": try settings.dictionary(), "preserve": true])
       await restoreMissingPhotos()
+      guard !engine.needsReload else { throw AppFailure("사진 도구를 다시 준비해 주세요.") }
       ready = true
       busy = false
       progress = ""
@@ -106,7 +128,9 @@ final class PhotoStore: ObservableObject {
       let url = urls[index]
       let access = url.startAccessingSecurityScopedResource()
       defer { if access { url.stopAccessingSecurityScopedResource() } }
-      return (try Data(contentsOf: url), url.lastPathComponent)
+      return try await Task.detached(priority: .userInitiated) {
+        (try Data(contentsOf: url), url.lastPathComponent)
+      }.value
     }
   }
   func importCamera(_ image: UIImage, folderID: UUID? = nil) async {
@@ -153,7 +177,7 @@ final class PhotoStore: ObservableObject {
     if !failures.isEmpty { error = failures.joined(separator: "\n") }
   }
   func applySettings(_ value: PhotoSettings, preserve: Bool) async {
-    guard !busy else { return }
+    guard await waitUntilIdle() else { return }
     busy = true
     progress = "전체 설정 적용 중…"
     defer {
@@ -187,8 +211,15 @@ final class PhotoStore: ObservableObject {
     }
     await edit("update", payload: payload)
   }
+  private func waitUntilIdle() async -> Bool {
+    while busy {
+      do { try await Task.sleep(for: .milliseconds(20)) } catch { return false }
+    }
+    return ready && !Task.isCancelled
+  }
+
   func edit(_ command: String, payload: [String: Any]) async {
-    guard !busy else { return }
+    guard await waitUntilIdle() else { return }
     busy = true
     progress = "사진 조정 중…"
     defer {
@@ -228,7 +259,9 @@ final class PhotoStore: ObservableObject {
     }
     do {
       let files: [ExportFile] = try await engine.call("export", ["ids": ids, "zip": zip])
-      return try ExportService.write(files)
+      return try await Task.detached(priority: .userInitiated) {
+        try ExportService.write(files)
+      }.value
     } catch {
       self.error = error.localizedDescription
       return nil

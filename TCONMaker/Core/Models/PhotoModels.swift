@@ -93,6 +93,10 @@ struct EngineAvailability: Decodable {
 struct ExportFile: Decodable { let name: String, mime: String, size: Int, base64: String }
 struct AppFailure: LocalizedError {
   let message: String
+  let canOpenSettings: Bool
   var errorDescription: String? { message }
-  init(_ message: String) { self.message = message }
+  init(_ message: String, canOpenSettings: Bool = false) {
+    self.message = message
+    self.canOpenSettings = canOpenSettings
+  }
 }
