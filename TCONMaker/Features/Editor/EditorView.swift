@@ -55,6 +55,7 @@ struct EditorView: View {
             HStack {
               Button("초기화", systemImage: "arrow.counterclockwise") {
                 Task {
+                  await pending?.value
                   await store.edit("reset", payload: ["id": selectedID])
                   load(selectedID)
                 }
@@ -274,12 +275,14 @@ struct EditorView: View {
   }
   private func rotate(_ direction: Int) {
     Task {
+      await pending?.value
       await store.edit("rotate", payload: ["id": selectedID, "direction": direction])
       load(selectedID)
     }
   }
   private func commit(debounce: Bool = false, realign: Bool = false) {
-    pending?.cancel()
+    let previous = pending
+    previous?.cancel()
     let id = selectedID
     let a = adjustment
     let c = composition
@@ -287,6 +290,7 @@ struct EditorView: View {
     let s = snap
     pending = Task {
       if debounce { do { try await Task.sleep(nanoseconds: 150_000_000) } catch { return } }
+      await previous?.value
       guard !Task.isCancelled else { return }
       await store.update(
         id: id, adjustment: a, background: b, composition: c, snap: s, realign: realign)

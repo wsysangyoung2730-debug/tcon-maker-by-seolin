@@ -6,7 +6,12 @@ enum ExportService {
     let cleaned = value.components(
       separatedBy: CharacterSet(charactersIn: "/\\:").union(.controlCharacters)
     ).joined(separator: "_")
-    return cleaned.isEmpty || cleaned == "." || cleaned == ".." ? "사진.jpg" : cleaned
+    let name = cleaned.isEmpty || cleaned == "." || cleaned == ".." ? "사진.jpg" : cleaned
+    // APFS limits a filename to 255 UTF-8 bytes; leave space for duplicate suffixes.
+    let ext = String((name as NSString).pathExtension.prefix(10))
+    var stem = (name as NSString).deletingPathExtension
+    while stem.utf8.count > 200 { stem.removeLast() }
+    return stem + (ext.isEmpty ? "" : "." + ext)
   }
   static func write(_ files: [ExportFile]) throws -> [URL] {
     let directory = FileManager.default.temporaryDirectory.appendingPathComponent(
@@ -30,7 +35,7 @@ enum ExportService {
         }
         used.insert(unique.lowercased())
         let url = directory.appendingPathComponent(unique)
-        try data.write(to: url, options: .atomic)
+        try data.write(to: url, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
         return url
       }
     } catch {
@@ -41,7 +46,7 @@ enum ExportService {
   static func saveToPhotos(_ urls: [URL]) async throws {
     let status = await PHPhotoLibrary.requestAuthorization(for: .addOnly)
     guard status == .authorized || status == .limited else {
-      throw AppFailure("사진 저장 권한이 꺼져 있어요. 설정에서 사진 추가 권한을 켜거나 파일 앱에 저장해 주세요.")
+      throw AppFailure("사진 저장 권한이 꺼져 있어요. 설정에서 사진 추가 권한을 켜거나 파일 앱에 저장해 주세요.", canOpenSettings: true)
     }
     try await PHPhotoLibrary.shared().performChanges {
       for url in urls {

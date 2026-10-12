@@ -70,7 +70,9 @@ struct ImportActions: View {
         permission == .authorized
         ? true
         : permission == .notDetermined ? await AVCaptureDevice.requestAccess(for: .video) : false
-      if allowed { camera = true } else { store.error = "카메라 권한이 꺼져 있어요. 아이폰 설정에서 카메라 권한을 켜 주세요." }
+      if allowed { camera = true } else {
+        store.report(AppFailure("카메라 권한이 꺼져 있어요. 설정에서 카메라 권한을 켜거나 사진 보관함을 이용해 주세요.", canOpenSettings: true))
+      }
     }
   }
 }

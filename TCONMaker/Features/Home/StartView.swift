@@ -55,9 +55,12 @@ struct StartView: View {
         }
         if !store.ready {
           HStack {
-            if store.progress != "준비 실패" { ProgressView() }
-            Text(store.progress).font(.caption)
-            if store.progress == "준비 실패" { Button("다시 시도") { Task { await store.prepare() } } }
+            if store.busy { ProgressView() }
+            Text(store.busy ? store.progress : "사진 도구를 다시 준비해 주세요").font(.caption)
+            if !store.busy {
+              Button("다시 시도") { Task { await store.prepare() } }
+                .accessibilityIdentifier("retryEngine")
+            }
           }.frame(maxWidth: .infinity)
         }
       }.padding(22).frame(maxWidth: 560)

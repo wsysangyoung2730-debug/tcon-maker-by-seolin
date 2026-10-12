@@ -40,6 +40,14 @@ struct RootView: View {
       "작업을 확인해 주세요",
       isPresented: Binding(get: { store.error != nil }, set: { if !$0 { store.error = nil } })
     ) {
+      if store.permissionHelp {
+        Button("설정 열기") {
+          if let url = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url)
+          }
+          store.error = nil
+        }
+      }
       Button("확인", role: .cancel) { store.error = nil }
     } message: {
       Text(store.error ?? "")

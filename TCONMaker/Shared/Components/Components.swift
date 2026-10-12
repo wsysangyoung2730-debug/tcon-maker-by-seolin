@@ -92,6 +92,7 @@ struct ValueSlider: View {
   }
 }
 struct ChoiceRow: View {
+  @Environment(\.dynamicTypeSize) private var typeSize
   let title: String
   @Binding var selection: String
   let choices: [(String, String)]
@@ -99,9 +100,25 @@ struct ChoiceRow: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
       Text(title).font(.subheadline).foregroundStyle(.secondary)
-      Picker(title, selection: $selection) {
-        ForEach(choices, id: \.0) { key, label in Text(label).tag(key) }
-      }.pickerStyle(.segmented).onChange(of: selection) { _, _ in onChange() }
+      if typeSize.isAccessibilitySize {
+        ForEach(choices, id: \.0) { key, label in
+          Button {
+            selection = key
+            onChange()
+          } label: {
+            HStack {
+              Text(label).fixedSize(horizontal: false, vertical: true)
+              Spacer()
+              if selection == key { Image(systemName: "checkmark.circle.fill") }
+            }.padding(12).frame(maxWidth: .infinity, alignment: .leading)
+          }.buttonStyle(.bordered)
+            .accessibilityAddTraits(selection == key ? [.isSelected] : [])
+        }
+      } else {
+        Picker(title, selection: $selection) {
+          ForEach(choices, id: \.0) { key, label in Text(label).tag(key) }
+        }.pickerStyle(.segmented).onChange(of: selection) { _, _ in onChange() }
+      }
     }
   }
 }

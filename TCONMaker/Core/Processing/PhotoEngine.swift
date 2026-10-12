@@ -7,6 +7,28 @@ final class PhotoEngine: NSObject, ObservableObject, WKNavigationDelegate {
   let webView: WKWebView
   @Published private(set) var loaded = false
   private var navigationError: Error?
+  private(set) var needsReload = false
+  var onFailure: (() -> Void)?
+  var operationTimeout: TimeInterval = 120
+
+  func restart() {
+    webView.stopLoading()
+    loaded = false
+    loadStarted = false
+    navigationError = nil
+    needsReload = false
+    load()
+  }
+
+  private func fail(_ error: Error) {
+    #if DEBUG
+      print("ENGINE_NAVIGATION_ERROR", error as NSError, "loading", webView.isLoading, "progress", webView.estimatedProgress, "url", webView.url?.absoluteString ?? "nil")
+    #endif
+    navigationError = error
+    loaded = false
+    needsReload = true
+    onFailure?()
+  }
   private var loadStarted = false
   override init() {
     let configuration = WKWebViewConfiguration()
@@ -27,28 +49,37 @@ final class PhotoEngine: NSObject, ObservableObject, WKNavigationDelegate {
       let url = Bundle.main.url(
         forResource: "engine", withExtension: "html", subdirectory: "Engine")
     else {
-      navigationError = AppFailure("사진 처리 파일을 찾을 수 없어요.")
+      fail(AppFailure("사진 처리 파일을 찾을 수 없어요."))
       return
     }
-    webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
+    do {
+      // The engine is self-contained. Loading its text avoids file-access grants
+      // to WebKit helper processes and needs no filesystem or network navigation.
+      let html = try String(contentsOf: url, encoding: .utf8)
+      webView.loadHTMLString(html, baseURL: nil)
+    } catch { fail(error) }
   }
-  func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { loaded = true }
+  func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    if !needsReload { loaded = true }
+  }
   func webView(
     _ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!,
     withError error: Error
-  ) { navigationError = error }
+  ) { fail(error) }
   func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-    navigationError = error
+    fail(error)
   }
   func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
-    loaded = false
-    navigationError = AppFailure("사진 처리 작업이 메모리 부족으로 중단됐어요. 앱을 다시 열어 사진을 적게 선택해 주세요.")
+    fail(AppFailure("사진 처리가 중단됐어요. 홈에서 다시 시도하면 보관된 사진을 불러옵니다."))
   }
   func webView(
     _ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
     decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
   ) {
-    decisionHandler(navigationAction.request.url?.isFileURL == true ? .allow : .cancel)
+    #if DEBUG
+      print("ENGINE_NAVIGATION_SCHEME", navigationAction.request.url?.scheme ?? "nil")
+    #endif
+    decisionHandler(navigationAction.request.url?.absoluteString == "about:blank" ? .allow : .cancel)
   }
   func call<T: Decodable>(_ command: String, _ payload: [String: Any] = [:], as: T.Type = T.self)
     async throws -> T
@@ -58,16 +89,37 @@ final class PhotoEngine: NSObject, ObservableObject, WKNavigationDelegate {
     while !loaded {
       if let error = navigationError { throw error }
       if Date().timeIntervalSince(start) > 30 {
-        throw AppFailure("사진 처리 화면을 준비하지 못했어요. 앱을 다시 열어 주세요.")
+        let error = AppFailure("사진 도구를 준비하지 못했어요. 홈에서 다시 시도해 주세요.")
+        fail(error)
+        throw error
       }
       try await Task.sleep(nanoseconds: 50_000_000)
     }
     if let error = navigationError { throw error }
     let value: Any?
     do {
-      value = try await webView.callAsyncJavaScript(
-        "return await window.TCONNative.execute(command, payload);",
-        arguments: ["command": command, "payload": payload], in: nil, contentWorld: .page)
+      value = try await withCheckedThrowingContinuation { continuation in
+        // A stuck JavaScript promise must not leave the whole app blocked forever.
+        var finished = false
+        let timeout = Task { @MainActor [weak self] in
+          do { try await Task.sleep(for: .seconds(self?.operationTimeout ?? 120)) }
+          catch { return }
+          guard !finished else { return }
+          finished = true
+          let error = AppFailure("사진 처리 시간이 초과됐어요. 홈에서 다시 시도해 주세요.")
+          self?.fail(error)
+          continuation.resume(throwing: error)
+        }
+        webView.callAsyncJavaScript(
+          "return await window.TCONNative.execute(command, payload);",
+          arguments: ["command": command, "payload": payload], in: nil, in: .page
+        ) { result in
+          guard !finished else { return }
+          finished = true
+          timeout.cancel()
+          continuation.resume(with: result.map { $0 as Any? })
+        }
+      }
     } catch {
       let details = (error as NSError).userInfo["WKJavaScriptExceptionMessage"] as? String
       throw AppFailure(
