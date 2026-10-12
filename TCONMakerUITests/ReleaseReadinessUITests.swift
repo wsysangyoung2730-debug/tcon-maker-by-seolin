@@ -18,9 +18,11 @@ final class ReleaseReadinessUITests: XCTestCase {
     for _ in 0..<8 where !about.isHittable { app.swipeUp() }
     XCTAssertTrue(about.isHittable)
     about.tap()
+    let support = app.descendants(matching: .any)["supportLink"].firstMatch
+    for _ in 0..<8 where !support.isHittable { app.swipeUp() }
+    XCTAssertTrue(support.isHittable)
     let licenses = app.buttons["openLicenses"]
     for _ in 0..<6 where !licenses.isHittable { app.swipeUp() }
-    XCTAssertTrue(app.buttons["supportLink"].exists)
     XCTAssertTrue(licenses.isHittable)
     licenses.tap()
     XCTAssertTrue(app.navigationBars["오픈소스 고지"].waitForExistence(timeout: 10))
