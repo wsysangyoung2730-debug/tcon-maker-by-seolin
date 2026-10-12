@@ -127,7 +127,7 @@ struct AboutView: View {
           Text("TCON Maker by SEOLIN").font(.headline)
           Text("서린태권도에서 만든 심사 사진 편집 도구")
           Text(
-            "버전 \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0.0")"
+            "버전 \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0.1")"
           )
           .font(.caption).foregroundStyle(.secondary)
         }
@@ -137,6 +137,8 @@ struct AboutView: View {
             "작업 사진·편집 상태·폴더는 이 기기에 보관되며 앱을 다시 열면 복구됩니다. 앱을 삭제하면 함께 삭제됩니다. 완성본은 사진 앱이나 파일 앱에 저장해 주세요."
           )
           Text("설정값은 기기에 저장됩니다. 분석·광고·추적 기능은 없습니다.")
+          Link("개인정보처리방침", destination: URL(string: "https://seolin-apps-site.vercel.app/tcon-maker/privacy/")!)
+            .accessibilityIdentifier("privacyPolicyLink")
         }
         Section("사용 안내") {
           Text("자동 맞춤은 편집 보조 기능입니다. 얼굴·머리·도복 경계와 제출 규격을 직접 확인해 주세요.")
@@ -144,7 +146,7 @@ struct AboutView: View {
           Link(
             "문의 및 오류 신고",
             destination: URL(
-              string: "https://github.com/wsysangyoung2730-debug/tcon-maker-by-seolin/issues")!
+              string: "https://seolin-apps-site.vercel.app/tcon-maker/support/")!
           )
           .accessibilityIdentifier("supportLink")
           Text("문의 시 사진 원본이나 개인정보를 첨부하지 마세요.").font(.caption).foregroundStyle(.secondary)
