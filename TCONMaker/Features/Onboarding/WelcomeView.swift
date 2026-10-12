@@ -2,6 +2,7 @@ import SwiftUI
 
 struct WelcomeView: View {
   let onStart: () -> Void
+  let onTutorial: () -> Void
 
   var body: some View {
     ScrollView {
@@ -45,7 +46,10 @@ struct WelcomeView: View {
     .background(Color.panel)
     .safeAreaInset(edge: .bottom) {
       VStack(spacing: 10) {
-        PrimaryButton(title: "시작하기", icon: "arrow.right", action: onStart)
+        PrimaryButton(title: "사용법 살펴보기", icon: "hand.tap", action: onTutorial)
+          .accessibilityIdentifier("startTutorial")
+        Button("바로 시작하기", action: onStart)
+          .font(.subheadline.weight(.semibold)).frame(minHeight: 44)
           .accessibilityIdentifier("finishOnboarding")
       }.padding(20).frame(maxWidth: 560).frame(maxWidth: .infinity)
         .background(.regularMaterial)
