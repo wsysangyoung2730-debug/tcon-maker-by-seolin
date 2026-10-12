@@ -51,7 +51,7 @@ for name,ext,typ in targets:
     for config in ['Debug','Release']:
         settings={'PRODUCT_BUNDLE_IDENTIFIER':'com.seolin.tconmaker'+('' if ext=='app' else '.'+name.lower()),'PRODUCT_NAME':'$(TARGET_NAME)','SWIFT_VERSION':'5.0','IPHONEOS_DEPLOYMENT_TARGET':'17.0','TARGETED_DEVICE_FAMILY':'1,2','CODE_SIGN_STYLE':'Automatic','SWIFT_EMIT_LOC_STRINGS':'YES','GENERATE_INFOPLIST_FILE':'YES','SWIFT_OPTIMIZATION_LEVEL':'-Onone' if config=='Debug' else '-O','SWIFT_ACTIVE_COMPILATION_CONDITIONS':'DEBUG' if config=='Debug' else '', 'ENABLE_USER_SCRIPT_SANDBOXING':'YES'}
         if config=='Debug': settings.update({'ENABLE_TESTABILITY':'YES','ONLY_ACTIVE_ARCH':'YES'})
-        if ext=='app': settings.update({'INFOPLIST_FILE':'TCONMaker/Info.plist','CURRENT_PROJECT_VERSION':'2','MARKETING_VERSION':'1.0.1','ASSETCATALOG_COMPILER_APPICON_NAME':'AppIcon','INFOPLIST_KEY_UILaunchScreen_Generation':'YES'})
+        if ext=='app': settings.update({'INFOPLIST_FILE':'TCONMaker/Info.plist','CURRENT_PROJECT_VERSION':'3','MARKETING_VERSION':'1.0.1','ASSETCATALOG_COMPILER_APPICON_NAME':'AppIcon','INFOPLIST_KEY_UILaunchScreen_Generation':'YES'})
         elif name.endswith('UITests'): settings.update({'TEST_TARGET_NAME':app})
         else: settings.update({'TEST_HOST':'$(BUILT_PRODUCTS_DIR)/TCONMaker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TCONMaker','BUNDLE_LOADER':'$(TEST_HOST)'})
         old=previous.get(uid(name+config),{}).get('buildSettings',{})

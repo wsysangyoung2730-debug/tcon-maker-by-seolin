@@ -3,6 +3,24 @@ import XCTest
 final class ReleaseReadinessUITests: XCTestCase {
   override func setUpWithError() throws { continueAfterFailure = false }
 
+  func testPrivacyAndSupportLinksAreAccessible() {
+    let app = XCUIApplication()
+    app.launchArguments = ["--ui-testing", "--ui-reset"]
+    app.launch()
+    waitEnabled(app.buttons["importPhotos"])
+    app.buttons["openSettings"].tap()
+    let about = app.buttons["앱 정보 및 개인정보"]
+    for _ in 0..<8 where !about.isHittable { app.swipeUp() }
+    XCTAssertTrue(about.isHittable)
+    about.tap()
+    let privacy = app.descendants(matching: .any)["privacyPolicyLink"].firstMatch
+    for _ in 0..<8 where !privacy.isHittable { app.swipeUp() }
+    XCTAssertTrue(privacy.isHittable)
+    let support = app.descendants(matching: .any)["supportLink"].firstMatch
+    for _ in 0..<8 where !support.isHittable { app.swipeUp() }
+    XCTAssertTrue(support.isHittable)
+  }
+
   func testSupportLicensesAndUnavailableCamera() {
     let app = XCUIApplication()
     app.launchArguments = ["--ui-testing", "--ui-reset", "--ui-camera-unavailable"]
