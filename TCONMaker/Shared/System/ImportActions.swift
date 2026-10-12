@@ -29,7 +29,8 @@ struct ImportActions: View {
             Label("촬영하기", systemImage: "camera").font(.headline).frame(maxWidth: .infinity).padding(
               .vertical, 16
             ).overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.seolin, lineWidth: 1))
-          }
+              .contentShape(Rectangle())
+          }.buttonStyle(.plain).accessibilityIdentifier("capturePhoto")
 
         }
       }

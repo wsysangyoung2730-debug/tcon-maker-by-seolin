@@ -10,7 +10,7 @@ final class ReleaseReadinessUITests: XCTestCase {
     waitEnabled(app.buttons["importPhotos"])
     #if targetEnvironment(simulator)
     app.scrollViews["homeContent"].swipeUp()
-    app.buttons["촬영하기"].tap()
+    app.buttons["capturePhoto"].tap()
     XCTAssertTrue(app.alerts["작업을 확인해 주세요"].waitForExistence(timeout: 10))
     XCTAssertTrue(app.alerts.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "카메라를 사용할 수 없어요")).firstMatch.exists)
     app.alerts.buttons["확인"].tap()
