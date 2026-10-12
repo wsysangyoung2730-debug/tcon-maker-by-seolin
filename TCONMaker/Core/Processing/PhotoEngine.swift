@@ -21,9 +21,6 @@ final class PhotoEngine: NSObject, ObservableObject, WKNavigationDelegate {
   }
 
   private func fail(_ error: Error) {
-    #if DEBUG
-      print("ENGINE_NAVIGATION_ERROR", error as NSError, "loading", webView.isLoading, "progress", webView.estimatedProgress, "url", webView.url?.absoluteString ?? "nil")
-    #endif
     navigationError = error
     loaded = false
     needsReload = true
@@ -33,6 +30,15 @@ final class PhotoEngine: NSObject, ObservableObject, WKNavigationDelegate {
   override init() {
     let configuration = WKWebViewConfiguration()
     configuration.websiteDataStore = .nonPersistent()
+    #if targetEnvironment(simulator)
+      // The iOS 27 simulator can stall when initializing the WebGL backend.
+      // The physical app continues to use the faster GPU backend.
+      configuration.userContentController.addUserScript(WKUserScript(
+        source: "window.TCONPreferCPU = true;", injectionTime: .atDocumentStart,
+        forMainFrameOnly: true))
+    #endif
+    configuration.userContentController.addScriptMessageHandler(
+      PersonSegmentationHandler(), contentWorld: .page, name: "segmentPerson")
     webView = WKWebView(
       frame: CGRect(x: 0, y: 0, width: 390, height: 844), configuration: configuration)
     super.init()
@@ -76,9 +82,6 @@ final class PhotoEngine: NSObject, ObservableObject, WKNavigationDelegate {
     _ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
     decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
   ) {
-    #if DEBUG
-      print("ENGINE_NAVIGATION_SCHEME", navigationAction.request.url?.scheme ?? "nil")
-    #endif
     decisionHandler(navigationAction.request.url?.absoluteString == "about:blank" ? .allow : .cancel)
   }
   func call<T: Decodable>(_ command: String, _ payload: [String: Any] = [:], as: T.Type = T.self)
@@ -121,6 +124,15 @@ final class PhotoEngine: NSObject, ObservableObject, WKNavigationDelegate {
         }
       }
     } catch {
+      let failure = error as NSError
+      if failure.domain == WKError.errorDomain,
+        [WKError.Code.unknown.rawValue, WKError.Code.webContentProcessTerminated.rawValue,
+         WKError.Code.webViewInvalidated.rawValue].contains(failure.code)
+      {
+        let recovery = AppFailure("사진 처리가 중단됐어요. 홈에서 다시 시도하면 보관된 사진을 불러옵니다.")
+        fail(recovery)
+        throw recovery
+      }
       let details = (error as NSError).userInfo["WKJavaScriptExceptionMessage"] as? String
       throw AppFailure(
         details?.replacingOccurrences(of: "Error: ", with: "") ?? error.localizedDescription)

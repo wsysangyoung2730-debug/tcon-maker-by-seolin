@@ -66,7 +66,7 @@ async function nativeAnalysis(it){
   const mask=it.mask,person=it.whiteBase;
   if(!mask||!person||!mask.width||!person.width)return null;
   if(!nativeMaskArchives.has(mask)){
-    nativeMaskArchives.set(mask,JSON.stringify({version:1,sourceWidth:it.srcW,naturalWidth:it.natW,
+    nativeMaskArchives.set(mask,JSON.stringify({version:2,sourceWidth:it.srcW,naturalWidth:it.natW,
       rotation:it.whiteK,width:person.width,height:person.height,scale:mask.s,
       bgc:person.bgc,mask:await nativeBlob(await toPng(mask))}));
   }
@@ -79,7 +79,7 @@ async function nativeRestoreAnalysis(it,text){
   let raw=null,mask=null,person=null;
   try{
     const saved=JSON.parse(text);
-    if(saved.version!==1||saved.rotation!==it.k||saved.sourceWidth!==it.srcW||saved.naturalWidth!==it.natW
+    if(saved.version!==2||saved.rotation!==it.k||saved.sourceWidth!==it.srcW||saved.naturalWidth!==it.natW
       ||!Number.isFinite(saved.scale)||saved.scale<=0||saved.scale>1
       ||!Array.isArray(saved.bgc)||saved.bgc.length!==3||!saved.bgc.every(v=>Number.isFinite(v)&&v>=0&&v<=255)
       ||typeof saved.mask!=='string'||!saved.mask.startsWith('data:image/png;base64,'))return false;

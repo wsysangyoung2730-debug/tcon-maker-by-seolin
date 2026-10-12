@@ -7,6 +7,7 @@ import XCTest
 @MainActor
 final class PhotoEngineTests: XCTestCase {
   func testOfflineFaceBackgroundEditingAndExports() async throws {
+    try requirePersonSegmentationRuntime()
     let engine = PhotoEngine()
     let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 390, height: 844))
     let controller = UIViewController()

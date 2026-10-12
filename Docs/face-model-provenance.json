@@ -1,0 +1,16 @@
+[
+  {
+    "model": "tiny_face_detector_model.bin",
+    "url": "https://raw.githubusercontent.com/vladmandic/face-api/master/model/tiny_face_detector_model.bin",
+    "sha256": "b7503ce7df31039b1c43316a9b865cab6a70dd748cc602d3fa28b551503c3871",
+    "bytes": 193321,
+    "matches_upstream": true
+  },
+  {
+    "model": "face_landmark_68_model.bin",
+    "url": "https://raw.githubusercontent.com/vladmandic/face-api/master/model/face_landmark_68_model.bin",
+    "sha256": "4611ef65c87d836d03d684b30eec4d195d8b219fa1dd58fc58945831c6b9299b",
+    "bytes": 356840,
+    "matches_upstream": true
+  }
+]
