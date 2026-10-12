@@ -120,8 +120,7 @@ struct AboutView: View {
     NavigationStack {
       List {
         Section {
-          Image("SeolinLogo").resizable().scaledToFit().frame(height: 100).frame(
-            maxWidth: .infinity)
+          TCONLogo(size: 90).frame(maxWidth: .infinity)
           Text("TCON Maker by SEOLIN").font(.headline)
           Text("서린태권도에서 만든 심사 사진 편집 도구")
         }
@@ -141,6 +140,9 @@ struct AboutView: View {
           Text("face-api · TensorFlow.js · JSZip · pako")
           Text("원본 사진 처리 엔진의 라이선스 고지를 앱 번들에 포함합니다.").font(.footnote).foregroundStyle(.secondary)
         }
+      }.safeAreaInset(edge: .bottom) {
+        SeolinSignature().padding(.horizontal, 20).padding(.vertical, 6)
+          .background(Color.appBackground)
       }.navigationTitle("앱 정보").navigationBarTitleDisplayMode(.inline).toolbar {
         Button("닫기") { dismiss() }
       }
