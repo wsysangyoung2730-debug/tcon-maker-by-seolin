@@ -42,7 +42,13 @@ final class PhotoEngine: NSObject, ObservableObject, WKNavigationDelegate {
             try await Task.sleep(nanoseconds:50_000_000)
         }
         if let error=navigationError { throw error }
-        let value=try await webView.callAsyncJavaScript("return await window.TCONNative.execute(command, payload);",arguments:["command":command,"payload":payload],in:nil,contentWorld:.page)
+        let value:Any?
+        do {
+            value=try await webView.callAsyncJavaScript("return await window.TCONNative.execute(command, payload);",arguments:["command":command,"payload":payload],in:nil,contentWorld:.page)
+        } catch {
+            let details=(error as NSError).userInfo["WKJavaScriptExceptionMessage"] as? String
+            throw AppFailure(details?.replacingOccurrences(of:"Error: ",with:"") ?? error.localizedDescription)
+        }
         guard let value else { throw AppFailure("사진 처리 결과를 받지 못했어요.") }
         return try JSONDecoder().decode(T.self,from:JSONSerialization.data(withJSONObject:value,options:[.fragmentsAllowed]))
     }

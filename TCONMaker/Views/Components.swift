@@ -1,7 +1,8 @@
 import SwiftUI
 
 extension Color {
-    static let seolin=Color(red:32/255,green:46/255,blue:120/255)
+    static let brandNavy=Color(red:32/255,green:46/255,blue:120/255)
+    static let seolin=Color(uiColor:UIColor{traits in traits.userInterfaceStyle == .dark ? UIColor(red:0.58,green:0.68,blue:1,alpha:1) : UIColor(red:32/255,green:46/255,blue:120/255,alpha:1)})
     static let appBackground=Color(uiColor:.systemGroupedBackground)
     static let panel=Color(uiColor:.secondarySystemGroupedBackground)
 }
@@ -11,7 +12,7 @@ struct PrimaryButton:View {
     var action:()->Void
     var body:some View {
         Button(action:action){HStack(spacing:10){if let icon{Image(systemName:icon)};Text(title).fontWeight(.semibold)}.frame(maxWidth:.infinity).padding(.vertical,17)}
-            .buttonStyle(.plain).foregroundStyle(.white).background(Color.seolin,in:RoundedRectangle(cornerRadius:16))
+            .buttonStyle(.plain).foregroundStyle(.white).background(Color.brandNavy,in:RoundedRectangle(cornerRadius:16))
     }
 }
 struct PhotoThumbnail:View {
@@ -57,5 +58,5 @@ struct ChoiceRow:View {
 }
 struct StatusPill:View {
     let warning:Bool
-    var body:some View {Label(warning ? "확인 필요":"완료",systemImage:warning ? "exclamationmark.circle.fill":"checkmark.circle.fill").font(.caption.weight(.medium)).foregroundStyle(warning ? Color.orange:Color.green).padding(.horizontal,8).padding(.vertical,5).background((warning ? Color.orange:Color.green).opacity(0.1),in:Capsule())}
+    var body:some View {Label(warning ? "확인 필요":"완료",systemImage:warning ? "exclamationmark.circle.fill":"checkmark.circle.fill").font(.caption.weight(.medium)).fixedSize().foregroundStyle(warning ? Color.orange:Color.green).padding(.horizontal,8).padding(.vertical,5).background((warning ? Color.orange:Color.green).opacity(0.1),in:Capsule())}
 }

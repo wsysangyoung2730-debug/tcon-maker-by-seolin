@@ -34,7 +34,7 @@ struct ExportView:View {
     private var formatDescription:String{let png=photos.filter{$0.background=="clear"}.count;return png==0 ? "JPG":png==photos.count ? "PNG":"JPG + PNG"}
     private func detail(_ icon:String,_ title:String,_ value:String)->some View{HStack(alignment:.top){Image(systemName:icon).frame(width:24);Text(title).fixedSize();Spacer(minLength:8);Text(value).foregroundStyle(.secondary).multilineTextAlignment(.trailing)}.font(.subheadline).padding(16)}
     private func destinationRow(_ key:String,_ title:String,_ subtitle:String,_ icon:String)->some View{
-        Button{destination=key}label:{HStack(spacing:14){Image(systemName:icon).font(.title2).frame(width:34);VStack(alignment:.leading,spacing:4){Text(title).font(.headline).foregroundStyle(.primary);Text(subtitle).font(.caption).foregroundStyle(.secondary)};Spacer();Image(systemName:destination==key ? "checkmark.circle.fill":"circle").font(.title2).foregroundStyle(destination==key ? Color.seolin:Color.secondary)}.padding(16)}.buttonStyle(.plain).accessibilityIdentifier("destination-\(key)")
+        Button{destination=key}label:{HStack(spacing:14){Image(systemName:icon).font(.title2).frame(width:34);VStack(alignment:.leading,spacing:4){Text(title).font(.headline).foregroundStyle(.primary);Text(subtitle).font(.caption).foregroundStyle(.secondary)};Spacer();Image(systemName:destination==key ? "checkmark.circle.fill":"circle").font(.title2).foregroundStyle(destination==key ? Color.seolin:Color.secondary)}.padding(16).contentShape(Rectangle())}.buttonStyle(.plain).accessibilityIdentifier("destination-\(key)").accessibilityValue(destination==key ? "선택됨":"선택 안 됨")
     }
     private func save(share:Bool) async {
         saving=true;defer{saving=false}
