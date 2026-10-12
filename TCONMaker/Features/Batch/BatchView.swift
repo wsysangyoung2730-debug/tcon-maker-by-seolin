@@ -52,7 +52,7 @@ struct BatchView: View {
         ) {
           ForEach(displayed) { photo in photoCard(photo) }
         }
-      }.padding(20).frame(maxWidth: 850).frame(maxWidth: .infinity)
+      }.padding(20).frame(maxWidth: WorkspaceLayout.maximumWidth).frame(maxWidth: .infinity)
     }.background(Color.appBackground)
       .navigationTitle(store.library.folderName(folderID)).navigationBarTitleDisplayMode(.inline)
       .toolbar(.visible, for: .navigationBar)
@@ -113,7 +113,7 @@ struct BatchView: View {
               .accessibilityIdentifier("batchExport")
             Text("원본 사진은 변경되지 않아요").font(.caption).foregroundStyle(.secondary)
               .accessibilityIdentifier("originalNotice")
-          }.padding(20).background(.regularMaterial)
+          }.padding(20).frame(maxWidth: 850).frame(maxWidth: .infinity).background(.regularMaterial)
         }
       }
       .sheet(isPresented: $settings) { SettingsView(draft: store.settings) }

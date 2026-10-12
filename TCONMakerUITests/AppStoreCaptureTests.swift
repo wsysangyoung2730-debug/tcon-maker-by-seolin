@@ -5,8 +5,12 @@ final class AppStoreCaptureTests: XCTestCase {
   override func setUpWithError() throws { continueAfterFailure = false }
 
   func testCaptureStoreScreenshots() {
+    XCUIDevice.shared.orientation = .portrait
+    defer { XCUIDevice.shared.orientation = .portrait }
     let app = XCUIApplication()
-    app.launchArguments = ["--ui-testing", "--ui-reset", "--ui-sample", "-AppleInterfaceStyle", "Light"]
+    app.launchArguments = [
+      "--ui-testing", "--ui-reset", "--ui-sample", "-AppleInterfaceStyle", "Light",
+    ]
     app.launch()
     XCTAssertTrue(app.buttons["photo-1"].waitForExistence(timeout: 240))
     idle(app)
@@ -22,6 +26,14 @@ final class AppStoreCaptureTests: XCTestCase {
     #endif
     app.buttons["photo-1"].tap()
     XCTAssertTrue(app.images["editorCanvas"].waitForExistence(timeout: 20))
+    if UIDevice.current.userInterfaceIdiom == .pad {
+      verifyWideEditor(app)
+      XCUIDevice.shared.orientation = .landscapeLeft
+      verifyWideEditor(app)
+      capture(app, "09-editor-landscape")
+      XCUIDevice.shared.orientation = .portrait
+      verifyWideEditor(app)
+    }
     capture(app, "03-editor")
     app.buttons["tool-배경"].tap()
     capture(app, "04-background")
@@ -56,6 +68,14 @@ final class AppStoreCaptureTests: XCTestCase {
     capture(app, "02-folders")
     selectHome(app)
     XCTAssertTrue(app.buttons["openSettings"].waitForExistence(timeout: 10))
+    if UIDevice.current.userInterfaceIdiom == .pad {
+      verifyWideHome(app)
+      XCUIDevice.shared.orientation = .landscapeLeft
+      verifyWideHome(app)
+      capture(app, "10-home-landscape")
+      XCUIDevice.shared.orientation = .portrait
+      verifyWideHome(app)
+    }
     capture(app, "01-home")
     app.scrollViews["homeContent"].swipeUp()
     capture(app, "08-home-actions")
@@ -66,14 +86,34 @@ final class AppStoreCaptureTests: XCTestCase {
     app.buttons["취소"].tap()
   }
 
+  private func verifyWideEditor(_ app: XCUIApplication) {
+    let canvas = app.images["editorCanvas"]
+    let tool = app.buttons["tool-맞춤"]
+    expectation(
+      for: NSPredicate { _, _ in
+        canvas.exists && tool.isHittable && canvas.frame.maxX <= tool.frame.minX
+      }, evaluatedWith: app)
+    waitForExpectations(timeout: 10)
+    XCTAssertGreaterThan(canvas.frame.width, 400)
+  }
+  private func verifyWideHome(_ app: XCUIApplication) {
+    let example = app.buttons["homeExamplePhoto"]
+    let picker = app.buttons["importPhotos"]
+    expectation(
+      for: NSPredicate { _, _ in
+        example.isHittable && picker.isHittable && example.frame.maxX < picker.frame.minX
+      }, evaluatedWith: app)
+    waitForExpectations(timeout: 10)
+  }
   private func selectHome(_ app: XCUIApplication) {
     let tab = app.tabBars.buttons["홈"]
-    if tab.exists { tab.tap() }
-    else { app.buttons["홈"].firstMatch.tap() }
+    if tab.exists { tab.tap() } else { app.buttons["홈"].firstMatch.tap() }
   }
   private func back(_ app: XCUIApplication) { app.navigationBars.buttons.element(boundBy: 0).tap() }
   private func idle(_ app: XCUIApplication) {
-    expectation(for: NSPredicate(format: "exists == false"), evaluatedWith: app.otherElements["processingOverlay"])
+    expectation(
+      for: NSPredicate(format: "exists == false"),
+      evaluatedWith: app.otherElements["processingOverlay"])
     waitForExpectations(timeout: 180)
   }
   private func capture(_ app: XCUIApplication, _ name: String) {

@@ -134,3 +134,24 @@ struct StatusPill: View {
       (warning ? Color.orange : Color.green).opacity(0.1), in: Capsule())
   }
 }
+
+/// Use the current window rather than device identity, so Stage Manager and Split View adapt too.
+enum WorkspaceLayout {
+  static func usesColumns(
+    width: CGFloat, sizeClass: UserInterfaceSizeClass?, typeSize: DynamicTypeSize
+  ) -> Bool {
+    sizeClass == .regular && width >= 820 && !typeSize.isAccessibilitySize
+  }
+  static let maximumWidth: CGFloat = 1320
+}
+
+struct WorkspaceSheetSizing: ViewModifier {
+  @Environment(\.horizontalSizeClass) private var sizeClass
+  @ViewBuilder func body(content: Content) -> some View {
+    if #available(iOS 18.0, *), sizeClass == .regular {
+      content.presentationSizing(.page)
+    } else {
+      content
+    }
+  }
+}

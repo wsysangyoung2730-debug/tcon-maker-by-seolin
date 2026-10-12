@@ -3,6 +3,8 @@ import SwiftUI
 struct EditorView: View {
   @EnvironmentObject private var store: PhotoStore
   @Environment(\.dismiss) private var dismiss
+  @Environment(\.horizontalSizeClass) private var sizeClass
+  @Environment(\.dynamicTypeSize) private var typeSize
   let initialID: Int
   let folderID: UUID?
   private var folderPhotos: [PhotoItem] { store.photos(in: folderID) }
@@ -21,56 +23,43 @@ struct EditorView: View {
   private var photo: PhotoItem? { store.photo(selectedID) }
   var body: some View {
     GeometryReader { geometry in
-      ScrollView {
-        VStack(spacing: 0) {
-          if let photo, photo.status == "done" {
-            canvas(photo, height: min(480, max(260, geometry.size.height * 0.47)))
-            thumbnails.padding(.vertical, 12)
-            HStack(spacing: 0) {
-              ForEach(
-                [
-                  ("맞춤", "crop"), ("구도", "viewfinder"), ("배경", "square.dashed"), ("밝기", "sun.max"),
-                  ("회전", "rotate.right"),
-                ], id: \.0
-              ) { name, icon in
-                Button {
-                  tool = name
-                } label: {
-                  VStack(spacing: 7) {
-                    Image(systemName: icon).font(.title2)
-                    Text(name).font(.caption)
-                  }.frame(maxWidth: .infinity).padding(.vertical, 12).background(
-                    tool == name ? Color.seolin.opacity(0.08) : .clear,
-                    in: RoundedRectangle(cornerRadius: 14))
-                }.buttonStyle(.plain).foregroundStyle(tool == name ? Color.seolin : Color.primary)
-                  .accessibilityIdentifier("tool-\(name)")
-              }
-            }.padding(.horizontal, 16)
-            Divider().padding(.vertical, 14)
-            controls.padding(.horizontal, 22)
-            if !photo.warnings.isEmpty {
-              Label(photo.warnings.joined(separator: " · "), systemImage: "exclamationmark.circle")
-                .font(.caption).foregroundStyle(.orange).padding(.horizontal, 22).padding(.top, 14)
-            }
-            HStack {
-              Button("초기화", systemImage: "arrow.counterclockwise") {
-                Task {
-                  await pending?.value
-                  await store.edit("reset", payload: ["id": selectedID])
-                  load(selectedID)
+      let wide = WorkspaceLayout.usesColumns(
+        width: geometry.size.width, sizeClass: sizeClass, typeSize: typeSize)
+      Group {
+        if let photo, photo.status == "done" {
+          if wide {
+            HStack(alignment: .top, spacing: 24) {
+              ScrollView {
+                VStack(spacing: 0) {
+                  canvas(photo, height: max(260, geometry.size.height - 110))
+                    .clipShape(RoundedRectangle(cornerRadius: 22))
+                  thumbnails.padding(.vertical, 16)
                 }
-              }.accessibilityIdentifier("resetPhoto")
-              Spacer()
-              Button("삭제", systemImage: "trash", role: .destructive) { deletePrompt = true }
-            }.font(.subheadline).padding(24)
-          } else if let photo {
+              }.frame(maxWidth: .infinity)
+              ScrollView {
+                editingPanel(photo).padding(.top, 8)
+              }.frame(width: 340)
+                .background(Color.panel, in: RoundedRectangle(cornerRadius: 22))
+            }.padding(24).frame(maxWidth: WorkspaceLayout.maximumWidth)
+              .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+          } else {
+            ScrollView {
+              VStack(spacing: 0) {
+                canvas(photo, height: min(560, max(260, geometry.size.height * 0.47)))
+                thumbnails.padding(.vertical, 12)
+                editingPanel(photo)
+              }.frame(maxWidth: 720).frame(maxWidth: .infinity)
+            }
+          }
+        } else if let photo {
+          ScrollView {
             ContentUnavailableView(
               "사진을 처리하지 못했어요", systemImage: "photo.badge.exclamationmark",
               description: Text(photo.error ?? "다른 사진을 선택해 주세요."))
             Button("목록에서 삭제", role: .destructive) { deletePrompt = true }
           }
-        }.frame(maxWidth: 650).frame(maxWidth: .infinity)
-      }.background(Color.panel)
+        }
+      }.background(Color.appBackground)
     }
     .navigationTitle("사진 편집").navigationBarTitleDisplayMode(.inline).toolbar(
       .visible, for: .navigationBar
@@ -110,6 +99,47 @@ struct EditorView: View {
       }
     } message: {
       Text("원본 사진은 유지됩니다.")
+    }
+  }
+  private func editingPanel(_ photo: PhotoItem) -> some View {
+    VStack(spacing: 0) {
+      HStack(spacing: 0) {
+        ForEach(
+          [
+            ("맞춤", "crop"), ("구도", "viewfinder"), ("배경", "square.dashed"), ("밝기", "sun.max"),
+            ("회전", "rotate.right"),
+          ], id: \.0
+        ) { name, icon in
+          Button {
+            tool = name
+          } label: {
+            VStack(spacing: 7) {
+              Image(systemName: icon).font(.title2)
+              Text(name).font(.caption)
+            }.frame(maxWidth: .infinity).padding(.vertical, 12).background(
+              tool == name ? Color.seolin.opacity(0.08) : .clear,
+              in: RoundedRectangle(cornerRadius: 14))
+          }.buttonStyle(.plain).foregroundStyle(tool == name ? Color.seolin : Color.primary)
+            .accessibilityIdentifier("tool-\(name)")
+        }
+      }.padding(.horizontal, 16)
+      Divider().padding(.vertical, 14)
+      controls.padding(.horizontal, 22)
+      if !photo.warnings.isEmpty {
+        Label(photo.warnings.joined(separator: " · "), systemImage: "exclamationmark.circle")
+          .font(.caption).foregroundStyle(.orange).padding(.horizontal, 22).padding(.top, 14)
+      }
+      HStack {
+        Button("초기화", systemImage: "arrow.counterclockwise") {
+          Task {
+            await pending?.value
+            await store.edit("reset", payload: ["id": selectedID])
+            load(selectedID)
+          }
+        }.accessibilityIdentifier("resetPhoto")
+        Spacer()
+        Button("삭제", systemImage: "trash", role: .destructive) { deletePrompt = true }
+      }.font(.subheadline).padding(24)
     }
   }
   private var thumbnails: some View {
