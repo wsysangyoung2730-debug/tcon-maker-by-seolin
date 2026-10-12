@@ -4,6 +4,7 @@ import Foundation
 actor PhotoLibraryDisk {
   let root: URL
   private var sources: URL { root.appendingPathComponent("Originals", isDirectory: true) }
+  private var analyses: URL { root.appendingPathComponent("Analysis", isDirectory: true) }
   private var manifest: URL { root.appendingPathComponent("library.json") }
 
   init(root: URL) { self.root = root }
@@ -37,9 +38,32 @@ actor PhotoLibraryDisk {
 
   func readOriginal(_ id: UUID) throws -> Data { try Data(contentsOf: originalURL(id)) }
 
+  /// Rebuildable analysis stays separate from the authoritative originals and manifest.
+  func readAnalysis(_ id: UUID) -> String? {
+    try? String(contentsOf: analysisURL(id), encoding: .utf8)
+  }
+
+  func writeAnalysis(_ value: String?, id: UUID) throws {
+    guard let value else { return }
+    try FileManager.default.createDirectory(at: analyses, withIntermediateDirectories: true)
+    var directory = analyses
+    var values = URLResourceValues()
+    values.isExcludedFromBackup = true
+    try? directory.setResourceValues(values)
+    try Data(value.utf8).write(
+      to: analysisURL(id), options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+  }
+
+  private func analysisURL(_ id: UUID) -> URL {
+    analyses.appendingPathComponent(id.uuidString).appendingPathExtension("json")
+  }
+
   /// Call only after the manifest no longer references these originals.
   func removeOriginals(_ ids: Set<UUID>) {
-    for id in ids { try? FileManager.default.removeItem(at: originalURL(id)) }
+    for id in ids {
+      try? FileManager.default.removeItem(at: originalURL(id))
+      try? FileManager.default.removeItem(at: analysisURL(id))
+    }
   }
 
   private func originalURL(_ id: UUID) -> URL {
