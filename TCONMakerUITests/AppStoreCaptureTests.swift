@@ -42,8 +42,7 @@ final class AppStoreCaptureTests: XCTestCase {
       let field = app.textFields["folderName"]
       XCTAssertTrue(field.waitForExistence(timeout: 10))
       field.tap()
-      field.typeText(name)
-      app.buttons["saveFolder"].tap()
+      field.typeText(name + "\n")
       XCTAssertTrue(app.buttons["folder-\(name)"].waitForExistence(timeout: 10))
     }
     app.buttons["folder-unfiled"].tap()

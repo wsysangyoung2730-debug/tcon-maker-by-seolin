@@ -142,6 +142,7 @@ BE3CEB6A25D4DD2D114DA430 = {isa=XCConfigurationList;buildConfigurations=(7F8B9ED
 DE949CF46DD2682C6D17A097 = {isa=PBXContainerItemProxy;containerPortal=98F54143AB4E86B28C3AFEE0;proxyType=1;remoteGlobalIDString=7EC77F57986CB698A6CEDD7D;remoteInfo=TCONMaker;};
 58301D92A4EA759B1D99C325 = {isa=PBXTargetDependency;target=7EC77F57986CB698A6CEDD7D;targetProxy=DE949CF46DD2682C6D17A097;};
 A0C42F2F95C388FB8184D9AD = {isa=PBXNativeTarget;name=TCONMakerUITests;productName=TCONMakerUITests;productType="com.apple.product-type.bundle.ui-testing";productReference=0973D91C052DFE014F4D5BB1;buildConfigurationList=BE3CEB6A25D4DD2D114DA430;buildPhases=(1B2E96C063845B9407279F47,C66017CBCF94713B535AD292,CA5E62AD5EFA0E89979B6B87,);buildRules=();dependencies=(58301D92A4EA759B1D99C325,);};
+9531F65F4791B902692A21F5 = {isa=PBXFileReference;lastKnownFileType=net.daringfireball.markdown;path="APP_STORE_METADATA.md";sourceTree="<group>";};
 6C6F9081F77D7E620411F5B9 = {isa=PBXFileReference;lastKnownFileType=text;path="DEMO_ASSET.txt";sourceTree="<group>";};
 82E2607ECB1218B269D0AD16 = {isa=PBXFileReference;lastKnownFileType=net.daringfireball.markdown;path="FEATURE_PARITY.md";sourceTree="<group>";};
 F098453E90870A276F2F83B5 = {isa=PBXFileReference;lastKnownFileType=net.daringfireball.markdown;path="PERFORMANCE.md";sourceTree="<group>";};
@@ -150,7 +151,7 @@ F098453E90870A276F2F83B5 = {isa=PBXFileReference;lastKnownFileType=net.daringfir
 AA14DA538B059DC0761903BE = {isa=PBXFileReference;lastKnownFileType=net.daringfireball.markdown;path="THIRD_PARTY.md";sourceTree="<group>";};
 9915952DF1B09C312834368D = {isa=PBXFileReference;lastKnownFileType=net.daringfireball.markdown;path="VALIDATION.md";sourceTree="<group>";};
 9C10C50C6421344B36FC11DA = {isa=PBXFileReference;lastKnownFileType=text;path="face-model-provenance.json";sourceTree="<group>";};
-FB55C49AAB59E2990A67CBFD = {isa=PBXGroup;path="Docs";children=(6C6F9081F77D7E620411F5B9,9C10C50C6421344B36FC11DA,82E2607ECB1218B269D0AD16,F098453E90870A276F2F83B5,2976D0E6395A23BAA683D32D,6441711654924BB25CDE532C,AA14DA538B059DC0761903BE,9915952DF1B09C312834368D,);sourceTree="<group>";};
+FB55C49AAB59E2990A67CBFD = {isa=PBXGroup;path="Docs";children=(9531F65F4791B902692A21F5,6C6F9081F77D7E620411F5B9,9C10C50C6421344B36FC11DA,82E2607ECB1218B269D0AD16,F098453E90870A276F2F83B5,2976D0E6395A23BAA683D32D,6441711654924BB25CDE532C,AA14DA538B059DC0761903BE,9915952DF1B09C312834368D,);sourceTree="<group>";};
 20FD16735ABC5D53E557CBFE = {isa=PBXFileReference;lastKnownFileType=text.script.python;path="generate_project.py";sourceTree="<group>";};
 1198391C4C02C546641E7B04 = {isa=PBXFileReference;lastKnownFileType=sourcecode.javascript;path="native-bridge.js";sourceTree="<group>";};
 B4A09623BD33D186CC6DBC15 = {isa=PBXFileReference;lastKnownFileType=text.script.python;path="sync_engine_bridge.py";sourceTree="<group>";};
