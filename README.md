@@ -41,9 +41,12 @@ TCON 및 여권 프리셋은 원본 앱의 기본값을 옮긴 것입니다. 공
 
 ## 구조와 개인정보
 
-- `TCONMaker/Views`: SwiftUI 화면과 iOS 선택·저장 컨트롤
-- `TCONMaker/Models`: 설정, 작업 목록, 편집 상태
-- `TCONMaker/Engine`: WKWebView의 로컬 사진 엔진 호출
+- `TCONMaker/Features`: 홈·일괄 작업·편집·저장·설정 화면
+- `TCONMaker/Shared`: 재사용 UI 및 iOS 선택·공유 컨트롤
+- `TCONMaker/App`: 앱 진입점·화면 이동·작업 상태
+- `TCONMaker/Core/Models`: 사진 및 설정 데이터
+- `TCONMaker/Core/Processing`: WKWebView의 로컬 사진 엔진 호출
+- `TCONMaker/Core/Services`: 사진 가져오기·내보내기
 - `TCONMaker/Resources/Engine/engine.html`: 원본 알고리즘·모델·ZIP 라이브러리와 네이티브 연결부
 - `Scripts/native-bridge.js`: 엔진 연결부의 읽기 쉬운 소스. 수정 시 번들 HTML에도 같은 변경을 반영합니다.
 - `Design/Approved`: 승인된 화면 시안
