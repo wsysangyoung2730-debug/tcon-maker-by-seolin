@@ -24,16 +24,22 @@ struct StartView: View {
           Text("심사 사진 준비를\n간편하게").font(.system(size: 34, weight: .bold))
           Text("사진을 고르면 크기와 구도를 맞춰드려요").font(.subheadline).foregroundStyle(.secondary)
         }
-        ZStack {
-          RoundedRectangle(cornerRadius: 24).fill(Color.seolin.opacity(0.05))
+        LibraryPhotoPicker {
           VStack(spacing: 12) {
             Image("DemoPortrait").resizable().scaledToFill().frame(width: 134, height: 168)
               .clipped().overlay(
                 RoundedRectangle(cornerRadius: 4).stroke(Color.seolin.opacity(0.4), lineWidth: 2))
-            Label("얼굴 정렬 · 배경 정리 · 규격 맞춤", systemImage: "sparkles").font(.caption).foregroundStyle(
-              Color.seolin)
-          }.padding(20).accessibilityLabel("자동 맞춤 예시 사진")
-        }.frame(height: 215)
+            Label("얼굴 정렬 · 배경 정리 · 규격 맞춤", systemImage: "sparkles")
+              .font(.caption).foregroundStyle(Color.seolin)
+            Text("사진을 눌러 시작하기")
+              .font(.caption2).foregroundStyle(.secondary)
+          }.padding(20).frame(maxWidth: .infinity)
+            .background(Color.seolin.opacity(0.05), in: RoundedRectangle(cornerRadius: 24))
+            .contentShape(RoundedRectangle(cornerRadius: 24))
+        }.buttonStyle(.plain)
+          .accessibilityLabel("예시 사진을 눌러 사진 선택하기")
+          .accessibilityHint("사진 보관함에서 최대 30장을 선택합니다")
+          .accessibilityIdentifier("homeExamplePhoto")
         VStack(alignment: .leading, spacing: 10) {
           Text("사진 규격").font(.subheadline).foregroundStyle(.secondary)
           Button {
