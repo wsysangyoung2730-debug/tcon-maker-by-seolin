@@ -1,6 +1,6 @@
 # TCON Maker by SEOLIN
 
-서린태권도의 TCON 심사 등록용 사진 편집 iOS 앱입니다. 승인된 남색·흰색 디자인을 SwiftUI로 구현하고 기존 `TCON_MAKER_by_SEOLIN.html`의 얼굴 정렬, 배경 분리, 자르기 및 원본 저장 알고리즘을 앱 안에서 실행합니다.
+서린태권도의 TCON 심사 등록용 사진 편집 iOS 앱입니다. 승인된 남색·흰색 디자인을 SwiftUI로 구현하고 기존 사진 편집 기능을 유지하며 얼굴 정렬·자르기·저장은 기기 내 엔진으로, 배경 분리는 Apple Vision으로 처리합니다.
 
 ## 실행
 
@@ -11,7 +11,7 @@
 
 - 최소 지원: iOS 17.0. iPhone 우선이며 iPad에서도 적응형 레이아웃으로 실행됩니다.
 - 검증 도구: Xcode 27.0. 외부 패키지 설치나 API 키가 필요하지 않습니다.
-- 프로젝트 파일 재생성: `python3 Scripts/generate_project.py`
+- 프로젝트 파일 재생성: `python3 scripts/generate_project.py`
 
 ```sh
 xcodebuild -project TCONMaker.xcodeproj -scheme TCONMaker \
@@ -27,7 +27,7 @@ xcodebuild -project TCONMaker.xcodeproj -scheme TCONMaker \
 
 홈에서 사진 선택 또는 촬영 → 파일 탭의 미분류 → 폴더별 정리 → 개별 편집 → 사진 앱·파일 앱·ZIP 저장 또는 공유.
 
-파일 탭의 `+`로 폴더를 만들고 `선택`으로 이름을 바꾸거나 폴더를 삭제합니다. 폴더 안의 `+`로 사진 보관함·파일 앱·카메라에서 사진을 바로 추가할 수 있습니다. 사진을 길게 누르면 다중 선택이 시작되며 선택한 사진만 이동·저장·삭제할 수 있습니다. 폴더 삭제 시 사진과 편집 상태는 미분류로 옮겨집니다.
+파일 탭의 `+`로 폴더를 만들고 `선택`으로 이름을 바꾸거나 폴더를 삭제합니다. 폴더 안의 `+`로 사진 보관함·파일 앱·카메라에서 사진을 바로 추가할 수 있습니다. 사진을 길게 누르면 다중 선택이 시작되며 선택한 사진만 이동·저장·삭제할 수 있습니다. 선택 화면의 삭제는 하단 빨간 버튼에서 바로 실행합니다. 폴더 삭제 시 사진과 편집 상태는 미분류로 옮겨집니다.
 
 사진 보관함과 파일 앱에서 여러 장을 추가할 수 있습니다. 사진 보관함은 한 번에 최대 30장씩 가져오며 추가 선택할 수 있습니다. HEIC와 EXIF 방향을 iOS에서 정규화합니다. 원본 사진은 덮어쓰지 않습니다.
 
@@ -54,7 +54,7 @@ TCON 및 여권 프리셋은 원본 앱의 기본값을 옮긴 것입니다. 공
 - `TCONMaker/Core/Processing`: WKWebView의 로컬 사진 엔진 호출
 - `TCONMaker/Core/Services`: 사진 가져오기·내보내기
 - `TCONMaker/Resources/Engine/engine.html`: 원본 알고리즘·모델·ZIP 라이브러리와 네이티브 연결부
-- `Scripts/native-bridge.js`: 엔진 연결부의 읽기 쉬운 소스. 수정 시 번들 HTML에도 같은 변경을 반영합니다.
+- `scripts/native-bridge.js`: 엔진 연결부의 읽기 쉬운 소스. 수정 시 번들 HTML에도 같은 변경을 반영합니다.
 - `Design/Approved`: 승인된 화면 시안
 - `TCONMakerTests`, `TCONMakerUITests`: 파일·엔진 통합·화면 흐름 검증
 
@@ -75,3 +75,12 @@ WebView는 화면을 표시하는 용도가 아닌 기존 사진 알고리즘을
 - 작업 이슈: 브랜치 / 작업 목적 / 주요 작업 내용 / 완료 기준
 
 세부 기능 대응은 [기능 대응표](Docs/FEATURE_PARITY.md), 검증 결과는 [검증 기록](Docs/VALIDATION.md), 배포 준비는 [출시 준비](Docs/RELEASE.md), 원본 라이브러리는 [출처](Docs/THIRD_PARTY.md)를 참고하세요.
+
+
+## App Store 준비 자료
+
+- [실제 화면 미리보기](Design/AppStore/index.html) / [업로드 안내](Design/AppStore/README.md)
+- [스토어 설명 및 심사 메모](Docs/APP_STORE_METADATA.md)
+- [지원 안내](Docs/SUPPORT.md) / [출시 점검 결과와 남은 확인](Docs/RELEASE.md)
+
+Apple 인물 분리는 실제 iPhone/iPad에서 사용합니다. 시뮬레이터의 Vision 인물 분리 런타임 제한 때문에 해당 통합 테스트는 실기기에서 검증하며, 시뮬레이터에서는 원본 배경 편집 흐름을 확인합니다.

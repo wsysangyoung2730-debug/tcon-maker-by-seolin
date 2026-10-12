@@ -57,8 +57,7 @@ final class AppStoreCaptureTests: XCTestCase {
     selectHome(app)
     XCTAssertTrue(app.buttons["openSettings"].waitForExistence(timeout: 10))
     capture(app, "01-home")
-    let logo = app.images["seolinSignature"]
-    for _ in 0..<4 where !logo.isHittable { app.scrollViews["homeContent"].swipeUp() }
+    app.scrollViews["homeContent"].swipeUp()
     capture(app, "08-home-actions")
     app.scrollViews["homeContent"].swipeDown()
     app.buttons["openSettings"].tap()
@@ -80,7 +79,7 @@ final class AppStoreCaptureTests: XCTestCase {
   private func capture(_ app: XCUIApplication, _ name: String) {
     idle(app)
     _ = XCTWaiter.wait(for: [], timeout: 0.6)
-    let shot = XCTAttachment(screenshot: app.screenshot())
+    let shot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     shot.name = "store-" + name
     shot.lifetime = .keepAlways
     add(shot)
