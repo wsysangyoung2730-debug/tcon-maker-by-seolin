@@ -1,0 +1,24 @@
+// !$*UTF8*$!
+{archiveVersion=1;classes={};objectVersion=56;objects={
+4A0C80A1AD3CC77E22ABAC83 = {isa=PBXFileReference;lastKnownFileType=sourcecode.swift;path="TCONMaker/App/TCONMakerApp.swift";sourceTree="<group>";};
+B807052A4EDA36C4809F038F = {isa=PBXBuildFile;fileRef=4A0C80A1AD3CC77E22ABAC83;};
+C82F257E005A8E4C9568C75B = {isa=PBXFileReference;lastKnownFileType=folder.assetcatalog;path="TCONMaker/Resources/Assets.xcassets";sourceTree="<group>";};
+8CD43CF2782D8871DD0B4169 = {isa=PBXBuildFile;fileRef=C82F257E005A8E4C9568C75B;};
+559A950C8F04A63F47D012E1 = {isa=PBXFileReference;lastKnownFileType=file;path="TCONMaker/Resources/PrivacyInfo.xcprivacy";sourceTree="<group>";};
+788FE52E3CEBF720E41EACF8 = {isa=PBXBuildFile;fileRef=559A950C8F04A63F47D012E1;};
+4162685C72B752F118924C21 = {isa=PBXGroup;name=TCONMaker;children=(4A0C80A1AD3CC77E22ABAC83,C82F257E005A8E4C9568C75B,559A950C8F04A63F47D012E1,);sourceTree="<group>";};
+4DB29F4FFD9AA2F29CACB319 = {isa=PBXFileReference;explicitFileType=wrapper.application;path=TCONMaker.app;sourceTree=BUILT_PRODUCTS_DIR;};
+6783E16EACFBB35E9088208E = {isa=PBXSourcesBuildPhase;buildActionMask=2147483647;files=(B807052A4EDA36C4809F038F,);runOnlyForDeploymentPostprocessing=0;};
+118F6473199B244F0154B29D = {isa=PBXResourcesBuildPhase;buildActionMask=2147483647;files=(8CD43CF2782D8871DD0B4169,788FE52E3CEBF720E41EACF8,);runOnlyForDeploymentPostprocessing=0;};
+E9FD8676F8743B82959F5022 = {isa=PBXFrameworksBuildPhase;buildActionMask=2147483647;files=();runOnlyForDeploymentPostprocessing=0;};
+BAE170F379AC074583819D1A = {isa=XCBuildConfiguration;name=Debug;buildSettings={"PRODUCT_BUNDLE_IDENTIFIER"="com.seolin.tconmaker";"PRODUCT_NAME"="$(TARGET_NAME)";"SWIFT_VERSION"="5.0";"IPHONEOS_DEPLOYMENT_TARGET"="17.0";"TARGETED_DEVICE_FAMILY"="1,2";"CODE_SIGN_STYLE"="Automatic";"SWIFT_EMIT_LOC_STRINGS"="YES";"GENERATE_INFOPLIST_FILE"="YES";"SWIFT_OPTIMIZATION_LEVEL"="-Onone";"SWIFT_ACTIVE_COMPILATION_CONDITIONS"="DEBUG";"ENABLE_USER_SCRIPT_SANDBOXING"="YES";"INFOPLIST_FILE"="TCONMaker/Info.plist";"CURRENT_PROJECT_VERSION"="1";"MARKETING_VERSION"="1.0.0";"ASSETCATALOG_COMPILER_APPICON_NAME"="AppIcon";"INFOPLIST_KEY_UILaunchScreen_Generation"="YES";};};
+4252DD9E37735AB9AA44C378 = {isa=XCBuildConfiguration;name=Release;buildSettings={"PRODUCT_BUNDLE_IDENTIFIER"="com.seolin.tconmaker";"PRODUCT_NAME"="$(TARGET_NAME)";"SWIFT_VERSION"="5.0";"IPHONEOS_DEPLOYMENT_TARGET"="17.0";"TARGETED_DEVICE_FAMILY"="1,2";"CODE_SIGN_STYLE"="Automatic";"SWIFT_EMIT_LOC_STRINGS"="YES";"GENERATE_INFOPLIST_FILE"="YES";"SWIFT_OPTIMIZATION_LEVEL"="-O";"SWIFT_ACTIVE_COMPILATION_CONDITIONS"="";"ENABLE_USER_SCRIPT_SANDBOXING"="YES";"INFOPLIST_FILE"="TCONMaker/Info.plist";"CURRENT_PROJECT_VERSION"="1";"MARKETING_VERSION"="1.0.0";"ASSETCATALOG_COMPILER_APPICON_NAME"="AppIcon";"INFOPLIST_KEY_UILaunchScreen_Generation"="YES";};};
+9F446EC5DC3BBF41F130D77D = {isa=XCConfigurationList;buildConfigurations=(BAE170F379AC074583819D1A,4252DD9E37735AB9AA44C378,);defaultConfigurationIsVisible=0;defaultConfigurationName=Release;};
+7EC77F57986CB698A6CEDD7D = {isa=PBXNativeTarget;name=TCONMaker;productName=TCONMaker;productType="com.apple.product-type.application";productReference=4DB29F4FFD9AA2F29CACB319;buildConfigurationList=9F446EC5DC3BBF41F130D77D;buildPhases=(6783E16EACFBB35E9088208E,E9FD8676F8743B82959F5022,118F6473199B244F0154B29D,);buildRules=();dependencies=();};
+FBDC4F23F93125BBEEAE800C = {isa=PBXGroup;name=Products;children=(4DB29F4FFD9AA2F29CACB319,);sourceTree="<group>";};
+B28B7AF69320201D1CF206EB = {isa=PBXGroup;children=(4162685C72B752F118924C21,FBDC4F23F93125BBEEAE800C,);sourceTree="<group>";};
+89E1FD6268CC0F221A2BE178 = {isa=XCBuildConfiguration;name=Debug;buildSettings={SDKROOT=iphoneos;CLANG_ENABLE_MODULES=YES;CLANG_ENABLE_OBJC_ARC=YES;DEBUG_INFORMATION_FORMAT=dwarf;};};
+E6DE6C99132752C914FEF632 = {isa=XCBuildConfiguration;name=Release;buildSettings={SDKROOT=iphoneos;CLANG_ENABLE_MODULES=YES;CLANG_ENABLE_OBJC_ARC=YES;DEBUG_INFORMATION_FORMAT="dwarf-with-dsym";};};
+862894B703A6DEDF96A9DD6C = {isa=XCConfigurationList;buildConfigurations=(89E1FD6268CC0F221A2BE178,E6DE6C99132752C914FEF632,);defaultConfigurationIsVisible=0;defaultConfigurationName=Release;};
+98F54143AB4E86B28C3AFEE0 = {isa=PBXProject;attributes={LastUpgradeCheck=1600;};buildConfigurationList=862894B703A6DEDF96A9DD6C;compatibilityVersion="Xcode 14.0";developmentRegion=ko;hasScannedForEncodings=0;knownRegions=(ko,en,Base);mainGroup=B28B7AF69320201D1CF206EB;productRefGroup=FBDC4F23F93125BBEEAE800C;projectDirPath="";projectRoot="";targets=(7EC77F57986CB698A6CEDD7D,);};
+};rootObject=98F54143AB4E86B28C3AFEE0;}
