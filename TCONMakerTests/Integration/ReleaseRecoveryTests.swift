@@ -9,6 +9,7 @@ final class ReleaseRecoveryTests: XCTestCase {
     let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
     defer { try? FileManager.default.removeItem(at: root) }
     let store = PhotoStore(libraryRoot: root)
+    store.settings.background = "orig"
     let window = mount(store.engine)
     defer { window.isHidden = true }
     await store.prepare()
@@ -39,7 +40,7 @@ final class ReleaseRecoveryTests: XCTestCase {
     defer { window.isHidden = true }
     let _: EngineAvailability = try await engine.call("ready")
     _ = try await engine.webView.evaluateJavaScript(
-      "window.TCONNative.execute = () => new Promise(() => {}); true;")
+      "window.TCONPendingPromise = new Promise(() => {}); window.TCONNative.execute = () => window.TCONPendingPromise; true;")
     engine.operationTimeout = 0.15
     do {
       let _: EngineAvailability = try await engine.call("ready")
