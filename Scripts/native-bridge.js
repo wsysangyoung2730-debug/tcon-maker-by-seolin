@@ -48,6 +48,7 @@ window.TCONNative={execute(command,payload={}){
       }return nativeAll();
     }
     if(command==='snapshot')return nativeAll();
+    if(command==='archive')return items.filter(it=>!payload.ids||payload.ids.includes(it.id)).map(it=>({id:it.id,state:JSON.stringify({version:1,k:it.k||0,face:it.face||null,face0:it.face0||null,adj:it.adj,overrides:it.overrides||{},bg:it.bg||null,snap:it.snap!==false})}));
     if(command==='clear'){items.splice(0).forEach(nativeDispose);return nativeAll();}
     if(command==='delete'){
       const ids=new Set(payload.ids||[]);for(let i=items.length-1;i>=0;i--)if(ids.has(items[i].id))nativeDispose(items.splice(i,1)[0]);return nativeAll();
@@ -72,8 +73,18 @@ window.TCONNative={execute(command,payload={}){
       return result;
     }
     const it=items.find(x=>x.id===payload.id);if(!it)throw new Error('사진을 찾을 수 없어요');
+    if(command==='restore'){
+      const saved=JSON.parse(payload.state);
+      if(saved.version!==1)throw new Error('Unsupported saved photo version');
+      it.k=((saved.k||0)%4+4)%4;it.face=saved.face;it.face0=saved.face0;
+      it.adj={zoom:1,dx:0,dy:0,tilt:0,bright:0,...saved.adj};
+      it.overrides=nativeSettings(saved.overrides);it.snap=saved.snap!==false;
+      if(['white','clear','orig'].includes(saved.bg))it.bg=saved.bg;else delete it.bg;
+    }
     return nativeContext(it,async()=>{
-      if(command==='update'){
+      if(command==='restore'){
+        await prepareBase(it);
+      }else if(command==='update'){
         const ranges={zoom:[0.4,3],tilt:[-45,45],dx:[-0.5,0.5],dy:[-0.5,0.5],bright:[-50,50]};
         for(const [k,v]of Object.entries(payload.adjustment||{}))if(ranges[k]&&Number.isFinite(v))it.adj[k]=Math.max(ranges[k][0],Math.min(ranges[k][1],v));
         if(['white','clear','orig'].includes(payload.background))it.bg=payload.background;
