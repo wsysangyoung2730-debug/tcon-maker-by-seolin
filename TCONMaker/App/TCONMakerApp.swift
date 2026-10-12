@@ -2,5 +2,5 @@ import SwiftUI
 
 @main
 struct TCONMakerApp: App {
-  var body: some Scene { WindowGroup { RootView() } }
+  var body: some Scene { WindowGroup { AppEntryView() } }
 }
