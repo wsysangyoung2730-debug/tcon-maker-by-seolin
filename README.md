@@ -79,7 +79,7 @@ WebView는 화면을 표시하는 용도가 아닌 기존 사진 알고리즘을
 
 ## App Store 준비 자료
 
-- [실제 화면 미리보기](Design/AppStore/index.html) / [업로드 안내](Design/AppStore/README.md)
+- [앱스토어 홍보 이미지 18장](Design/AppStore/index.html) / [업로드 안내](Design/AppStore/README.md)
 - [스토어 설명 및 심사 메모](Docs/APP_STORE_METADATA.md)
 - [지원 안내](Docs/SUPPORT.md) / [출시 점검 결과와 남은 확인](Docs/RELEASE.md)
 
