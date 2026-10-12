@@ -6,7 +6,6 @@ struct FolderLibraryView: View {
   @State private var selection = Set<UUID>()
   @State private var naming = false
   @State private var renameTarget: PhotoFolder?
-  @State private var deletePrompt = false
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 20) {
@@ -59,25 +58,21 @@ struct FolderLibraryView: View {
             }
             DestructiveOutlineButton(
               title: "선택한 \(selection.count)개 폴더 삭제", disabled: selection.isEmpty
-            ) { deletePrompt = true }
+            ) {
+              let ids = selection
+              Task {
+                await store.deleteFolders(ids)
+                selection = []
+                selecting = false
+              }
+            }
             .accessibilityIdentifier("deleteFolders")
             Text("폴더 안의 사진은 미분류로 옮겨집니다").font(.caption).foregroundStyle(.secondary)
           }.padding(20).background(.regularMaterial)
         }
       }
       .sheet(isPresented: $naming) { FolderNameSheet(folder: renameTarget) }
-      .confirmationDialog("선택한 폴더를 삭제할까요?", isPresented: $deletePrompt, titleVisibility: .visible) {
-        Button("폴더만 삭제", role: .destructive) {
-          let ids = selection
-          Task {
-            await store.deleteFolders(ids)
-            selection = []
-            selecting = false
-          }
-        }
-      } message: {
-        Text("안의 사진과 편집 상태는 미분류에 그대로 남습니다.")
-      }
+
   }
   private func folderCard(id: UUID?, name: String) -> some View {
     Button {
