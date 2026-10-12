@@ -41,21 +41,24 @@ struct WelcomeView: View {
         }
         Label("사진은 기기 안에서 처리하고 원본은 그대로 보관해요.", systemImage: "lock.shield")
           .font(.footnote).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+          .accessibilityIdentifier("welcomeOriginalNotice")
+        VStack(spacing: 14) {
+          PrimaryButton(title: "사용법 살펴보기", icon: "hand.tap", action: onTutorial)
+            .accessibilityIdentifier("startTutorial")
+          Button(action: onStart) {
+            Text("바로 시작하기").font(.headline)
+              .frame(maxWidth: .infinity, minHeight: 54)
+              .foregroundStyle(Color.seolin)
+              .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.seolin, lineWidth: 1))
+              .contentShape(RoundedRectangle(cornerRadius: 16))
+          }.buttonStyle(.plain).accessibilityIdentifier("finishOnboarding")
+        }
+        SeolinSignature()
       }.padding(24).frame(maxWidth: 560).frame(maxWidth: .infinity)
     }
+    .accessibilityIdentifier("welcomeContent")
     .background(Color.panel)
-    .safeAreaInset(edge: .bottom) {
-      VStack(spacing: 10) {
-        PrimaryButton(title: "사용법 살펴보기", icon: "hand.tap", action: onTutorial)
-          .accessibilityIdentifier("startTutorial")
-        Button("바로 시작하기", action: onStart)
-          .font(.subheadline.weight(.semibold)).frame(minHeight: 44)
-          .accessibilityIdentifier("finishOnboarding")
-        SeolinSignature()
-      }.padding(.horizontal, 20).padding(.top, 16).padding(.bottom, 6)
-        .frame(maxWidth: 560).frame(maxWidth: .infinity)
-        .background(.regularMaterial)
-    }
+
   }
 
   private func benefit(_ icon: String, _ title: String, _ detail: String) -> some View {
