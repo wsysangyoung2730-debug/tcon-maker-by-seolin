@@ -31,10 +31,16 @@ try {
    await page.goto(url.href);await page.evaluate(()=>document.fonts.ready);
    await page.waitForFunction(()=>[...document.images].every(i=>i.complete&&i.naturalWidth>0));
    const spec=await page.evaluate(()=>{
-    const selectors=window.renderSpec.slide.cover?['h1','.hero-icon','.hero-name','.hero-detail','.cover-signature']:['.eyebrow','h1','.description','.frame'];
+    const selectors=window.renderSpec.slide.cover?['h1','.hero-icon','.hero-name','.hero-detail','.cover-signature']:['h1','.description','.frame'];
     const boxes=selectors.map(s=>document.querySelector(s).getBoundingClientRect());
     for(let i=0;i<boxes.length-1;i++)if(boxes[i].bottom>boxes[i+1].top)throw Error('Overlapping layout');
     if(boxes.some(b=>b.left<0||b.right>innerWidth||b.bottom>innerHeight))throw Error('Layout outside canvas');
+    if(!window.renderSpec.slide.cover&&!window.renderSpec.device.startsWith('iPad')){
+     const crop=document.querySelector('.capture-viewport'),screen=document.querySelector('.screen');
+     const island=getComputedStyle(screen,'::before');
+     if(parseFloat(crop.style.top)<parseFloat(island.top)+parseFloat(island.height))throw Error('Island overlaps app content');
+    }
+    if(document.querySelector('.eyebrow'))throw Error('Feature caption still present');
     return window.renderSpec;
    });
    const buffer=await sharp(await page.screenshot({animations:'disabled'})).flatten({background:'#ffffff'}).removeAlpha().png({compressionLevel:9}).toBuffer();
