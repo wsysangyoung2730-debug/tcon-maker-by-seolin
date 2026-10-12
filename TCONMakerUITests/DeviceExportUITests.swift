@@ -25,9 +25,16 @@ final class DeviceExportUITests: XCTestCase {
     openCamera(app)
     respondToPermission(allow: true)
     let cancel = app.buttons.matching(NSPredicate(format: "label IN %@", ["Cancel", "취소"])).firstMatch
-    XCTAssertTrue(cancel.waitForExistence(timeout: 20))
-    cancel.tap()
-    XCTAssertTrue(app.buttons["capturePhoto"].waitForExistence(timeout: 10))
+    let importedPhoto = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "촬영_")).firstMatch
+    expectation(for: NSPredicate { _, _ in cancel.exists || importedPhoto.exists }, evaluatedWith: app)
+    waitForExpectations(timeout: 20)
+    if importedPhoto.exists {
+      // A user may finish a capture while permission automation is running.
+      XCTAssertTrue(app.images["editorCanvas"].exists)
+    } else {
+      cancel.tap()
+      XCTAssertTrue(app.buttons["capturePhoto"].waitForExistence(timeout: 10))
+    }
   }
 
   func testPhotoPermissionDeniedThenSaveDemoPhotos() {
@@ -59,18 +66,27 @@ final class DeviceExportUITests: XCTestCase {
     for _ in 0..<6 where !zip.isHittable { app.swipeUp() }
     zip.tap()
     app.buttons["savePhotos"].tap()
-    let cancel = app.buttons.matching(NSPredicate(format: "label IN %@", ["Cancel", "취소"])).firstMatch
-    XCTAssertTrue(cancel.waitForExistence(timeout: 20))
-    cancel.tap()
-    XCTAssertTrue(app.buttons["savePhotos"].waitForExistence(timeout: 10))
+    let fileSave = app.buttons.matching(NSPredicate(format: "label IN %@", ["Save", "저장"])).firstMatch
+    XCTAssertTrue(fileSave.waitForExistence(timeout: 20))
+    dismissSystemSheet(app)
+    waitHittable(app.buttons["savePhotos"])
     app.buttons["sharePhotos"].tap()
     let close = app.buttons.matching(NSPredicate(format: "label IN %@", ["Close", "닫기"])).firstMatch
     XCTAssertTrue(close.waitForExistence(timeout: 20))
     close.tap()
-    XCTAssertTrue(app.buttons["savePhotos"].waitForExistence(timeout: 10))
+    waitHittable(app.buttons["savePhotos"])
     XCTAssertFalse(app.alerts["작업을 확인해 주세요"].exists)
   }
 
+  private func dismissSystemSheet(_ app: XCUIApplication) {
+    // iOS 26 Files exposes Save and Browse, and dismisses with the sheet handle.
+    let handle = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.09))
+    handle.press(forDuration: 0.1, thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.85)))
+  }
+  private func waitHittable(_ element: XCUIElement) {
+    expectation(for: NSPredicate(format: "exists == true AND hittable == true"), evaluatedWith: element)
+    waitForExpectations(timeout: 10)
+  }
   private func launch(_ app: XCUIApplication, sample: Bool) {
     app.launchArguments = ["--ui-testing", "--ui-reset"] + (sample ? ["--ui-sample"] : [])
     app.launch()
