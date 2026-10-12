@@ -4,6 +4,8 @@ struct EditorView: View {
   @EnvironmentObject private var store: PhotoStore
   @Environment(\.dismiss) private var dismiss
   let initialID: Int
+  let folderID: UUID?
+  private var folderPhotos: [PhotoItem] { store.photos(in: folderID) }
   @State private var selectedID = 0
   @State private var adjustment = Adjustment()
   @State private var composition = Composition()
@@ -112,7 +114,7 @@ struct EditorView: View {
   private var thumbnails: some View {
     ScrollView(.horizontal, showsIndicators: false) {
       HStack(spacing: 10) {
-        ForEach(store.photos) { item in
+        ForEach(folderPhotos) { item in
           Button {
             Task {
               await pending?.value
@@ -184,7 +186,7 @@ struct EditorView: View {
             "사진 미리보기. 아래 맞춤 도구에서 크기와 위치를 숫자로 조절할 수 있습니다.")
         VStack {
           HStack {
-            Text("\((store.photos.firstIndex{$0.id==selectedID} ?? 0)+1) / \(store.photos.count)")
+            Text("\((folderPhotos.firstIndex{$0.id==selectedID} ?? 0)+1) / \(folderPhotos.count)")
               .font(.caption.monospacedDigit()).foregroundStyle(.white)
             Spacer()
             Button {

@@ -8,6 +8,7 @@ struct ImportActions: View {
   @State private var camera = false
   @State private var files = false
   var compact = false
+  var folderID: UUID? = nil
   var body: some View {
     Group {
       if compact {
@@ -20,7 +21,7 @@ struct ImportActions: View {
           Button("촬영하기", systemImage: "camera") { openCamera() }
         } label: {
           Image(systemName: "plus").font(.title3).frame(width: 44, height: 44)
-        }.accessibilityLabel("사진 추가")
+        }.accessibilityLabel("사진 추가").accessibilityIdentifier("addFolderPhoto")
       } else {
         VStack(spacing: 12) {
           PhotosPicker(
@@ -36,26 +37,26 @@ struct ImportActions: View {
               .vertical, 16
             ).overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.seolin, lineWidth: 1))
           }
-          Button("파일에서 가져오기", systemImage: "folder") { files = true }.font(.subheadline).padding(
-            .top, 3)
+
         }
       }
     }.disabled(!store.ready || store.busy)
       .onChange(of: picks) { _, items in
         guard !items.isEmpty else { return }
         picks = []
-        Task { await store.importSelections(items) }
+        Task { await store.importSelections(items, folderID: folderID) }
       }
       .fileImporter(
         isPresented: $files, allowedContentTypes: [.image], allowsMultipleSelection: true
       ) { result in
         switch result {
-        case .success(let urls): Task { await store.importFiles(urls) }
+        case .success(let urls): Task { await store.importFiles(urls, folderID: folderID) }
         case .failure(let error): store.error = error.localizedDescription
         }
       }
       .fullScreenCover(isPresented: $camera) {
-        CameraPicker { image in Task { await store.importCamera(image) } }.ignoresSafeArea()
+        CameraPicker { image in Task { await store.importCamera(image, folderID: folderID) } }
+          .ignoresSafeArea()
       }
   }
   private func openCamera() {

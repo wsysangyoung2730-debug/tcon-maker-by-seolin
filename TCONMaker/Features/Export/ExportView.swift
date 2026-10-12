@@ -79,6 +79,7 @@ struct ExportView: View {
           PrimaryButton(
             title: saving ? "저장 중…" : "\(photos.count)장 저장하기", icon: "square.and.arrow.down"
           ) { Task { await save(share: false) } }.accessibilityIdentifier("savePhotos")
+          Text("원본 사진은 변경되지 않아요").font(.caption).foregroundStyle(.secondary)
           Button("다른 앱으로 공유", systemImage: "square.and.arrow.up") {
             Task { await save(share: true) }
           }.accessibilityIdentifier("sharePhotos")

@@ -5,15 +5,19 @@ import SwiftUI
 struct RootView: View {
   @StateObject private var store = PhotoStore()
   var body: some View {
-    NavigationStack(path: $store.path) {
-      StartView()
-        .navigationDestination(for: AppRoute.self) { route in
-          switch route {
-          case .batch: BatchView()
-          case .editor(let id): EditorView(initialID: id)
-          case .export(let ids): ExportView(ids: ids)
+    TabView(selection: $store.selectedTab) {
+      NavigationStack { StartView() }
+        .tabItem { Label("홈", systemImage: "house") }.tag(AppTab.home)
+      NavigationStack(path: $store.path) {
+        FolderLibraryView()
+          .navigationDestination(for: AppRoute.self) { route in
+            switch route {
+            case .folder(let id): BatchView(folderID: id)
+            case .editor(let id): EditorView(initialID: id, folderID: store.folderID(for: id))
+            case .export(let ids): ExportView(ids: ids)
+            }
           }
-        }
+      }.tabItem { Label("파일", systemImage: "folder") }.tag(AppTab.files)
     }
     .background(
       EngineHost(engine: store.engine).frame(width: 2, height: 2).opacity(0.01).accessibilityHidden(

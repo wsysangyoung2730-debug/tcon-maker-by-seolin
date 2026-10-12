@@ -4,13 +4,22 @@ final class TCONMakerUITests: XCTestCase {
   override func setUpWithError() throws { continueAfterFailure = false }
   func testHomeAndSettings() {
     let app = XCUIApplication()
-    app.launchArguments = ["--ui-testing"]
+    app.launchArguments = ["--ui-testing", "--ui-reset"]
     app.launch()
     XCTAssertTrue(app.buttons["openSettings"].waitForExistence(timeout: 30))
+    XCTAssertTrue(app.tabBars.buttons["홈"].exists)
+    XCTAssertTrue(app.tabBars.buttons["파일"].exists)
+    XCTAssertFalse(app.buttons["파일에서 가져오기"].exists)
+    let ready = NSPredicate(format: "enabled == true")
+    expectation(for: ready, evaluatedWith: app.buttons["importPhotos"])
+    waitForExpectations(timeout: 120)
     capture("01-start")
     app.buttons["openSettings"].tap()
     XCTAssertTrue(app.buttons["applySettings"].waitForExistence(timeout: 10))
-    app.buttons["여권사진"].tap()
+    for label in ["증명사진", "TCON", "여권사진"] {
+      app.buttons[label].tap()
+      XCTAssertEqual(app.buttons[label].value as? String, "선택됨")
+    }
     XCTAssertEqual(app.textFields["setting-가로"].value as? String, "35")
     XCTAssertEqual(app.textFields["setting-세로"].value as? String, "45")
     capture("05-settings")
@@ -18,7 +27,7 @@ final class TCONMakerUITests: XCTestCase {
   }
   func testPhotoEditBatchAndExport() {
     let app = XCUIApplication()
-    app.launchArguments = ["--ui-testing", "--ui-sample"]
+    app.launchArguments = ["--ui-testing", "--ui-reset", "--ui-sample"]
     app.launch()
     XCTAssertTrue(app.buttons["photo-1"].waitForExistence(timeout: 240), app.debugDescription)
     capture("02-batch")
