@@ -29,4 +29,12 @@ TCON Maker by SEOLIN, Apple ID `6822064133`, Bundle ID `com.seolin.tconmaker`. i
 
 ## 제출 상태
 
-Apple 빌드 처리 완료 후 최종 빌드를 연결하고 상태를 갱신한다. 수동 출시 설정을 유지한다. 심사 연락처·계정 자격 증명·인증서·프로비저닝 파일은 저장소에 기록하지 않는다.
+Apple 처리 완료 후 **1.0.1 (3)**을 출시 버전에 연결하고 필수값 검사를 통과했다. **2026-10-13 06:03 KST 심사 제출 완료**, App Store Connect에서 **심사 대기 중**을 확인했다.
+
+- [심사 제출 상세](https://appstoreconnect.apple.com/apps/6822064133/distribution/reviewsubmissions/details/0f36eacb-d165-4e2b-875e-cbbfdb24b8cd)
+- 제출 ID: `0f36eacb-d165-4e2b-875e-cbbfdb24b8cd`
+- 최종 빌드 ID: `e312ada1-1304-45cb-9599-5c5c080658a2`
+- 저작권: `2026 SEOLIN. All rights reserved.`
+- 무료·전체 국가 및 지역과 수동 출시 설정을 유지한다. 심사 제출은 공개 출시를 의미하지 않는다.
+
+공개 버전 번호와 빌드 번호는 별개이다. 아직 출시하지 않은 1.0.1의 수정 빌드를 3으로 올린 것이며, 1.0.2로 변경할 필요가 없다. 심사 연락처·계정 자격 증명·인증서·프로비저닝 파일은 저장소에 기록하지 않는다.
