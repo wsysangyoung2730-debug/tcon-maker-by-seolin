@@ -37,29 +37,27 @@ struct RootView: View {
       }
     }
     .alert(
-      "작업을 확인해 주세요",
-      isPresented: Binding(get: { store.error != nil }, set: { if !$0 { store.error = nil } })
+      store.error == nil ? "안내" : "작업을 확인해 주세요",
+      isPresented: Binding(
+        get: { store.error != nil || store.notice != nil },
+        set: { if !$0 { clearMessage() } })
     ) {
-      if store.permissionHelp {
+      if store.error != nil && store.permissionHelp {
         Button("설정 열기") {
           if let url = URL(string: UIApplication.openSettingsURLString) {
             UIApplication.shared.open(url)
           }
-          store.error = nil
+          clearMessage()
         }
       }
-      Button("확인", role: .cancel) { store.error = nil }
+      Button("확인", role: .cancel) { clearMessage() }
     } message: {
-      Text(store.error ?? "")
-    }
-    .alert(
-      "안내",
-      isPresented: Binding(get: { store.notice != nil }, set: { if !$0 { store.notice = nil } })
-    ) {
-      Button("확인", role: .cancel) { store.notice = nil }
-    } message: {
-      Text(store.notice ?? "")
+      Text(store.error ?? store.notice ?? "")
     }
     .task { await store.prepare() }
+  }
+  private func clearMessage() {
+    store.error = nil
+    store.notice = nil
   }
 }

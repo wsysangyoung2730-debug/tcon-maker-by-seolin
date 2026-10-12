@@ -29,7 +29,8 @@ struct ImportActions: View {
             Label("촬영하기", systemImage: "camera").font(.headline).frame(maxWidth: .infinity).padding(
               .vertical, 16
             ).overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.seolin, lineWidth: 1))
-          }
+              .contentShape(Rectangle())
+          }.buttonStyle(.plain).accessibilityIdentifier("capturePhoto")
 
         }
       }
@@ -47,8 +48,18 @@ struct ImportActions: View {
           .ignoresSafeArea()
       }
   }
+  private var cameraAvailable: Bool {
+    #if DEBUG
+      let arguments = ProcessInfo.processInfo.arguments
+      if arguments.contains("--ui-testing"), arguments.contains("--ui-camera-unavailable") {
+        return false
+      }
+    #endif
+    return UIImagePickerController.isSourceTypeAvailable(.camera)
+  }
+
   private func openCamera() {
-    guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+    guard cameraAvailable else {
       store.error = "이 기기에서는 카메라를 사용할 수 없어요. 사진 보관함이나 파일에서 가져와 주세요."
       return
     }

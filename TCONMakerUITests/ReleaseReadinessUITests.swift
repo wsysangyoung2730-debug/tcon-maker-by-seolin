@@ -5,23 +5,24 @@ final class ReleaseReadinessUITests: XCTestCase {
 
   func testSupportLicensesAndUnavailableCamera() {
     let app = XCUIApplication()
-    app.launchArguments = ["--ui-testing", "--ui-reset"]
+    app.launchArguments = ["--ui-testing", "--ui-reset", "--ui-camera-unavailable"]
     app.launch()
     waitEnabled(app.buttons["importPhotos"])
-    #if targetEnvironment(simulator)
-    app.buttons["촬영하기"].tap()
+    app.scrollViews["homeContent"].swipeUp()
+    app.buttons["capturePhoto"].tap()
     XCTAssertTrue(app.alerts["작업을 확인해 주세요"].waitForExistence(timeout: 10))
     XCTAssertTrue(app.alerts.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "카메라를 사용할 수 없어요")).firstMatch.exists)
     app.alerts.buttons["확인"].tap()
-    #endif
     app.buttons["openSettings"].tap()
     let about = app.buttons["앱 정보 및 개인정보"]
     for _ in 0..<8 where !about.isHittable { app.swipeUp() }
     XCTAssertTrue(about.isHittable)
     about.tap()
+    let support = app.descendants(matching: .any)["supportLink"].firstMatch
+    for _ in 0..<8 where !support.isHittable { app.swipeUp() }
+    XCTAssertTrue(support.isHittable)
     let licenses = app.buttons["openLicenses"]
     for _ in 0..<6 where !licenses.isHittable { app.swipeUp() }
-    XCTAssertTrue(app.buttons["supportLink"].exists)
     XCTAssertTrue(licenses.isHittable)
     licenses.tap()
     XCTAssertTrue(app.navigationBars["오픈소스 고지"].waitForExistence(timeout: 10))
