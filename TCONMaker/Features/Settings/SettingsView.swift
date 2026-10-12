@@ -6,6 +6,7 @@ struct SettingsView: View {
   @State var draft: PhotoSettings
   @State private var preserve = true
   @State private var showAbout = false
+  @State private var showTutorial = false
   var body: some View {
     NavigationStack {
       Form {
@@ -74,6 +75,10 @@ struct SettingsView: View {
         }
         Section {
           Button("기본 설정으로 되돌리기") { draft = PhotoSettings() }
+        }
+        Section("도움말") {
+          Button("사용법 다시 보기", systemImage: "questionmark.circle") { showTutorial = true }
+            .accessibilityIdentifier("openTutorial")
           Button("앱 정보 및 개인정보") { showAbout = true }
         }
       }
@@ -91,6 +96,11 @@ struct SettingsView: View {
         }
       }
       .sheet(isPresented: $showAbout) { AboutView() }
+      .fullScreenCover(isPresented: $showTutorial) {
+        TutorialView(
+          onClose: { showTutorial = false },
+          onComplete: { showTutorial = false })
+      }
     }
   }
   private func numberRow(_ title: String, value: Binding<Double>, unit: String) -> some View {

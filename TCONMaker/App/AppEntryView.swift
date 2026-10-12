@@ -4,6 +4,7 @@ import SwiftUI
 struct AppEntryView: View {
   @AppStorage("hasCompletedOnboarding", store: onboardingDefaults)
   private var hasCompletedOnboarding = false
+  @State private var showingTutorial = false
 
   init() {
     #if DEBUG
@@ -27,11 +28,22 @@ struct AppEntryView: View {
   var body: some View {
     Group {
       if shouldShowWelcome {
-        WelcomeView { hasCompletedOnboarding = true }
+        WelcomeView(
+          onStart: { hasCompletedOnboarding = true },
+          onTutorial: { showingTutorial = true })
       } else {
         RootView()
       }
     }.tint(.seolin)
+      .fullScreenCover(isPresented: $showingTutorial) {
+        TutorialView(
+          isOnboarding: true,
+          onClose: { showingTutorial = false },
+          onComplete: {
+            showingTutorial = false
+            hasCompletedOnboarding = true
+          })
+      }
   }
 }
 
