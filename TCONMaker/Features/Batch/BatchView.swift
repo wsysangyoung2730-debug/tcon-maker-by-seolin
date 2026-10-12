@@ -7,7 +7,6 @@ struct BatchView: View {
   @State private var reviewOnly = false
   @State private var selecting = false
   @State private var selection = Set<Int>()
-  @State private var deletePrompt = false
   @State private var moving = false
   private var folderPhotos: [PhotoItem] { store.photos(in: folderID) }
   private var displayed: [PhotoItem] { folderPhotos.filter { !reviewOnly || $0.needsReview } }
@@ -94,7 +93,14 @@ struct BatchView: View {
                   "moveSelectedPhotos")
                 DestructiveOutlineButton(
                   title: "선택한 \(selectedIDs.count)장 삭제", disabled: selectedIDs.isEmpty
-                ) { deletePrompt = true }
+                ) {
+                  let ids = Array(selectedIDs)
+                  Task {
+                    await store.remove(ids)
+                    selection = []
+                    selecting = false
+                  }
+                }
                 .accessibilityIdentifier("deleteSelectedPhotos")
               }
             }
@@ -116,20 +122,6 @@ struct BatchView: View {
           selection = []
           selecting = false
         }
-      }
-      .confirmationDialog(
-        "선택한 \(selectedIDs.count)장을 삭제할까요?", isPresented: $deletePrompt, titleVisibility: .visible
-      ) {
-        Button("사진함에서 삭제", role: .destructive) {
-          let ids = Array(selectedIDs)
-          Task {
-            await store.remove(ids)
-            selection = []
-            selecting = false
-          }
-        }
-      } message: {
-        Text("앱에 보관된 사진과 편집만 삭제됩니다. 사진 보관함의 원본은 유지됩니다.")
       }
       .onChange(of: folderPhotos.map(\.id)) { _, ids in selection.formIntersection(ids) }
       .disabled(store.busy || !store.ready)
