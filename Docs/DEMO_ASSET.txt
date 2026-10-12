@@ -1,0 +1,2 @@
+Built-in image_gen generated fictional adult portrait for the approved home-screen sample and automated testing. No real student photograph is included.
+Prompt: Photorealistic frontal studio identification portrait of a fictional Korean adult man age 25, neat short black hair, white taekwondo dobok with black V-neck, light gray background, ample crop margins, 4:5 portrait, no text or logos.
