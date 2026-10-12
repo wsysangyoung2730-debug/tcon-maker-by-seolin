@@ -4,7 +4,6 @@ import SwiftUI
 
 struct ImportActions: View {
   @EnvironmentObject private var store: PhotoStore
-  @State private var picks: [PhotosPickerItem] = []
   @State private var camera = false
   @State private var files = false
   var compact = false
@@ -13,10 +12,7 @@ struct ImportActions: View {
     Group {
       if compact {
         Menu {
-          PhotosPicker(
-            selection: $picks, maxSelectionCount: 30, matching: .images,
-            preferredItemEncoding: .current
-          ) { Label("사진 보관함", systemImage: "photo.on.rectangle") }
+          LibraryPhotoPicker(folderID: folderID) { Label("사진 보관함", systemImage: "photo.on.rectangle") }
           Button("파일에서 가져오기", systemImage: "folder") { files = true }
           Button("촬영하기", systemImage: "camera") { openCamera() }
         } label: {
@@ -24,10 +20,7 @@ struct ImportActions: View {
         }.accessibilityLabel("사진 추가").accessibilityIdentifier("addFolderPhoto")
       } else {
         VStack(spacing: 12) {
-          PhotosPicker(
-            selection: $picks, maxSelectionCount: 30, matching: .images,
-            preferredItemEncoding: .current
-          ) {
+          LibraryPhotoPicker(folderID: folderID) {
             Label("사진 선택하기", systemImage: "photo").font(.headline).frame(maxWidth: .infinity)
               .padding(.vertical, 18).foregroundStyle(.white).background(
                 Color.brandNavy, in: RoundedRectangle(cornerRadius: 16))
@@ -41,11 +34,6 @@ struct ImportActions: View {
         }
       }
     }.disabled(!store.ready || store.busy)
-      .onChange(of: picks) { _, items in
-        guard !items.isEmpty else { return }
-        picks = []
-        Task { await store.importSelections(items, folderID: folderID) }
-      }
       .fileImporter(
         isPresented: $files, allowedContentTypes: [.image], allowsMultipleSelection: true
       ) { result in
@@ -73,6 +61,27 @@ struct ImportActions: View {
       if allowed { camera = true } else {
         store.report(AppFailure("카메라 권한이 꺼져 있어요. 설정에서 카메라 권한을 켜거나 사진 보관함을 이용해 주세요.", canOpenSettings: true))
       }
+    }
+  }
+}
+
+/// One selection/import path shared by the home card, primary button and folder menu.
+struct LibraryPhotoPicker<Content: View>: View {
+  @EnvironmentObject private var store: PhotoStore
+  @State private var picks: [PhotosPickerItem] = []
+  var folderID: UUID? = nil
+  @ViewBuilder var label: () -> Content
+
+  var body: some View {
+    PhotosPicker(
+      selection: $picks, maxSelectionCount: 30, matching: .images,
+      preferredItemEncoding: .current, label: label
+    )
+    .disabled(!store.ready || store.busy)
+    .onChange(of: picks) { _, items in
+      guard !items.isEmpty else { return }
+      picks = []
+      Task { await store.importSelections(items, folderID: folderID) }
     }
   }
 }
