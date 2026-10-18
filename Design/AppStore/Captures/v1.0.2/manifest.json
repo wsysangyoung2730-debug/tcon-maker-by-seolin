@@ -1,0 +1,130 @@
+[
+  {
+    "file": "ko-KR/iPad-13-2064x2752/01-home.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "53ea8bba0c6e730cf457975faf40d00911b7ef3408c35a3ffc0abde9828ee930"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/02-folders.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "38fc9b3881c4e192ddcd2be8273850d58219d542e8011d45d983b32374d0c1a4"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/03-editor.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "3f7dc04103cefab48e0b88d2818b9c4abfc0ac67d56c63d3345be8fa1eafed65"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/04-background.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "0ed56154daca7454177acc09c1b33f92322acc4127a942e758102c88710cb3e2"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/05-selection.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "f17529ec490751253bcbf3854c5589cfa8e6e536e8e285224e17b216ea07ed11"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/06-export.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "be470f4e47a8a81b47c8a9445de2e801118174314a1e7c91681d9ea7047ddea1"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/07-settings.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "4465fd3bb1e0ae14ad1419809f6744cd963365b27b425e12b1dc108391c121a8"
+  },
+  {
+    "file": "ko-KR/iPad-13-2064x2752/08-home-actions.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 2064,
+    "height": 2752,
+    "sha256": "53ea8bba0c6e730cf457975faf40d00911b7ef3408c35a3ffc0abde9828ee930"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/01-home.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "c1ee610f5ecf12a6ae1d653e81d3acef138a33b3189daf0dbc5b2922fcad7552"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/02-folders.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "e610642d402d9ef55cd1137876f4bb6825cfa49912caf47f7b8f09219daf7466"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/03-editor.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "23bb7fa96ea98da778ad5b93100052add89b437d1c68b0687e0a185d772283e2"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/04-background.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "3f8c866042c8f37c171dd0ba77dbd2fb14fe687b75de05b41b2867e8c7ad7045"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/05-selection.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "4bfeab14c6ef9c889e8d3fb49ac3e5290006d3ebf3142906ccea9efac13da931"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/06-export.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "40b912a9afaa2409b57a3b15ef74361555eaec83b1fc11b2624592d644191c0e"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/07-settings.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "833581d96b772a6cd0c436fbbc8e4438c7720d6855b42ae158137422b9936594"
+  },
+  {
+    "file": "ko-KR/iPhone-Large-1320x2868/08-home-actions.png",
+    "appVersion": "1.0.2",
+    "build": "4",
+    "width": 1320,
+    "height": 2868,
+    "sha256": "ee2340b113a1d19c9a558ee7fc7d8fd6f41ecb9919805f550dc3a0e58fded627"
+  }
+]
