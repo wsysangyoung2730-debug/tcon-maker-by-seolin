@@ -19,8 +19,11 @@ const devices = [
 const sha256 = data => createHash('sha256').update(data).digest('hex');
 const browser = await chromium.launch({headless:true,...(process.env.TCON_RENDER_BROWSER ? {executablePath:process.env.TCON_RENDER_BROWSER} : {})});
 const manifest=[];
+const homeOnly=process.argv.includes('--refresh-ipad-home');
+const homeFiles=new Set(['ko-KR/iPad-13-2064x2752/02-start.png','ko-KR/iPad-13-2064x2752/03-size.png']);
 const coversOnly=process.argv.includes("--verify-covers");
 const previousManifest=JSON.parse(await fs.readFile(path.join(dir,'manifest.json'),'utf8'));
+if(homeOnly)manifest.push(...previousManifest.filter(m=>!homeFiles.has(m.file)));
 const brand=JSON.parse(await fs.readFile(path.join(root,'Design/Brand/palette.json'),'utf8'));
 const brandSource=await fs.readFile(path.join(root,'Design/Brand/tcon-logo-original.png'));
 if(sha256(brandSource)!==brand.sourceSHA256)throw Error('Brand source hash mismatch');
@@ -32,6 +35,7 @@ try {
   await fs.mkdir(path.join(dir,'ko-KR',device),{recursive:true});
   for(let slide=0;slide<7;slide++){
    if(coversOnly&&slide>0)continue;
+   if(homeOnly&&!(device==='iPad-13-2064x2752'&&(slide===1||slide===2)))continue;
    const url=pathToFileURL(path.join(dir,'Source/promotion.html'));
    url.searchParams.set('device',device);url.searchParams.set('slide',String(slide));
    await page.goto(url.href);await page.evaluate(()=>document.fonts.ready);
@@ -70,6 +74,7 @@ try {
   }
  }
  if(!coversOnly){
+ manifest.sort((a,b)=>previousManifest.findIndex(m=>m.file===a.file)-previousManifest.findIndex(m=>m.file===b.file));
  const currentFiles=new Set(manifest.map(m=>m.file));
  for(const old of previousManifest){if(!currentFiles.has(old.file)&&old.file.startsWith('ko-KR/'))await fs.unlink(path.join(dir,old.file));}
  await fs.writeFile(path.join(dir,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');

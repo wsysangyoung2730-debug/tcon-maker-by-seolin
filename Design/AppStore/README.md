@@ -51,3 +51,9 @@ TCON_RENDER_BROWSER='/Applications/Google Chrome.app/Contents/MacOS/Google Chrom
 2026-10-19 새 로고의 메인 파랑 `#1B34A8`과 보조 파랑 `#6071C2`를 반영했다. 원본은 `Design/Brand`에 보존하며 최종 manifest에 브랜드 원본 해시·표현 개정·앱 버전·빌드를 기록한다. 로고가 바뀐 새 개정에서 표지 기준을 갱신하고 같은 개정의 후속 재생성에서는 표지 해시를 다시 검사한다. 이전 표지는 Git 이력에서 확인할 수 있다.
 
 표지 일관성만 재확인할 때는 `node Scripts/render_appstore.mjs --verify-covers`를 사용한다. 이 모드는 최종 이미지나 manifest를 수정하지 않는다.
+
+### iPad 홈 세로 배치 갱신 (#56)
+
+2페이지는 예시 사진 아래에 규격·사진 선택·촬영을 배치한 실제 iPad 홈으로 교체했다. 3페이지도 같은 빌드의 설정 화면으로 다시 촬영했다. 그 외 19장의 최종 PNG는 이전과 동일하다. App Store Connect 반영은 별도 후속 작업이다.
+
+관련 페이지만 재생성하려면 기존 렌더 명령에 `--refresh-ipad-home`을 추가한다.
