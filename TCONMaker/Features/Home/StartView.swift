@@ -70,7 +70,7 @@ struct StartView: View {
         Text("사진을 눌러 시작하기")
           .font(.caption2).foregroundStyle(.secondary)
       }.padding(wide ? 32 : 20).frame(maxWidth: .infinity)
-        .background(Color.seolin.opacity(0.05), in: RoundedRectangle(cornerRadius: 24))
+        .background(Color.brandSurface, in: RoundedRectangle(cornerRadius: 24))
         .contentShape(RoundedRectangle(cornerRadius: 24))
     }.buttonStyle(.plain)
       .accessibilityLabel("예시 사진을 눌러 사진 선택하기")

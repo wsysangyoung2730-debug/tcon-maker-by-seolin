@@ -127,7 +127,7 @@ struct AboutView: View {
           Text("TCON Maker by SEOLIN").font(.headline)
           Text("서린태권도에서 만든 심사 사진 편집 도구")
           Text(
-            "버전 \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0.1")"
+            "버전 \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0.2")"
           )
           .font(.caption).foregroundStyle(.secondary)
         }
