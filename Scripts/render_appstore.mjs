@@ -19,13 +19,19 @@ const devices = [
 const sha256 = data => createHash('sha256').update(data).digest('hex');
 const browser = await chromium.launch({headless:true,...(process.env.TCON_RENDER_BROWSER ? {executablePath:process.env.TCON_RENDER_BROWSER} : {})});
 const manifest=[];
+const coversOnly=process.argv.includes("--verify-covers");
 const previousManifest=JSON.parse(await fs.readFile(path.join(dir,'manifest.json'),'utf8'));
+const brand=JSON.parse(await fs.readFile(path.join(root,'Design/Brand/palette.json'),'utf8'));
+const brandSource=await fs.readFile(path.join(root,'Design/Brand/tcon-logo-original.png'));
+if(sha256(brandSource)!==brand.sourceSHA256)throw Error('Brand source hash mismatch');
+const presentationRevision='2026-10-19-brand-refresh';
 try {
  const page=await browser.newPage({deviceScaleFactor:1,colorScheme:'light',locale:'ko-KR'});
  for(const [device,width,height] of devices){
   await page.setViewportSize({width,height});
   await fs.mkdir(path.join(dir,'ko-KR',device),{recursive:true});
   for(let slide=0;slide<7;slide++){
+   if(coversOnly&&slide>0)continue;
    const url=pathToFileURL(path.join(dir,'Source/promotion.html'));
    url.searchParams.set('device',device);url.searchParams.set('slide',String(slide));
    await page.goto(url.href);await page.evaluate(()=>document.fonts.ready);
@@ -52,19 +58,24 @@ try {
    const file=`ko-KR/${device}/${spec.slide.id}.png`;
    if(spec.slide.cover){
     const previous=previousManifest.find(m=>m.file===file);
-    if(previous&&previous.sha256!==sha256(buffer))throw Error('Approved cover changed');
+    if(previous?.presentationRevision===presentationRevision&&previous.sha256!==sha256(buffer))throw Error('Approved brand cover changed');
+   }
+   if(coversOnly){
+    if(previousManifest.find(m=>m.file===file)?.presentationRevision!==presentationRevision)throw Error("Brand cover baseline missing");
+    console.log(`Verified ${file}`);continue;
    }
    await fs.writeFile(path.join(dir,file),buffer);
-   manifest.push({file,appVersion:"1.0.1",build:"2",width,height,alpha:false,sha256:sha256(buffer),title:spec.slide.title,description:spec.slide.description,source:spec.source,sourceSHA256:spec.source?sha256(await fs.readFile(path.join(dir,spec.source))):null,sourceCrop:spec.crop,statusMask:spec.statusMask||null});
+   manifest.push({file,appVersion:"1.0.2",build:"4",presentationRevision,brandSourceSHA256:brand.sourceSHA256,width,height,alpha:false,sha256:sha256(buffer),title:spec.slide.title,description:spec.slide.description,source:spec.source,sourceSHA256:spec.source?sha256(await fs.readFile(path.join(dir,spec.source))):null,sourceCrop:spec.crop,statusMask:spec.statusMask||null});
    console.log(`Rendered ${file}`);
   }
  }
+ if(!coversOnly){
  const currentFiles=new Set(manifest.map(m=>m.file));
  for(const old of previousManifest){if(!currentFiles.has(old.file)&&old.file.startsWith('ko-KR/'))await fs.unlink(path.join(dir,old.file));}
  await fs.writeFile(path.join(dir,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
  const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
  const sections=devices.map(([device,w,h])=>`<section><h2>${device}</h2><p>${w} × ${h} · PNG · 표지 + 기능 소개 6장 · 시간/배터리 영역 제외</p><div class="grid">${manifest.filter(m=>m.file.includes(device)).map(m=>`<a href="${m.file}" target="_blank"><img src="${m.file}" alt="${escape(m.title.replaceAll('\n',' '))}"><span>${escape(m.title.replaceAll('\n',' '))}</span></a>`).join('')}</div></section>`).join('');
- await fs.writeFile(path.join(dir,'index.html'),`<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>TCON Maker · App Store 홍보 이미지</title><style>*{box-sizing:border-box}body{margin:0;padding:48px;background:#f1f4fa;color:#18275e;font-family:'Apple SD Gothic Neo',sans-serif}header,section{max-width:1600px;margin:0 auto 64px}h1{font-size:38px;margin:8px 0}h2{font-size:22px}.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:18px}a{color:inherit;text-decoration:none}img{width:100%;border-radius:12px;box-shadow:0 8px 22px #13255416}span{display:block;margin-top:14px;font-size:14px}p{color:#626f89;line-height:1.6}.links{display:flex;gap:24px}@media(max-width:900px){body{padding:24px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:500px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}</style><header><small>TCON MAKER / BY SEOLIN</small><h1>App Store 홍보 이미지</h1><p>실제 앱 화면에 기능별 제목과 설명을 더한 최종 이미지입니다.<br>각 기기 폴더에서 01–07 순서로 업로드하세요. 원본 캡처는 Captures 폴더에 보관되어 있습니다.</p><div class="links"><a href="Source/promotion.html">디자인 원본</a><a href="Captures/index.html">원본 캡처</a><a href="README.md">제작·업로드 안내</a></div></header>${sections}</html>`);
+ await fs.writeFile(path.join(dir,'index.html'),`<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>TCON Maker · App Store 홍보 이미지</title><style>*{box-sizing:border-box}body{margin:0;padding:48px;background:#eef1fc;color:#1b34a8;font-family:'Apple SD Gothic Neo',sans-serif}header,section{max-width:1600px;margin:0 auto 64px}h1{font-size:38px;margin:8px 0}h2{font-size:22px}.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:18px}a{color:inherit;text-decoration:none}img{width:100%;border-radius:12px;box-shadow:0 8px 22px #13255416}span{display:block;margin-top:14px;font-size:14px}p{color:#626f89;line-height:1.6}.links{display:flex;gap:24px}@media(max-width:900px){body{padding:24px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:500px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}</style><header><small>TCON MAKER / BY SEOLIN</small><h1>App Store 홍보 이미지</h1><p>실제 앱 화면에 기능별 제목과 설명을 더한 최종 이미지입니다.<br>각 기기 폴더에서 01–07 순서로 업로드하세요. 원본 캡처는 Captures 폴더에 보관되어 있습니다.</p><div class="links"><a href="Source/promotion.html">디자인 원본</a><a href="Captures/v1.0.2/index.html">원본 캡처</a><a href="README.md">제작·업로드 안내</a></div></header>${sections}</html>`);
  // A compact, readable overview rendered from the same final PNGs.
  for(const [device] of devices){
   const cards=manifest.filter(m=>m.file.includes(device));
@@ -73,7 +84,7 @@ try {
   const thumbH=cards[0].height/cards[0].width*thumbW;
   const overviewW=4*thumbW+5*24,overviewH=Math.ceil(2*thumbH+3*24);
   await page.setViewportSize({width:overviewW,height:overviewH});
-  await page.setContent(`<html><style>*{box-sizing:border-box}body{margin:0;background:#e9edf5;padding:24px;display:grid;grid-template-columns:repeat(4,${thumbW}px);gap:24px}img{width:${thumbW}px;display:block;box-shadow:0 4px 15px #18275e18}</style>${cards.map(()=>'<img>').join('')}</html>`);
+  await page.setContent(`<html><style>*{box-sizing:border-box}body{margin:0;background:#e8edfc;padding:24px;display:grid;grid-template-columns:repeat(4,${thumbW}px);gap:24px}img{width:${thumbW}px;display:block;box-shadow:0 4px 15px #1b34a818}</style>${cards.map(()=>'<img>').join('')}</html>`);
   const sources=await Promise.all(cards.map(async m=>'data:image/png;base64,'+(await fs.readFile(path.join(dir,m.file))).toString('base64')));
   await page.evaluate(sources=>{[...document.images].forEach((image,i)=>image.src=sources[i]);},sources);
   await page.waitForFunction(()=>[...document.images].every(i=>i.complete&&i.naturalWidth>0));
@@ -81,4 +92,5 @@ try {
   await fs.writeFile(path.join(dir,'Overview',`${device}.jpg`),await sharp(await page.screenshot()).jpeg({quality:92}).toBuffer());
  }
  console.log(`Validated ${manifest.length} opaque RGB PNGs and 3 overview sheets.`);
+ }
 } finally {await browser.close();}
