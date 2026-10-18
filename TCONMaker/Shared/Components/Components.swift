@@ -1,12 +1,13 @@
 import SwiftUI
 
 extension Color {
-  static let brandNavy = Color(red: 32 / 255, green: 46 / 255, blue: 120 / 255)
+  static let brandNavy = Color(red: 27 / 255, green: 52 / 255, blue: 168 / 255)
+  static let brandSecondary = Color(red: 96 / 255, green: 113 / 255, blue: 194 / 255)
   static let seolin = Color(
     uiColor: UIColor { traits in
       traits.userInterfaceStyle == .dark
-        ? UIColor(red: 0.58, green: 0.68, blue: 1, alpha: 1)
-        : UIColor(red: 32 / 255, green: 46 / 255, blue: 120 / 255, alpha: 1)
+        ? UIColor(red: 174 / 255, green: 187 / 255, blue: 1, alpha: 1)
+        : UIColor(red: 27 / 255, green: 52 / 255, blue: 168 / 255, alpha: 1)
     })
   static let appBackground = Color(uiColor: .systemGroupedBackground)
   static let panel = Color(uiColor: .secondarySystemGroupedBackground)
