@@ -3,12 +3,31 @@ import XCTest
 final class HomeImportUITests: XCTestCase {
   func testExampleCardAndPrimaryButtonOpenPhotoLibrary() {
     continueAfterFailure = false
+    XCUIDevice.shared.orientation = .portrait
     let app = XCUIApplication()
     app.launchArguments = ["--ui-testing", "--ui-reset"]
     app.launch()
     let card = app.buttons["homeExamplePhoto"]
     expectation(for: NSPredicate(format: "exists == true AND enabled == true"), evaluatedWith: card)
     waitForExpectations(timeout: 180)
+    if UIDevice.current.userInterfaceIdiom == .pad {
+      let size = app.buttons["homePhotoSize"]
+      let picker = app.buttons["importPhotos"]
+      let camera = app.buttons["capturePhoto"]
+      XCTAssertTrue(size.isHittable)
+      XCTAssertTrue(picker.isHittable)
+      XCTAssertTrue(camera.isHittable)
+      XCTAssertGreaterThan(size.frame.minY, card.frame.maxY)
+      XCTAssertGreaterThan(picker.frame.minY, size.frame.maxY)
+      XCTAssertGreaterThan(camera.frame.minY, picker.frame.maxY)
+      XCTAssertEqual(card.frame.midX, picker.frame.midX, accuracy: 2)
+      capture("store-01-home")
+      capture("store-08-home-actions")
+      size.tap()
+      XCTAssertTrue(app.buttons["applySettings"].waitForExistence(timeout: 10))
+      capture("store-07-settings")
+      app.buttons["취소"].tap()
+    }
     card.tap()
     closePhotoPicker(app)
     let button = app.buttons["importPhotos"]
@@ -17,6 +36,12 @@ final class HomeImportUITests: XCTestCase {
     XCTAssertTrue(app.scrollViews["homeContent"].buttons["importPhotos"].exists)
     button.tap()
     closePhotoPicker(app)
+  }
+  private func capture(_ name: String) {
+    let shot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    shot.name = name
+    shot.lifetime = .keepAlways
+    add(shot)
   }
   private func closePhotoPicker(_ app: XCUIApplication) {
     let cancel = app.buttons.matching(NSPredicate(format: "label IN %@", ["취소", "Cancel"]))

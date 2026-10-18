@@ -10,25 +10,13 @@ struct StartView: View {
       let wide = WorkspaceLayout.usesColumns(
         width: geometry.size.width, sizeClass: sizeClass, typeSize: typeSize)
       ScrollView {
-        VStack(alignment: .leading, spacing: wide ? 36 : 20) {
+        VStack(alignment: .leading, spacing: wide ? 24 : 20) {
           header
-          if wide {
-            HStack(alignment: .center, spacing: 36) {
-              VStack(alignment: .leading, spacing: 24) {
-                introduction
-                examplePhoto(wide: true)
-              }.frame(maxWidth: .infinity)
-              VStack(alignment: .leading, spacing: 20) { preparation }
-                .padding(28).frame(maxWidth: .infinity)
-                .background(Color.appBackground, in: RoundedRectangle(cornerRadius: 28))
-            }
-          } else {
-            introduction
-            examplePhoto(wide: false)
-            preparation
-          }
+          introduction
+          examplePhoto(wide: wide)
+          preparation
         }.padding(wide ? 32 : 22)
-          .frame(maxWidth: wide ? WorkspaceLayout.maximumWidth : 560)
+          .frame(maxWidth: wide ? 640 : 560)
           .frame(maxWidth: .infinity)
       }.safeAreaPadding(.bottom, 80)
         .accessibilityIdentifier("homeContent")
@@ -61,7 +49,7 @@ struct StartView: View {
     LibraryPhotoPicker {
       VStack(spacing: 12) {
         Image("DemoPortrait").resizable().scaledToFill().frame(
-          width: wide ? 240 : 134, height: wide ? 300 : 168
+          width: wide ? 176 : 134, height: wide ? 220 : 168
         )
         .clipped().overlay(
           RoundedRectangle(cornerRadius: 4).stroke(Color.seolin.opacity(0.4), lineWidth: 2))
@@ -69,7 +57,7 @@ struct StartView: View {
           .font(.caption).foregroundStyle(Color.seolin)
         Text("사진을 눌러 시작하기")
           .font(.caption2).foregroundStyle(.secondary)
-      }.padding(wide ? 32 : 20).frame(maxWidth: .infinity)
+      }.padding(wide ? 24 : 20).frame(maxWidth: .infinity)
         .background(Color.brandSurface, in: RoundedRectangle(cornerRadius: 24))
         .contentShape(RoundedRectangle(cornerRadius: 24))
     }.buttonStyle(.plain)
@@ -92,7 +80,7 @@ struct StartView: View {
           Image(systemName: "chevron.right").foregroundStyle(.secondary)
         }.padding(18).background(Color.panel, in: RoundedRectangle(cornerRadius: 16)).overlay(
           RoundedRectangle(cornerRadius: 16).stroke(Color.secondary.opacity(0.2)))
-      }.buttonStyle(.plain)
+      }.buttonStyle(.plain).accessibilityIdentifier("homePhotoSize")
       Text(
         "\(store.settings.background == "white" ? "흰색" : store.settings.background == "clear" ? "투명" : "원본") 배경 · \(store.settings.orig || store.settings.clear ? "용량 제한 없음" : "최대 \(Int(store.settings.maxkb)) KB")"
       ).font(.caption).foregroundStyle(.secondary)
