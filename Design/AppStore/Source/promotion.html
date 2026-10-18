@@ -2,16 +2,16 @@
 <html lang="ko"><meta charset="utf-8"><title>TCON App Store 디자인 원본</title>
 <style>
 
-*{box-sizing:border-box}html,body{margin:0;padding:0}body{background:#f2f4fa;font-family:'Apple SD Gothic Neo',sans-serif;-webkit-font-smoothing:antialiased}
-.artboard{position:relative;overflow:hidden;background:#f5f7fc;color:#171e40;transform-origin:top left}
-.artboard.dark{background:#19276b;color:#fff}
-.wash{position:absolute;inset:0;background:radial-gradient(ellipse at 100% 60%,#dde8ff 0,transparent 54%);pointer-events:none}
-.dark .wash{background:radial-gradient(ellipse at 100% 58%,#324895 0,transparent 60%)}
-.crop-mark{position:absolute;right:-100px;top:100px;width:380px;height:380px;border-top:22px solid #dce4fa;border-right:22px solid #dce4fa;transform:rotate(16deg);border-radius:12px;opacity:.35}
-.dark .crop-mark{border-color:#586ac0;opacity:.16}
+*{box-sizing:border-box}html,body{margin:0;padding:0}body{background:#eef1fc;font-family:'Apple SD Gothic Neo',sans-serif;-webkit-font-smoothing:antialiased}
+.artboard{position:relative;overflow:hidden;background:#f5f7fd;color:#172450;transform-origin:top left}
+.artboard.dark{background:#1b34a8;color:#fff}
+.wash{position:absolute;inset:0;background:radial-gradient(ellipse at 100% 60%,#e3e8fd 0,transparent 54%);pointer-events:none}
+.dark .wash{background:radial-gradient(ellipse at 100% 58%,#6071c2 0,transparent 60%)}
+.crop-mark{position:absolute;right:-100px;top:100px;width:380px;height:380px;border-top:22px solid #dce3fc;border-right:22px solid #dce3fc;transform:rotate(16deg);border-radius:12px;opacity:.35}
+.dark .crop-mark{border-color:#6071c2;opacity:.16}
 h1{position:absolute;top:124px;left:72px;margin:0;font-size:82px;line-height:1.15;font-weight:800;letter-spacing:-3.8px;white-space:pre-line}
 .description{position:absolute;left:78px;top:347px;font-size:31px;line-height:1.5;font-weight:400;letter-spacing:-.65px;white-space:pre-line;color:#65708c;margin:0}
-.dark .description{color:#c4cfeb}
+.dark .description{color:#d7dfff}
 /* Thin, uniform bezel. The island sits in the display safe area, not in a thick top bezel. */
 .frame{position:absolute;padding:12px;border-radius:81px;background:#17191e;box-shadow:0 36px 75px #1426532d,0 0 0 2px #9498a1,0 0 0 5px #575b64,inset 0 0 0 2px #050609}
 .dark .frame{box-shadow:0 40px 90px #070c3048,0 0 0 2px #7b8295,0 0 0 5px #454d62,inset 0 0 0 2px #050609}
@@ -29,12 +29,12 @@ h1{position:absolute;top:124px;left:72px;margin:0;font-size:82px;line-height:1.1
 .ipad .frame:before{content:'';position:absolute;left:50%;transform:translateX(-50%);width:12px;height:12px;top:14px;background:#080b12;box-shadow:inset 0 0 0 3px #202c45;border-radius:50%}
 .ipad .screen:before,.ipad .screen:after{display:none}.ipad .side-key{top:170px;height:65px;width:4px;right:-7px}.ipad .side-key.left{display:none}
 .cover .crop-mark{display:none}
-.cover .wash{background:radial-gradient(ellipse at 50% 49%,#2d3e82 0,#243575 34%,#1b2a69 76%)}
+.cover .wash{background:radial-gradient(ellipse at 50% 49%,#253eae 0,#1b34a8 34%,#182d91 76%)}
 .cover h1{left:65px;right:65px;top:16%;text-align:center;font-size:82px;line-height:1.23;letter-spacing:-3.5px}
-.hero-icon{position:absolute;left:50%;top:50%;width:410px;height:410px;transform:translate(-50%,-50%);border-radius:90px;overflow:hidden;opacity:.78;mix-blend-mode:luminosity}
+.hero-icon{position:absolute;left:50%;top:50%;width:410px;height:410px;transform:translate(-50%,-50%);border-radius:90px;overflow:hidden;opacity:1;box-shadow:0 16px 64px #1023751a}
 .hero-icon img{width:100%;height:100%;display:block}
-.hero-name{position:absolute;left:0;right:0;top:calc(50% + 273px);text-align:center;font-size:60px;letter-spacing:-1.8px;font-weight:700;color:#e6eafb}
-.hero-detail{position:absolute;left:0;right:0;top:calc(50% + 365px);text-align:center;font-size:29px;color:#adbadc;letter-spacing:-.5px}
+.hero-name{position:absolute;left:0;right:0;top:calc(50% + 273px);text-align:center;font-size:60px;letter-spacing:-1.8px;font-weight:700;color:#ffffff}
+.hero-detail{position:absolute;left:0;right:0;top:calc(50% + 365px);text-align:center;font-size:29px;color:#d0d9ff;letter-spacing:-.5px}
 /* The original logo stays untouched; CSS blends a subdued monochrome signature into the cover. */
 .cover-signature{position:absolute;bottom:122px;left:50%;transform:translateX(-50%);width:270px;height:244px;mix-blend-mode:screen;opacity:.54}
 .cover-signature img{width:100%;height:100%;object-fit:contain;filter:grayscale(1) invert(1)}
@@ -92,8 +92,8 @@ const statusBackground=slide.source==='07-settings.png'?'#cccccc':(slide.source=
 const statusMask=device.ipad?null:{x:0,y:0,width:1320,height:180,background:statusBackground};
 if(statusMask){Object.assign(statusCover.style,{height:(statusMask.height*scale)+'px',background:statusBackground});}
 else{statusCover.remove();}
-capture.src=`../Captures/v1.0.1/ko-KR/${sourceDevice}/${slide.source}`;
+capture.src=`../Captures/v1.0.2/ko-KR/${sourceDevice}/${slide.source}`;
 Object.assign(capture.style,{left:-crop.x*scale+'px',top:-crop.y*scale+'px',width:sourceWidth*scale+'px'});
-window.renderSpec={device:key,width:device.width,height:device.height,slide,source:`Captures/v1.0.1/ko-KR/${sourceDevice}/${slide.source}`,crop,statusMask,baseWidth,baseHeight,slideCount:slides.length};
+window.renderSpec={device:key,width:device.width,height:device.height,slide,source:`Captures/v1.0.2/ko-KR/${sourceDevice}/${slide.source}`,crop,statusMask,baseWidth,baseHeight,slideCount:slides.length};
 }
 </script></html>
