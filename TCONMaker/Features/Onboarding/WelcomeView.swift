@@ -23,7 +23,7 @@ struct WelcomeView: View {
             .font(.body).foregroundStyle(.secondary)
         }
         ZStack {
-          RoundedRectangle(cornerRadius: 28).fill(Color.seolin.opacity(0.07))
+          RoundedRectangle(cornerRadius: 28).fill(Color.brandSurface)
           VStack(spacing: 16) {
             Image("DemoPortrait").resizable().scaledToFill()
               .frame(width: 132, height: 165).clipped()
