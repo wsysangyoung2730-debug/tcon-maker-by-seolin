@@ -10,18 +10,24 @@ import struct
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('attachments', type=Path)
 parser.add_argument('--device', required=True, choices=['iPhone-Large-1320x2868', 'iPad-13-2064x2752'])
+parser.add_argument('--screens', nargs='+', help='Refresh only these named screens, e.g. 01-home 07-settings')
 args = parser.parse_args()
+all_screens = {f'{i:02}-{name}' for i, name in enumerate(['home', 'folders', 'editor', 'background', 'selection', 'export', 'settings', 'home-actions'], start=1)}
+requested = set(args.screens) if args.screens else all_screens
+assert requested and requested <= all_screens, 'Unknown screen name'
+
 root = Path(__file__).resolve().parents[1]
 out = root / 'Design/AppStore/Captures/v1.0.2'
 folder = out / 'ko-KR' / args.device
 folder.mkdir(parents=True, exist_ok=True)
 manifest = json.loads((args.attachments / 'manifest.json').read_text())
 seen = set()
+pending = []
 for test in manifest:
     for attachment in test['attachments']:
         name = attachment['suggestedHumanReadableName']
         match = re.match(r'store-(\d{2}-[a-z-]+)', name)
-        if not match or 'landscape' in match[1]:
+        if not match or match[1] not in requested:
             continue
         assert not attachment['isAssociatedWithFailure'], 'Cannot publish failed-test captures'
         source = args.attachments / attachment['exportedFileName']
@@ -33,10 +39,12 @@ for test in manifest:
         dest = folder / (match[1] + '.png')
         assert dest.name not in seen, 'Duplicate named capture'
         seen.add(dest.name)
-        shutil.copy2(source, dest)
-        assert dest.read_bytes() == data
-required = {f'{i:02}-{name}.png' for i, name in enumerate(['home', 'folders', 'editor', 'background', 'selection', 'export', 'settings', 'home-actions'], start=1)}
+        pending.append((source, dest, data))
+required = {name + '.png' for name in requested}
 assert required <= seen, 'Incomplete capture set: ' + str(required - seen)
+for source, dest, data in pending:
+    shutil.copy2(source, dest)
+    assert dest.read_bytes() == data
 entries = []
 for p in sorted((out / 'ko-KR').rglob('*.png')):
     data = p.read_bytes()

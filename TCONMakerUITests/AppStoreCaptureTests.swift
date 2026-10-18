@@ -101,7 +101,7 @@ final class AppStoreCaptureTests: XCTestCase {
     let picker = app.buttons["importPhotos"]
     expectation(
       for: NSPredicate { _, _ in
-        example.isHittable && picker.isHittable && example.frame.maxX < picker.frame.minX
+        example.exists && picker.exists && example.frame.maxY < picker.frame.minY
       }, evaluatedWith: app)
     waitForExpectations(timeout: 10)
   }

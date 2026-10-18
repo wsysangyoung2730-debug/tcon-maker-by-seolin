@@ -3,3 +3,9 @@
 아이폰 18 Pro Max와 아이패드 Pro 13형 iOS 27 시뮬레이터에서 실제 앱을 촬영했습니다. 각 8장, 총 16장의 세로 PNG는 픽셀 수정 없이 보존했습니다. 가상의 성인 예시 사진과 원본 배경 모드를 사용했습니다. manifest에 버전·빌드·실제 크기·SHA-256을 기록합니다.
 
 홍보용 최종 이미지는 상위 ko-KR 폴더의 각 7장입니다. 온보딩과 최대 글자 크기·다크 모드 검증 캡처는 별도 Design/Brand/Verification에 보관하며 홍보용으로 사용하지 않습니다.
+
+## iPad 홈 갱신 (#56)
+
+2026-10-19 코드 커밋 `2973f58`에서 iPad 홈을 단일 열로 변경했다. 관련 UI 테스트 통과 후 `01-home`, `08-home-actions`, `07-settings`만 다시 촬영했다. 원본 파일은 수정하지 않았으며 새 해시는 manifest에 반영했다.
+
+재현: `python3 Scripts/import_appstore_captures.py <attachments> --device iPad-13-2064x2752 --screens 01-home 08-home-actions 07-settings`
